@@ -1,0 +1,193 @@
+/* RESET ALL */
+* { padding:0px; margin:0px; font-family:"Lucida Grande","Lucida Sans Unicode",helvetica,arial,verdana,sans-serif; font-size:13px; }
+body { background-color:#F3F1EC; }
+
+/* ESTRUTURA */
+#header { 
+	height:60px; 
+	line-height:60px;
+	background:url('../imgs/back-menu.png') repeat-x; 
+	padding:0 20px; 
+	-moz-box-shadow: 0 0 3px #666666;
+	-webkit-box-shadow: 0 0 3px #666666;
+}
+#header #logo { width:205px; height:60px; float:left; }
+#header #pesquisa { margin-left:10px; float:left; }
+#header #pesquisa input { background:url("../imgs/search.png") no-repeat scroll 6px 8px #FFFFFF; font-size:14px; padding:5px 10px 5px 22px; -moz-border-radius:4px; -webkit-border-radius: 4px; border:none; width:600px;}
+#sair { float:right; }
+#sair a.help { background-color:#4989F2; color:#F1F1F1; border:1px solid #9A9A9A; padding:5px; margin-right:5px; }
+#sair a.logout { background-color:#DA4A38; color:#F1F1F1; border:1px solid #9A9A9A; padding:5px; }
+#principal { padding:20px; }
+#main { width:215px; min-height:200px; padding-top:8px; float:left; }
+#content { 
+	float: none;
+	left: auto;
+	margin-left: 215px;
+	position: static;
+	width: auto;
+	min-height:480px; 
+	background-color:#fff;
+	border: 1px solid #d7d7d7;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-box-shadow: 0 0 3px #CCCCCC;
+	-webkit-box-shadow: 0 0 3px #CCCCCC;
+	box-shadow: 0 0 3px #CCCCCC;
+}
+#content-main { background-color:#F0F5F8; border-bottom:1px solid #DADEE5; padding:12px; -moz-border-radius:6px 6px 0 0; -webkit-border-radius: 6px 6px 0 0;}
+#content-general { padding:12px; }
+#footer { height:30px; color:#696969;; margin-left:240px; overflow:hidden; }
+
+/* TAGS */
+a { text-decoration:none; }
+h2 { font-size:16px; border-bottom:1px solid #ccc; margin-bottom:10px; }
+h3 { font-size:14px; }
+h4 { color:#999999; font-size:11px; margin-bottom:10px; font-weight:bold; text-transform:uppercase; }
+
+/* MENU LATERAL ESQUERDO */
+ul.menu li { list-style-type:none; }
+ul.menu li a { display:block; font-size:13px; line-height:28px; overflow:hidden; padding:0 6px 0 40px; color:#555555; }
+
+ul.menu li a span.stats { color:#999999; font-size:10px; padding-left:5px; }
+ul.menu li a:hover { background-color:#EFEDE7; color:#333333; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
+ul.menu li a.selected { background-color:#E5E3DE; color:#000; font-weight:bold; }
+
+ul.menu li.inicio { background-image:url('../imgs/Home.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.inicio a:hover { background-image:url('../imgs/Home.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.inicio a.selected { background-image:url('../imgs/Home.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.projetos { background-image:url('../imgs/Projects.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.projetos a:hover { background-image:url('../imgs/Projects.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.projetos a.selected { background-image:url('../imgs/Projects.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.msgs { background-image:url('../imgs/Messages.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.msgs a:hover { background-image:url('../imgs/Messages.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.msgs a.selected { background-image:url('../imgs/Messages.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.perfil { background-image:url('../imgs/Profile.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.perfil a:hover { background-image:url('../imgs/Profile.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.perfil a.selected { background-image:url('../imgs/Profile.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.conf { background-image:url('../imgs/Overview.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.conf a:hover { background-image:url('../imgs/Overview.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.conf a.selected { background-image:url('../imgs/Overview.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.visao { background-image:url('../imgs/Vision.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.visao a:hover { background-image:url('../imgs/Vision.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.visao a.selected { background-image:url('../imgs/Vision.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.atividade { background-image:url('../imgs/Activity.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.atividade a:hover { background-image:url('../imgs/Activity.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.atividade a.selected { background-image:url('../imgs/Activity.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.wiki { background-image:url('../imgs/Wiki.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.wiki a:hover { background-image:url('../imgs/Wiki.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.wiki a.selected { background-image:url('../imgs/Wiki.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.doc { background-image:url('../imgs/Documents.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.doc a:hover { background-image:url('../imgs/Documents.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.doc a.selected { background-image:url('../imgs/Documents.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.agenda { background-image:url('../imgs/Calendar.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.agenda a:hover { background-image:url('../imgs/Calendar.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.agenda a.selected { background-image:url('../imgs/Calendar.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.plan { background-image:url('../imgs/Plan.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.plan a:hover { background-image:url('../imgs/Plan.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.plan a.selected { background-image:url('../imgs/Plan.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.estat { background-image:url('../imgs/Statistic.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.estat a:hover { background-image:url('../imgs/Statistic.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.estat a.selected { background-image:url('../imgs/Statistic.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.adm { background-image:url('../imgs/Adm.png'); background-repeat:no-repeat; background-position:12px -18px; }
+ul.menu li.adm a:hover { background-image:url('../imgs/Adm.png'); background-repeat:no-repeat; background-position:12px 4px; }
+ul.menu li.adm a.selected { background-image:url('../imgs/Adm.png'); background-repeat:no-repeat; background-position:12px 4px; }
+
+hr { border-color:#DAD8D4 -moz-use-text-color #FFFFFF; border-left:medium none; border-right:medium none; border-style:solid none; border-width:1px medium; margin:1em 0; }
+
+/* FORMULARIOS */
+input, textarea, select { line-height:160%; color:#333; }
+form { padding-top:10px; }
+form fieldset{
+	margin:0;
+	padding:0;
+	border:none;	
+	float:left;
+	display:inline;
+	margin-right:25px;
+	width:100%;
+}
+form legend { display:block; border-bottom:1px solid #ccc; width:100%; font-size:21px; }
+form p{margin:.5em 0;}	
+form label{display:block; margin-bottom:5px; line-height:20px; }	
+form input, form textarea, form select{		
+	width:252px;
+	border:1px solid #ddd;
+	padding:6px;
+}
+form textarea{
+	height:125px;
+	width:98%;
+	overflow:auto;
+}
+form p.submit{
+	clear:both;
+	margin:0;
+	text-align:right;
+}	
+form input[type=submit], form input[type=reset], a.submit{
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font: 12px/20px Arial,Helvetica Neue,Helvetica,sans-serif;
+    height: 28px;
+    line-height:100%;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    background: none repeat scroll 0 0 #3B6B9C;
+   	border: 1px solid #3A6897;
+   	border-radius: 3px 3px 3px 3px;
+   	width:auto;
+}
+form input[type=reset] { border: 1px solid #AB0E15; background: none repeat scroll 0 0 #C5101A; }
+
+/* TOOLTIP */
+#easyTooltip{
+	padding:5px 10px;
+	border:1px solid #195fa4;
+	background:#195fa4;
+	color:#fff;
+}
+img.help:hover { cursor:pointer; }
+
+/* MENSAGENS */
+.messagebox{
+	border:1px solid #c93;
+	background:url("../imgs/alerta.png") no-repeat 4px 50%;
+	background-color:#ffc;
+	padding:3px 3px 3px 23px;
+	margin-top:10px;
+	color:#708090;
+}
+.messageboxok{
+	border:1px solid #349534;
+	background:url("../imgs/certo.gif") no-repeat 4px 50%;
+	background-color:#C9FFCA;
+	padding:3px 3px 3px 23px;
+	color:#008000;
+	margin-top:10px;
+}
+.messageboxerror, label.error{
+	border:1px solid #CC0000;
+	background:url("../imgs/erro.png") no-repeat 4px 50%;
+	background-color:#F7CBCA;
+	padding:3px 3px 3px 23px;
+	color:#CC0000;
+	margin-top:10px;
+}
+.messageboxinfo{
+	border:1px solid #1E5395;
+	background:url("../imgs/info.png") no-repeat 4px 50%;
+	background-color:#B0C4DE;
+	padding:3px 3px 3px 23px;
+	color:#1E5395;
+	margin-top:10px;
+}
+
+/* PARTICULARIDADES */
+img.fotoDestaque { border: 2px solid #d7d7d7; -moz-border-radius: 6px; -webkit-border-radius: 6px; }
+#content-main h2 { font-size:26px; color:#000000; font-weight:normal; border-bottom:none; margin-bottom:0; line-height:48px; }
+#content-main h2.inicio { padding-left:56px; background-image:url('../imgs/icons/Home.png'); background-repeat:no-repeat; }
+#content-main h2.projeto { padding-left:56px; background-image:url('../imgs/icons/Project.png'); background-repeat:no-repeat; }
+#content-main h2.visao { padding-left:56px; background:url('../imgs/icons/Overview.png'); background-repeat:no-repeat; }
+
+ul.lista li { list-style-type:none; }
