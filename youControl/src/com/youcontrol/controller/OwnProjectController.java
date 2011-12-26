@@ -1,0 +1,14 @@
+package com.youcontrol.controller;
+
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Resource;
+
+@Resource
+public class OwnProjectController {
+
+	@Get @Path("/overview")
+	public void overview() {
+	}
+	
+}
