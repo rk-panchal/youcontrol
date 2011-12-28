@@ -1,6 +1,6 @@
 <%@ include file="../commons/header.jsp" %>
 <div id="content-main">
-	<h2 class="visao">Visão Geral</h2>
+	<h2 class="visao">Visão Geral: ${userWeb.project.projeto }</h2>
 </div>
 <div id="content-general">
 	${userWeb.project.projeto }<br />

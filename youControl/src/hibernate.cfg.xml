@@ -12,5 +12,6 @@
 		
 		<mapping class="com.youcontrol.model.Project" />
 		<mapping class="com.youcontrol.model.User" />
+		<mapping class="com.youcontrol.model.UserProjects" />
 	</session-factory>
 </hibernate-configuration>
