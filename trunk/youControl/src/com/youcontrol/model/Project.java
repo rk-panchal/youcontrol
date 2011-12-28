@@ -1,5 +1,7 @@
 package com.youcontrol.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,8 @@ public class Project {
 	private String status;
 	@NotNull @Column(length=700)
 	private String descricao;
+	@NotNull
+	private Date dataDeCriacao;
 	
 	public Long getId() {
 		return id;
@@ -50,6 +54,12 @@ public class Project {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	public void setDataDeCriacao(Date dataDeCriacao) {
+		this.dataDeCriacao = dataDeCriacao;
+	}
+	public Date getDataDeCriacao() {
+		return dataDeCriacao;
 	}
 	
 }

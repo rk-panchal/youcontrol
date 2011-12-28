@@ -7,7 +7,7 @@
 	<a href="<c:url value="/projects/new"/>" class="submit">Criar projeto</a>
 	<ul class="lista" style="margin-top:10px">
 		<c:forEach items="${projetos }" var="projeto">
-			<li>${projeto.projeto } - <a href="<c:url value="/choose/${projeto.id }"/>">Selecionar</a></li>
+			<li><a href="<c:url value="/choose/${projeto.project.id }"/>">${projeto.project.projeto }</a> - ${projeto.role } (${projeto.project.dataDeCriacao })</li>
 		</c:forEach>
 	</ul>
 	
