@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import com.youcontrol.model.Activity;
 import com.youcontrol.model.Project;
 
 import br.com.caelum.vraptor.ioc.Component;
@@ -26,6 +27,7 @@ public class ProjectDao {
 	}
 	
 	public void atualizar(Project project) {
+		session.merge(project);
 	}
 	
 	public Project carregar(Long id) {
@@ -37,4 +39,8 @@ public class ProjectDao {
 		return session.createCriteria(Project.class).list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Activity> listarAtividades(Project project) {
+		return session.createCriteria(Activity.class).add(Restrictions.eq("projeto", project)).list();
+	}
 }

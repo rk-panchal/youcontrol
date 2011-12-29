@@ -50,7 +50,7 @@ ul.menu li a { display:block; font-size:13px; line-height:28px; overflow:hidden;
 
 ul.menu li a span.stats { color:#999999; font-size:10px; padding-left:5px; }
 ul.menu li a:hover { background-color:#EFEDE7; color:#333333; -moz-border-radius: 5px; -webkit-border-radius: 5px;}
-ul.menu li a.selected { background-color:#E5E3DE; color:#000; font-weight:bold; }
+ul.menu li a.selected { background-color:#E5E3DE; color:#000; }
 
 ul.menu li.inicio { background-image:url('../imgs/Home.png'); background-repeat:no-repeat; background-position:12px -18px; }
 ul.menu li.inicio a:hover { background-image:url('../imgs/Home.png'); background-repeat:no-repeat; background-position:12px 4px; }
@@ -189,5 +189,6 @@ img.fotoDestaque { border: 2px solid #d7d7d7; -moz-border-radius: 6px; -webkit-b
 #content-main h2.inicio { padding-left:56px; background-image:url('../imgs/icons/Home.png'); background-repeat:no-repeat; }
 #content-main h2.projeto { padding-left:56px; background-image:url('../imgs/icons/Project.png'); background-repeat:no-repeat; }
 #content-main h2.visao { padding-left:56px; background:url('../imgs/icons/Overview.png'); background-repeat:no-repeat; }
+#content-main h2.atividade { padding-left:56px; background:url('../imgs/icons/Activity.png'); background-repeat:no-repeat; }
 
 ul.lista li { list-style-type:none; }

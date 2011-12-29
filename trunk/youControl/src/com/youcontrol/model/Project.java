@@ -1,11 +1,13 @@
 package com.youcontrol.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.NotNull;
 
@@ -24,6 +26,8 @@ public class Project {
 	private String descricao;
 	@NotNull
 	private Date dataDeCriacao;
+	@OneToMany(mappedBy = "projeto")
+	private List<Activity> atividades;
 	
 	public Long getId() {
 		return id;
@@ -60,6 +64,12 @@ public class Project {
 	}
 	public Date getDataDeCriacao() {
 		return dataDeCriacao;
+	}
+	public void setAtividades(List<Activity> atividades) {
+		this.atividades = atividades;
+	}
+	public List<Activity> getAtividades() {
+		return atividades;
 	}
 	
 }
