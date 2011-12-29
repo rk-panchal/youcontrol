@@ -20,12 +20,12 @@
 			<div id="pesquisa">
 				<input type="text" name="pesquisa" id="pesquisaT" value="Procure o usuário..." />
 			</div>
-			<div id="sair">
-				<a href="#" class="help">Help</a>
-				<a href="<c:url value="/logout"/>" class="logout">Logout</a>
-			</div>
 		</div>
 		<div id="principal">
+			<div id="greetings" style="text-align:right; margin-bottom:15px">
+				<p>Bem vindo, ${userWeb.user.nome }. <a href="#">Editar</a> <a href="#">Help</a> <a href="<c:url value="/logout"/>">Sair</a></p>
+			</div>
+			<div style="clear:both"></div>
 			<div id="main">
 				<ul class="menu">
 					<li class="inicio"><a href="<c:url value="/start"/>">Início</a></li>
@@ -42,7 +42,7 @@
 					<h4>Projeto: ${userWeb.project.projeto }</h4>
 					<ul class="menu">
 						<li class="visao"><a href="<c:url value="/overview"/>">Visão geral</a></li>
-						<li class="atividade"><a href="#">Atividades <span class="stats">- 37 em aberto</span></a></li>
+						<li class="atividade"><a href="<c:url value="/activity"/>">Atividades <span class="stats">- 37 em aberto</span></a></li>
 						<li class="wiki"><a href="#">Wiki</a></li>
 						<li class="doc"><a href="#">Documentos <span class="stats">- 0 docs</span></a></li>
 						<li class="agenda"><a href="#">Agenda <span class="stats">- 2 tarefas hoje</span></a></li>
