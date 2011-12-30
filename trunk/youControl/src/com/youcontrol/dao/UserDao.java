@@ -1,5 +1,7 @@
 package com.youcontrol.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -29,6 +31,11 @@ public class UserDao {
 		return (User) session.createCriteria(User.class).add(Restrictions.eq("email", user.getEmail()))
 														.add(Restrictions.eq("senha", user.getSenha()))
 														.uniqueResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<User> listarUsuarios() {
+		return session.createCriteria(User.class).list();
 	}
 	
 	public void refresh(User user) {

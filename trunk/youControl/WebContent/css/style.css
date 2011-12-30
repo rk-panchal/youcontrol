@@ -1,5 +1,5 @@
 /* RESET ALL */
-* { padding:0px; margin:0px; font-family:"Lucida Grande","Lucida Sans Unicode",helvetica,arial,verdana,sans-serif; font-size:13px; }
+* { padding:0px; margin:0px; font-family:"Trebuchet MS",Verdana,helvetica,arial,sans-serif; font-size:13px; }
 body { background-color:#F3F1EC; }
 
 /* ESTRUTURA */
@@ -14,9 +14,7 @@ body { background-color:#F3F1EC; }
 #header #logo { width:205px; height:60px; float:left; }
 #header #pesquisa { margin-left:10px; float:left; }
 #header #pesquisa input { background:url("../imgs/search.png") no-repeat scroll 6px 8px #FFFFFF; font-size:14px; padding:5px 10px 5px 22px; -moz-border-radius:4px; -webkit-border-radius: 4px; border:none; width:600px;}
-#sair { float:right; }
-#sair a.help { background-color:#4989F2; color:#F1F1F1; border:1px solid #9A9A9A; padding:5px; margin-right:5px; }
-#sair a.logout { background-color:#DA4A38; color:#F1F1F1; border:1px solid #9A9A9A; padding:5px; }
+#greetings a { border-bottom: 1px dotted #3A6897; margin-left:6px; }
 #principal { padding:20px; }
 #main { width:215px; min-height:200px; padding-top:8px; float:left; }
 #content { 
@@ -39,7 +37,7 @@ body { background-color:#F3F1EC; }
 #footer { height:30px; color:#696969;; margin-left:240px; overflow:hidden; }
 
 /* TAGS */
-a { text-decoration:none; }
+a, a:link, a:visited, a:hover { text-decoration:none; color:#3B6B9C; }
 h2 { font-size:16px; border-bottom:1px solid #ccc; margin-bottom:10px; }
 h3 { font-size:14px; }
 h4 { color:#999999; font-size:11px; margin-bottom:10px; font-weight:bold; text-transform:uppercase; }
@@ -92,8 +90,7 @@ ul.menu li.adm { background-image:url('../imgs/Adm.png'); background-repeat:no-r
 ul.menu li.adm a:hover { background-image:url('../imgs/Adm.png'); background-repeat:no-repeat; background-position:12px 4px; }
 ul.menu li.adm a.selected { background-image:url('../imgs/Adm.png'); background-repeat:no-repeat; background-position:12px 4px; }
 
-hr { border-color:#DAD8D4 -moz-use-text-color #FFFFFF; border-left:medium none; border-right:medium none; border-style:solid none; border-width:1px medium; margin:1em 0; }
-
+hr { border:none; border-top:1px solid #DAD8D4; border-bottom:1 px solid white; margin:1em 0px 1em 0px; }
 /* FORMULARIOS */
 input, textarea, select { line-height:160%; color:#333; }
 form { padding-top:10px; }

@@ -16,6 +16,16 @@
 				</label>
 				<input type="text" name="activity.resumo" id="resumo" class="required" size="30" maxlength="255" />
 			</p> 
+			<p>
+				<label for="responsavel">
+					Atribuir para <img src="<c:url value="/imgs/help.png"/>" class="help" title="Quem deve ficar responsável por esta tarefa?" />
+				</label>
+				<select name="activity.responsavel.id" id="responsavel">
+					<c:forEach items="${usuarios }" var="user">
+						<option value="${user.user.id }">${user.user.nome }</option>
+					</c:forEach>
+				</select>
+			</p>
 		</fieldset>
 		<fieldset>
 			<p>
