@@ -6,7 +6,15 @@
 	<a href="<c:url value="/activity/new"/>" class="submit">Criar atividade</a>
 	<ul class="lista" style="margin-top:10px">
 		<c:forEach items="${atividades }" var="atividade">
-			<li><a href="#">${atividade.resumo }</a> - por ${atividade.criador.nome } (${atividade.dataCriacao })</li>
+			<li><a href="#">${atividade.resumo }</a> - 
+							por ${atividade.criador.nome } (${atividade.dataCriacao }) - 
+							<c:if test="${atividade.responsavel.nome == null}">
+								tarefa não atribuida
+							</c:if>
+							<c:if test="${atividade.responsavel.nome != null}">
+								atribuido para ${atividade.responsavel.nome }
+							</c:if>
+			</li>
 		</c:forEach>
 	</ul>
 </div>

@@ -95,7 +95,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body onload="document.getElementById('email').focus()">
 		<div id="header">
 			<h1>youControl</h1>
 			<a href="#help">Ajuda</a>
