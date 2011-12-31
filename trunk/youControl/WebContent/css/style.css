@@ -137,6 +137,40 @@ form input[type=submit], form input[type=reset], a.submit{
 }
 form input[type=reset] { border: 1px solid #AB0E15; background: none repeat scroll 0 0 #C5101A; }
 
+/* MODO DE VISUALIZAÇÃO */
+#tipoVisualizacao { margin:0 5px; }
+#list_view, #grid_view {
+height: 20px;
+font-size: 13px;
+padding: 2px 10px 2px 26px;
+margin-top: -1px;
+display: block;
+float: right;
+background-image: url('../imgs/listgrid.png');
+background-repeat: no-repeat;
+cursor: pointer;
+color: #969696;
+}
+#grid_view {
+background-position: -4px -42px;
+margin-right: -8px;
+}
+#list_view {
+background-position: -75px -42px;
+margin-right: 8px;
+}
+#list_view:hover, #grid_view:hover, #list_view.active, #grid_view.active {
+color: black;
+}
+#list_view.active { background-position: -75px -7px!important; }
+#grid_view.active { background-position: -4px -7px!important; }
+#grid_view:hover{background-position:-4px -78px}
+#list_view:hover{background-position:-75px -78px}
+
+#visualizacao ul { list-style:none; margin-left:-20px; }
+#visualizacao ul li { padding:20px; }
+#visualizacao ul.grid li { float:left; width:20%; height:50px; }
+
 /* TOOLTIP */
 #easyTooltip{
 	padding:5px 10px;
@@ -188,33 +222,3 @@ img.fotoDestaque { border: 2px solid #d7d7d7; -moz-border-radius: 6px; -webkit-b
 #content-main h2.visao { padding-left:56px; background:url('../imgs/icons/Overview.png'); background-repeat:no-repeat; }
 #content-main h2.atividade { padding-left:56px; background:url('../imgs/icons/Activity.png'); background-repeat:no-repeat; }
 ul.lista li { list-style-type:none; }
-
-/* MODO DE VISUALIZAÇÃO */
-#tipoVisualizacao { margin:0 5px; }
-#list_view, #grid_view {
-height: 20px;
-font-size: 13px;
-padding: 2px 10px 2px 26px;
-margin-top: -1px;
-display: block;
-float: right;
-background-image: url('../imgs/listgrid.png');
-background-repeat: no-repeat;
-cursor: pointer;
-color: #969696;
-}
-#grid_view {
-background-position: -4px -42px;
-margin-right: -8px;
-}
-#list_view {
-background-position: -75px -42px;
-margin-right: 8px;
-}
-#list_view:hover, #grid_view:hover, #list_view.active, #grid_view.active {
-color: black;
-}
-#list_view.active { background-position: -75px -7px!important; }
-#grid_view.active { background-position: -4px -7px!important; }
-#grid_view:hover{background-position:-4px -78px}
-#list_view:hover{background-position:-75px -78px}

@@ -29,9 +29,4 @@
 		$(this).addClass('active');
 	});
 </script>
-<style>
-	#visualizacao ul { list-style:none; margin-left:-20px; }
-	#visualizacao ul li { padding:20px; }
-	#visualizacao ul.grid li { float:left; width:20%; height:50px; }
-</style>
 <%@ include file="../commons/footer.jsp" %>
