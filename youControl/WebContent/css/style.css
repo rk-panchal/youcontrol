@@ -138,7 +138,6 @@ form input[type=submit], form input[type=reset], a.submit{
 form input[type=reset] { border: 1px solid #AB0E15; background: none repeat scroll 0 0 #C5101A; }
 
 /* MODO DE VISUALIZAÇÃO */
-#tipoVisualizacao { margin:0 5px; }
 #list_view, #grid_view {
 height: 20px;
 font-size: 13px;
@@ -167,9 +166,24 @@ color: black;
 #grid_view:hover{background-position:-4px -78px}
 #list_view:hover{background-position:-75px -78px}
 
-#visualizacao ul { list-style:none; margin-left:-20px; }
-#visualizacao ul li { padding:20px; }
-#visualizacao ul.grid li { float:left; width:20%; height:50px; }
+div.listV { margin-top:20px; }
+div.listV div.projBox { padding:10px; border:1px solid #ccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; min-height:175px; margin-bottom:7px; }
+div.listV div.projBox div.topDetails { font-size:13px; color:#999; }
+div.listV div.projBox div.topDetails span.left { text-align:left; float:left; }
+div.listV div.projBox div.topDetails span.right { text-align:right; float:right; margin-left:7px; }
+div.listV div.projBox div.details { clear:right; padding-top:7px; }
+div.listV div.projBox div.details div.imgDetails { float:left; width:150px; height:150px; margin-right:7px; }
+div.listV div.projBox div.details div.imgDetails img { width:150px; height:150px; }
+div.listV div.projBox div.details div.textDetails { float:left; }
+div.listV div.projBox div.details span.projTit a { font-size:26px; padding-top:5px; font-weight:bold; }
+div.listV div.projBox div.details p { color:black; font-weight:normal; }
+
+div.gridV { margin-top:20px; }
+div.gridV div.projBox { float:left; margin-right:10px; padding:10px; margin-bottom:7px; width:150px; min-width:150px; min-height:250px; max-height:250px; overflow:hidden; }
+div.gridV div.projBox div.details div.imgDetails img { width:150px; height:150px; }
+div.gridV div.projBox div.topDetails span { clear:both; float:left; color:#999; font-size:11px; margin-bottom:3px; }
+div.gridV div.projBox div.topDetails span.right { clear:none; float:left; margin-right:5px; }
+div.gridV div.projBox div.details span.projTit a { font-size:14px; padding-top:5px; font-weight:bold; }
 
 /* TOOLTIP */
 #easyTooltip{
