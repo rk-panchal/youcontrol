@@ -18,7 +18,7 @@
 		<div id="header">
 			<div id="logo"><img src="<c:url value="/imgs/logoH.png"/>" alt="youControl" /></div>
 			<div id="pesquisa">
-				<input type="text" name="pesquisa" id="pesquisaT" value="Procure o usuário..." />
+				<input type="text" name="pesquisa" id="pesquisaT" value="" />
 			</div>
 		</div>
 		<div id="principal">
@@ -53,3 +53,6 @@
 				</c:if>
 			</div>
 			<div id="content">
+			<script>
+				$("#pesquisaT").puts("Procure o usuário...");
+			</script>
