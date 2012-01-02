@@ -182,7 +182,7 @@ div.gridV { margin-top:20px; }
 div.gridV div.projBox { float:left; margin-right:10px; padding:10px; margin-bottom:7px; width:150px; min-width:150px; min-height:250px; max-height:250px; overflow:hidden; }
 div.gridV div.projBox div.details div.imgDetails img { width:150px; height:150px; }
 div.gridV div.projBox div.topDetails span { clear:both; float:left; color:#999; font-size:11px; margin-bottom:3px; }
-div.gridV div.projBox div.topDetails span.right { clear:none; float:left; margin-right:5px; }
+div.gridV div.projBox div.topDetails span.right { clear:none; float:right; margin-left:5px; }
 div.gridV div.projBox div.details span.projTit a { font-size:14px; padding-top:5px; font-weight:bold; }
 
 /* TOOLTIP */
