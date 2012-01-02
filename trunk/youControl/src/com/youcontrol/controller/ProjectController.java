@@ -1,9 +1,11 @@
 package com.youcontrol.controller;
 
+import java.io.File;
 import java.util.Date;
 
 import com.youcontrol.dao.ProjectDao;
 import com.youcontrol.dao.UserProjectsDao;
+import com.youcontrol.images.ImageProject;
 import com.youcontrol.model.Project;
 import com.youcontrol.model.UserProjects;
 import com.youcontrol.model.UserWeb;
@@ -13,6 +15,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
 @Resource
 public class ProjectController {
@@ -21,12 +24,18 @@ public class ProjectController {
 	private final UserWeb userWeb;
 	private final ProjectDao dao;
 	private final UserProjectsDao userProjectsDao;
+	private final ImageProject imageProject;
 	
-	public ProjectController(Result result, UserWeb userWeb, ProjectDao dao, UserProjectsDao userProjectsDao) {
+	public ProjectController(Result result, 
+							 UserWeb userWeb, 
+							 ProjectDao dao, 
+							 UserProjectsDao userProjectsDao,
+							 ImageProject imageProject) {
 		this.result = result;
 		this.userWeb = userWeb;
 		this.dao = dao;
 		this.userProjectsDao = userProjectsDao;
+		this.imageProject = imageProject;
 	}
 	
 	@Get @Path("/projects")
@@ -60,6 +69,17 @@ public class ProjectController {
 		userWeb.setProject(projeto);
 		
 		result.redirectTo(OwnProjectController.class).overview();
+	}
+	
+	@Post @Path("/image/project/{project.id}")
+	public void uploadImg(Project project, final UploadedFile arquivo) {
+		System.out.println("usuario id:" + project.getId() + " arq:"+arquivo);
+		imageProject.upload(arquivo, project);
+		result.redirectTo(this).choose(project);
+	}
+	@Get @Path("/image/project/{project.id}")
+	public File showImageProject(Project project) {
+		return imageProject.showImage(project);
 	}
 	
 }

@@ -18,8 +18,17 @@
 			</select>
 			<input type="submit" value="Atribuir" />
 			<div id="msgs" style="margin-top:10px">
-				<span id="msgbox" class="messageboxinfo" style="display:none">Entre com usuário/senha...</span>
+				<span id="msgbox" class="messageboxinfo" style="display:none">...</span>
 			</div>
+		</fieldset>
+	</form>
+	
+	<form action="<c:url value="/image/project/${userWeb.project.id }"/>" method="post" enctype="multipart/form-data" id="formFoto">
+		<fieldset>
+			<legend>Alterar foto</legend>
+			<img src="<c:url value="/image/project/${userWeb.project.id }"/>" alt="${userWeb.project.projeto }" style="width:150px; height:150px"/>
+			<input type="file" name="arquivo" />
+			<input type="submit" value="Alterar foto" />
 		</fieldset>
 	</form>
 </div>

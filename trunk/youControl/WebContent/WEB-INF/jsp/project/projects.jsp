@@ -20,7 +20,7 @@
 				<div class="details">
 					<div class="imgDetails">
 						<a href="<c:url value="/choose/${projeto.project.id }"/>">
-							<img src="http://cf1.8tracks.us/mix_covers/000/426/837/403.sq133.jpg" />
+							<img src="<c:url value="/image/project/${projeto.project.id }"/>" alt="${projeto.project.projeto }" />
 						</a>
 					</div>
 					<div class="textDetails">
