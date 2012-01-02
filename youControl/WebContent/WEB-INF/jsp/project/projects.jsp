@@ -13,8 +13,8 @@
 		<c:forEach items="${projetos }" var="projeto">
 			<div class="projBox">
 				<div class="topDetails">
-					<span class="left">Por Vinícius Michelutti</span>
-					<span class="right">Janeiro 03, 2012</span>
+					<span class="left">${projeto.project.publicoAlvo }</span>
+					<span class="right"><fmt:formatDate value="${projeto.project.dataDeCriacao }" type="date" pattern="dd/MM/yyyy"/></span>
 					<span class="right">31 usuários</span>
 				</div>
 				<div class="details">
