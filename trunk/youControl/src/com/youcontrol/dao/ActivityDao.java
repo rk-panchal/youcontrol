@@ -1,6 +1,7 @@
 package com.youcontrol.dao;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import com.youcontrol.model.Activity;
 
@@ -19,4 +20,7 @@ public class ActivityDao {
 		session.save(activity);
 	}
 	
+	public Activity carregar(Activity activity) {
+		return (Activity) session.createCriteria(Activity.class).add(Restrictions.eq("id", activity.getId())).uniqueResult();
+	}
 }

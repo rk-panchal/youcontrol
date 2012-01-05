@@ -6,7 +6,7 @@
 	<a href="<c:url value="/activity/new"/>" class="submit">Criar atividade</a>
 	<ul class="lista" style="margin-top:10px">
 		<c:forEach items="${atividades }" var="atividade">
-			<li><a href="#">${atividade.resumo }</a> - 
+			<li><a href="<c:url value="/activity/${atividade.id }"/>">${atividade.resumo }</a> - 
 							por ${atividade.criador.nome } (${atividade.dataCriacao }) - 
 							<c:if test="${atividade.responsavel.nome == null}">
 								tarefa não atribuida

@@ -64,6 +64,10 @@ public class OwnProjectController {
 	public void activity() {
 		result.include("atividades", projectDao.listarAtividades(userWeb.getProject()));
 	}
+	@Get @Path("/activity/{activity.id}")
+	public void getActivity(Activity activity) {
+		result.include("atividade", activityDao.carregar(activity));
+	}
 	
 	@Get @Path("/activity/new")
 	public void newActivity() {
