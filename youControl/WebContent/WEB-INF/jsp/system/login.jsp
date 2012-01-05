@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -148,12 +149,12 @@
 				$("#formLogin").submit(function() {
 					$("#msgbox").removeClass().addClass('messageboxinfo').text('Validando dados...').fadeIn(2000);
 					
-					$.post("/youControl/login", {'user.email': $('#email').val(), 'user.senha': $('#senha').val()}, function(data) {
+					$.post('<c:url value="/login"/>', {'user.email': $('#email').val(), 'user.senha': $('#senha').val()}, function(data) {
 						if (data.string == 'true') {
 							$("#msgbox").fadeTo(200,0.1,function() {
 				            	$(this).html('Redirecionando...').addClass('messageboxok').fadeTo(1900,1,function() {
 				                	$(this).removeClass().html('');
-				                	document.location='/youControl/start';
+				                	document.location='<c:url value="/start"/>';
 				                 });
 				            });
 						} else {
@@ -180,7 +181,7 @@
 			 			 return false;
 			 		  }
 			 		  
-			          $.post("/youControl/register",
+			          $.post('<c:url value="/register"/>',
 			                    {'user.nome': $('#nome').val(), 'user.email': $('#emailRegister').val(), 'user.senha': $('#senhaRegister').val()},
 			                         function(data) {
 			               if(data.string=='ok') {
