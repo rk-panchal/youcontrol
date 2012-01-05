@@ -1,12 +1,14 @@
 package com.youcontrol.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.validator.NotNull;
@@ -30,6 +32,8 @@ public class Activity {
 	private User criador;
 	@NotNull
 	private Date dataCriacao;
+	@OneToMany(mappedBy = "atividade")
+	private List<CommentActivity> comentarios;
 	
 	public Long getId() {
 		return id;
@@ -84,6 +88,12 @@ public class Activity {
 	}
 	public Project getProjeto() {
 		return projeto;
+	}
+	public void setComentarios(List<CommentActivity> comentarios) {
+		this.comentarios = comentarios;
+	}
+	public List<CommentActivity> getComentarios() {
+		return comentarios;
 	}
 	
 }
