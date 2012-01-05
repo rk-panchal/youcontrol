@@ -39,7 +39,7 @@
 		$("#formAtribuir").submit(function() {
 			$("#msgbox").removeClass().addClass('messageboxinfo').text('Adicionando...').fadeIn(2000);
 			
-			$.post("/youControl/project/addUser", {'user.id': $('#pessoas').val()}, function(data) {
+			$.post('<c:url value="/project/addUser"/>', {'user.id': $('#pessoas').val()}, function(data) {
 				if (data.string == 'added') {
 					$("#msgbox").fadeTo(200,0.1,function() {
 		            	$(this).html('Usuário adicionado com sucesso!').removeClass().addClass('messageboxok').fadeTo(1900,1);
