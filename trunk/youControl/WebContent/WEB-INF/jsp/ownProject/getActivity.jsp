@@ -24,7 +24,7 @@
 				<span class="detailTitle">Projeto: </span><span>${atividade.projeto.projeto }</span><br />
 			</div>
 			<div class="detailRight">
-				<span class="detailTitle">Início: </span><span><fmt:formatDate value="${atividade.dataCriacao }" type="date" pattern="dd/MM/yyyy hh:mm"/></span><br />
+				<span class="detailTitle">Início: </span><span><fmt:formatDate value="${atividade.dataCriacao }" type="date" pattern="dd/MM/yyyy - hh:mm"/></span><br />
 				<span class="detailTitle">Data prevista: </span><span>-</span><br />
 				<span class="detailTitle">Concluído: </span><span>0%</span><br />
 				<span class="detailTitle">Tempo gasto: </span><span>-</span><br />
@@ -38,47 +38,52 @@
 	</div>
 	
 	<div id="commentsBox">
-		<h2>Comentários (3)</h2>
-		<form action="" method="post" name="commentForm">
+		<h2>Comentários (${qtdComentarios })</h2>
+		<form action='' method="post" id="commentForm">
 			<div id="voce" style="width:10%; float:left; text-align:right">
 				<img src="<c:url value="/image/user/${atividade.criador.id }"/>" alt="${atividade.criador.nome }" style="width:70px; height:80px; margin-right:10px; margin-top:5px"/>
-				<span style="margin-right:10px">diz: </span>
 			</div>
 			<div id="texto" style="float:left; width:90%">
-				<textarea name="comentario" id="comentario"></textarea>
+				<textarea name="comment.comentario" id="comentario" rows=4></textarea>
 			</div>
-			<input type="submit" value="Comentar" style="margin-top:10px; float:right" /> 		
+			<input type="submit" value="Comentar" style="margin-top:10px; float:right" /> 
+			<img src="<c:url value="/imgs/loader-ajax.gif"/>" class="loaderajax" id="loaderajaxload" />
+			<img src="<c:url value="/imgs/certo.gif"/>" class="loaderajax" id="loaderajaxok" />
 		</form>
 		
 		<div style="height:15px; width:100%; clear:both"></div>
 		
-		<!--<div class="commentText"> 
-			<p style="text-align:center">Nenhum comentário / histórico.</p>
-		</div> --> 
-		<div class="commentText">
-			<p class="detail"><span class="detailComment">04/01/2012 - 20:15 por <a href="#">Vinícius Michelutti</a></span></p>
-			<img src="http://imagem.vilamulher.com.br/temp/lipoaspiracao-130608.jpg" alt="usuario" />
-			<p>Bla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsa</p>
-		</div>
+		<c:if test="${empty comentarios}">
+			<div class="commentText"> 
+				<p style="text-align:center">Nenhum comentário / histórico.</p>
+			</div>
+		</c:if> 
 		<hr />
-		<div class="commentText">
-			<p class="detail"><span class="detailComment">04/01/2012 - 20:15 por <a href="#">Vinícius Michelutti</a></span></p>
-			<img src="http://imagem.vilamulher.com.br/temp/lipoaspiracao-130608.jpg" alt="usuario" />
-			<p>Bla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsa</p>
-		</div>
-		<hr />
-		<div class="commentText">
-			<p class="detail"><span class="detailComment">04/01/2012 - 20:15 por <a href="#">Vinícius Michelutti</a></span></p>
-			<img src="http://imagem.vilamulher.com.br/temp/lipoaspiracao-130608.jpg" alt="usuario" />
-			<p>Bla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsaBla blabalbalbalab ablabal ablabsalbd ad sad sad asdbaldbas adaljhdsa</p>
-		</div>
-		<hr />
+		<c:if test="${not empty comentarios}">
+			<c:forEach items="${comentarios }" var="comentario">
+				<div class="commentText">
+					<p class="detail"><span class="detailComment"><fmt:formatDate value="${comentario.dataCriacao }" type="date" pattern="dd/MM/yyyy - hh:mm"/> por <a href="#">${comentario.usuario.nome }</a></span></p>
+					<img src="<c:url value="/image/user/${comentario.usuario.id }"/>" alt="usuario" />
+					<p>${comentario.comentario }</p>
+				</div>
+				<hr />
+			</c:forEach>
+		</c:if>
 	</div>
 
 </div>
-
 <script>
 	$("#main ul li.atividade a").addClass("selected");
 	$("#comentario").puts("Escreva o seu comentário...");
+	
+	$("#commentForm").submit(function() {
+		$("#loaderajaxload").fadeIn();
+		
+		$.post('<c:url value="/activity/${atividade.id }/comment" />', {'comment.comentario': $('#comentario').val()}, function(data) {
+			$("#loaderajaxload").fadeOut();
+			$("#loaderajaxok").fadeIn(1000);
+        });
+		return false;
+	});
 </script>
 <%@ include file="../commons/footer.jsp" %>

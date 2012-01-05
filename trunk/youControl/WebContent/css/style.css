@@ -260,12 +260,12 @@ a.anexar { background:url('../imgs/anexo.png') no-repeat; }
 div.detailLeft { width:50%; float:left; }
 
 span.detailTitle { font-weight: bold; width:130px; }
-
+ 
 #commentsBox { padding-top:10px; }
 #commentsBox hr { clear:left; }
+#commentsBox form img.loaderajax { float:right; margin:12px 10px 0 0; display:none; }
 div.commentText { clear:right; padding:0px; min-height:75px; } 
 div.commentText img { float:left; width:50px; height:50px; margin-right:10px; }
 div.commentText p.detail  { font-size:11px; text-align:right; margin-bottom:5px; }
 div.commentText span.detailComment { color:#999; }
-
 div.divisor { border:1px solid #484848; }

@@ -1,12 +1,15 @@
 package com.youcontrol.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import com.youcontrol.dao.ActivityDao;
+import com.youcontrol.dao.CommentActivityDao;
 import com.youcontrol.dao.ProjectDao;
 import com.youcontrol.dao.UserDao;
 import com.youcontrol.dao.UserProjectsDao;
 import com.youcontrol.model.Activity;
+import com.youcontrol.model.CommentActivity;
 import com.youcontrol.model.User;
 import com.youcontrol.model.UserProjects;
 import com.youcontrol.model.UserWeb;
@@ -27,19 +30,22 @@ public class OwnProjectController {
 	private final ActivityDao activityDao;
 	private final UserDao userDao;
 	private final UserProjectsDao userProjectsDao;
+	private final CommentActivityDao commentActivityDao;
 	
 	public OwnProjectController(Result result, 
 								UserWeb userWeb, 
 								ProjectDao projectDao, 
 								ActivityDao activityDao,
 								UserDao userDao,
-								UserProjectsDao userProjectsDao) {
+								UserProjectsDao userProjectsDao,
+								CommentActivityDao commentActivityDao) {
 		this.result = result;
 		this.userWeb = userWeb;
 		this.projectDao = projectDao;
 		this.activityDao = activityDao;
 		this.userDao = userDao;
 		this.userProjectsDao = userProjectsDao;
+		this.commentActivityDao = commentActivityDao;
 	}
 
 	@Get @Path("/overview")
@@ -67,6 +73,9 @@ public class OwnProjectController {
 	@Get @Path("/activity/{activity.id}")
 	public void getActivity(Activity activity) {
 		result.include("atividade", activityDao.carregar(activity));
+		List<CommentActivity> comentarios = commentActivityDao.listar(activity);
+		result.include("comentarios", comentarios);
+		result.include("qtdComentarios", comentarios.size());
 	}
 	
 	@Get @Path("/activity/new")
@@ -88,5 +97,16 @@ public class OwnProjectController {
 		activityDao.criarAtividade(activity);
 				
 		result.redirectTo(this).newActivity();
+	}
+	
+	@Post @Path("/activity/{activity.id}/comment")
+	public void comment(CommentActivity comment, Activity activity) {
+		comment.setUsuario(userWeb.getUser());
+		comment.setAtividade(activity);
+		comment.setDataCriacao(new Date());
+		
+		commentActivityDao.salvar(comment);
+		
+		result.redirectTo(this).getActivity(activity);
 	}
 }
