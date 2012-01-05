@@ -21,5 +21,6 @@
 		<mapping class="com.youcontrol.model.User" />
 		<mapping class="com.youcontrol.model.UserProjects" />
 		<mapping class="com.youcontrol.model.Activity" />
+		<mapping class="com.youcontrol.model.CommentActivity" />
 	</session-factory>
 </hibernate-configuration>
