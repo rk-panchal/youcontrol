@@ -11,37 +11,34 @@ import javax.persistence.ManyToOne;
 import org.hibernate.validator.NotNull;
 
 @Entity
-public class CommentActivity {
+public class CommentActivity extends EntityObject{
 
-	@Id @GeneratedValue
-	private Long id;
-	@ManyToOne
+	
 	private User usuario;
-	@ManyToOne
+	
 	private Activity atividade;
-	@NotNull
+	
 	private Date dataCriacao;
-	@NotNull @Column(length=700)
+	
 	private String comentario;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@ManyToOne
 	public User getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(User usuario) {
 		this.usuario = usuario;
 	}
+	
+	@NotNull
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
+	
+	@NotNull @Column(length=700)
 	public String getComentario() {
 		return comentario;
 	}
@@ -51,6 +48,8 @@ public class CommentActivity {
 	public void setAtividade(Activity atividade) {
 		this.atividade = atividade;
 	}
+	
+	@ManyToOne
 	public Activity getAtividade() {
 		return atividade;
 	}

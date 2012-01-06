@@ -14,39 +14,33 @@ import javax.persistence.OneToOne;
 import org.hibernate.validator.NotNull;
 
 @Entity
-public class Activity {
-
-	@Id @GeneratedValue
-	private Long id;
-	@NotNull
-	private String resumo;
-	@NotNull @Column(length=700)
-	private String descricao;
-	private String criticidade;
-	private String prioridade;
-	@ManyToOne
-	private Project projeto;
-	@OneToOne
-	private User responsavel;
-	@OneToOne
-	private User criador;
-	@NotNull
-	private Date dataCriacao;
-	@OneToMany(mappedBy = "atividade")
-	private List<CommentActivity> comentarios;
+public class Activity extends EntityObject {
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	private String resumo;
+	
+	private String descricao;
+	
+	private String criticidade;
+	
+	private String prioridade;
+	
+	private Project projeto;
+	
+	private User responsavel;
+	
+	private User criador;
+	
+	private Date dataCriacao;
+		
+	@NotNull
 	public String getResumo() {
 		return resumo;
 	}
 	public void setResumo(String resumo) {
 		this.resumo = resumo;
 	}
+	
+	@NotNull @Column(length=700)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -65,12 +59,16 @@ public class Activity {
 	public void setPrioridade(String prioridade) {
 		this.prioridade = prioridade;
 	}
+	
+	@OneToOne
 	public User getResponsavel() {
 		return responsavel;
 	}
 	public void setResponsavel(User responsavel) {
 		this.responsavel = responsavel;
 	}
+	
+	@OneToOne
 	public User getCriador() {
 		return criador;
 	}
@@ -80,20 +78,18 @@ public class Activity {
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
+	
+	@NotNull
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 	public void setProjeto(Project projeto) {
 		this.projeto = projeto;
 	}
+	
+	@ManyToOne
 	public Project getProjeto() {
 		return projeto;
-	}
-	public void setComentarios(List<CommentActivity> comentarios) {
-		this.comentarios = comentarios;
-	}
-	public List<CommentActivity> getComentarios() {
-		return comentarios;
 	}
 	
 }
