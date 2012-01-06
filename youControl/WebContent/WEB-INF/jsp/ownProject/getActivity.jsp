@@ -82,6 +82,7 @@
 		$.post('<c:url value="/activity/${atividade.id }/comment" />', {'comment.comentario': $('#comentario').val()}, function(data) {
 			$("#loaderajaxload").fadeOut();
 			$("#loaderajaxok").fadeIn(1000);
+			document.location='<c:url value="/activity/${atividade.id }"/>';
         });
 		return false;
 	});
