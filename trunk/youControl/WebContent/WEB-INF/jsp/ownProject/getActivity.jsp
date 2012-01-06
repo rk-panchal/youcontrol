@@ -20,7 +20,7 @@
 			<div class="detailLeft">
 				<span class="detailTitle">Criticidade: </span><span>${atividade.criticidade }</span><br />
 				<span class="detailTitle">Prioridade: </span><span>${atividade.prioridade }</span><br />
-				<span class="detailTitle">Atribuido para: </span><span>${atividade.responsavel.nome }</span><br />
+				<span class="detailTitle">Atribuido para: </span><span><a href="#">${atividade.responsavel.nome }</a></span><br />
 				<span class="detailTitle">Projeto: </span><span>${atividade.projeto.projeto }</span><br />
 			</div>
 			<div class="detailRight">
