@@ -1,0 +1,44 @@
+<project name="UpdateSite" basedir=".">
+
+	<property name="app.name" value="youcontrol" />
+	<property name="app.dir" location="${basedir}/app" />
+	<property name="dist.dir" location="${basedir}/dist" />
+	<property name="dist.ROOT.dir" location="${basedir}/dist/WebContent" />
+	<property name="ROOT.dir" location="${basedir}/WebContent" />
+	<property name="aws.host" value="107.22.186.127" />
+	<property name="kp.path" value="/home/marcos/.ssh/marcoswp3x.pem" />
+
+	<target name="clear">
+		<delete dir="${dist.dir}"/>	
+	</target>
+	
+	<target name="build.app">
+		<copy todir="${dist.dir}">
+			<fileset dir="${app.dir}"/>
+		</copy>
+	</target>
+	
+	<target name="build.webdir">
+		<echo message="Creating dist dir"/>
+		<mkdir dir="${dist.ROOT.dir}" />
+		
+		<echo message="Copying files"/>
+			
+		<copy todir="${dist.ROOT.dir}">
+			<fileset dir="${ROOT.dir}"/>
+		</copy>
+	</target>
+	
+	<target name="deploy.app" depends="clear, build.app, build.webdir">
+		<scp todir="ec2-user:@${aws.host}:/home/ec2-user/apps/${app.name}/" keyfile="${kp.path}" trust="true" verbose="true">
+			<fileset dir="${dist.dir}" excludes="**/*.jar"/>
+		</scp>
+	</target>
+	
+	<target name="deploy.all" depends="clear, build.app, build.webdir">
+		<scp todir="ec2-user:@${aws.host}:/home/ec2-user/apps/${app.name}/" keyfile="${kp.path}" trust="true" verbose="true">
+			<fileset dir="${dist.dir}"/>
+		</scp>
+	</target>
+	
+</project>
