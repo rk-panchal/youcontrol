@@ -6,10 +6,11 @@ import java.io.IOException;
 
 import javax.servlet.ServletContext;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.apache.commons.io.IOUtils;
 
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.ioc.Component;
+
 import com.youcontrol.model.User;
 
 @Component
