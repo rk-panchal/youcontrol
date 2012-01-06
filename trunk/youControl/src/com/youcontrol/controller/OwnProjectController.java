@@ -1,5 +1,6 @@
 package com.youcontrol.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +51,23 @@ public class OwnProjectController {
 
 	@Get @Path("/overview")
 	public void overview() {
-		result.include("usuarios", userDao.listarUsuarios());
+		/* LOAD ONLY USERS THAT AREN'T IN THE PROJECT */
+		List<User> usersInSystem = userDao.listarUsuarios();
+		List<UserProjects> usersProject =  userProjectsDao.listarUsuariosDoProj(userWeb.getProject());
+		
+		List<User> usersNotInProject = new ArrayList<User>();
+		
+		List<User> usersInProject = new ArrayList<User>();
+		for (UserProjects userProject : usersProject) {
+			usersInProject.add(userProject.getUser());
+		}
+		
+		for (User user : usersInSystem) {
+			if (!usersInProject.contains(user)) {
+				usersNotInProject.add(user);
+			}
+		}
+		result.include("usuarios", usersNotInProject);
 	}
 	
 	@Post @Path("/project/addUser")

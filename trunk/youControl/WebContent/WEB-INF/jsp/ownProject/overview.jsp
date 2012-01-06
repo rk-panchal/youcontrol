@@ -12,11 +12,16 @@
 		<fieldset>
 			<legend>Atribuir ao projeto</legend>
 			<select name="user.id" id="pessoas" style="margin-top:10px">
-				<c:forEach items="${usuarios }" var="user">
-					<option value="${user.id }">${user.nome }</option>
-				</c:forEach>
+				<c:if test="${not empty usuarios}">
+					<c:forEach items="${usuarios }" var="user">
+						<option value="${user.id }">${user.nome }</option>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty usuarios}">
+					<option value="nobody">Todos usuários já estão no projeto.</option>
+				</c:if>
 			</select>
-			<input type="submit" value="Atribuir" />
+			<input type="submit" value="Atribuir" id="submitAtribuir" />
 			<div id="msgs" style="margin-top:10px">
 				<span id="msgbox" class="messageboxinfo" style="display:none">...</span>
 			</div>
@@ -34,6 +39,7 @@
 </div>
 <script>
 	$("#main ul li.visao a").addClass("selected");
+	if ($("#pessoas").val() == "nobody") { $("#submitAtribuir").css("display", "none"); }
 	
 	jQuery(function($){
 		$("#formAtribuir").submit(function() {
