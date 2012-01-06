@@ -21,7 +21,7 @@ public class UserProjectsDao {
 	}
 	
 	public void criar(UserProjects userProjects) {
-		session.save(userProjects);
+		session.merge(userProjects);
 	}
 
 	@SuppressWarnings("unchecked")
