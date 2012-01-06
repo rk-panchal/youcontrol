@@ -9,6 +9,7 @@
 		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
 		<title>youControl - Projects Management</title>
 		<script type="text/javascript" src="<c:url value="/js/jquery-1.5.1.js"/>"></script>
+		<link rel="shortcut icon" href="<c:url value="/imgs/favicon.png"/>" type="image/png" />
 		<style type="text/css">
 			/* RESET */
 			* { padding:0px; margin:0px; font-family:"Lucida Grande","Lucida Sans Unicode",helvetica,arial,verdana,sans-serif; font-size:13px; }

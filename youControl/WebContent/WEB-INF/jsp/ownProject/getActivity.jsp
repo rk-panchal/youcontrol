@@ -41,7 +41,7 @@
 		<h2>Comentários (${qtdComentarios })</h2>
 		<form action='' method="post" id="commentForm">
 			<div id="voce" style="width:10%; float:left; text-align:right">
-				<img src="<c:url value="/image/user/${atividade.criador.id }"/>" alt="${atividade.criador.nome }" style="width:70px; height:80px; margin-right:10px; margin-top:5px"/>
+				<img src="<c:url value="/image/user/${userWeb.user.id }"/>" alt="${userWeb.user.nome }" style="width:70px; height:80px; margin-right:10px; margin-top:5px"/>
 			</div>
 			<div id="texto" style="float:left; width:90%">
 				<textarea name="comment.comentario" id="comentario" rows=4></textarea>
