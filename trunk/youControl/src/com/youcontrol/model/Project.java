@@ -12,64 +12,58 @@ import javax.persistence.OneToMany;
 import org.hibernate.validator.NotNull;
 
 @Entity
-public class Project {
+public class Project extends EntityObject{
 
-	@Id @GeneratedValue
-	private Long id;
-	@NotNull
-	private String projeto;
-	@NotNull
-	private String publicoAlvo;
-	@NotNull
-	private String status;
-	@NotNull @Column(length=700)
-	private String descricao;
-	@NotNull
-	private Date dataDeCriacao;
-	@OneToMany(mappedBy = "projeto")
-	private List<Activity> atividades;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	private String projeto;
+	
+	private String publicoAlvo;
+	
+	private String status;
+	
+	private String descricao;
+	
+	private Date dataDeCriacao;
+	
+	@NotNull
 	public String getProjeto() {
 		return projeto;
 	}
 	public void setProjeto(String projeto) {
 		this.projeto = projeto;
 	}
+	
+	@NotNull
 	public String getPublicoAlvo() {
 		return publicoAlvo;
 	}
 	public void setPublicoAlvo(String publicoAlvo) {
 		this.publicoAlvo = publicoAlvo;
 	}
+	
+	@NotNull
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	@NotNull @Column(length=700)
 	public String getDescricao() {
 		return descricao;
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
 	public void setDataDeCriacao(Date dataDeCriacao) {
 		this.dataDeCriacao = dataDeCriacao;
 	}
+	
+	@NotNull
 	public Date getDataDeCriacao() {
 		return dataDeCriacao;
-	}
-	public void setAtividades(List<Activity> atividades) {
-		this.atividades = atividades;
-	}
-	public List<Activity> getAtividades() {
-		return atividades;
 	}
 	
 }

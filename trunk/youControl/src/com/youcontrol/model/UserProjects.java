@@ -1,34 +1,30 @@
 package com.youcontrol.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class UserProjects {
+public class UserProjects extends EntityObject{
 
-	@Id @GeneratedValue
-	private Long id;
-	@ManyToOne
-	private User user;
-	@OneToOne
+	private User user;	
+	
 	private Project project;
+	
 	private String role;
 	
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public Long getId() {
-		return id;
-	}
+	@ManyToOne(cascade=CascadeType.ALL)
 	public User getUser() {
 		return user;
 	}
+	
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	@OneToOne(cascade=CascadeType.ALL)
 	public Project getProject() {
 		return project;
 	}
