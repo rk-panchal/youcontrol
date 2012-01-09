@@ -53,12 +53,7 @@ public class ProjectController {
 		Long id = dao.criarProjeto(project);
 		project.setId(id);
 		
-		UserProjects userP = new UserProjects();
-		userP.setProject(project);
-		userP.setUser(userWeb.getUser());
-		userP.setRole("admin");
-		
-		userProjectsDao.criar(userP);
+		userProjectsDao.criar(project, userWeb.getUser(), "admin");
 		
 		result.redirectTo(this).choose(project);
 	}
