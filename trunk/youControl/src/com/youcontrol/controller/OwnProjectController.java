@@ -72,12 +72,7 @@ public class OwnProjectController {
 	
 	@Post @Path("/project/addUser")
 	public void addUserToProject(User user) {
-		UserProjects userProject = new UserProjects();
-		userProject.setUser(user);
-		userProject.setProject(userWeb.getProject());
-		userProject.setRole("desenv");
-		
-		userProjectsDao.criar(userProject);
+		userProjectsDao.criar(userWeb.getProject(), user, "desenv");
 		
 		String retorno = "added";
 		result.use(Results.json()).from(retorno).serialize();
