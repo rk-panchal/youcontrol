@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -29,11 +28,11 @@
 			<div style="clear:both"></div>
 			<div id="main">
 				<ul class="menu">
-					<li class="inicio"><a href="<c:url value="/start"/>">InÌcio</a></li>
+					<li class="inicio"><a href="<c:url value="/start"/>">In√≠cio</a></li>
 					<li class="projetos"><a href="<c:url value="/projects"/>">Projetos <span class="stats">- 5 ativos</span></a></li>
 					<li class="msgs"><a href="#">Mensagens <span class="stats">- (0/0)</span></a></li>
 					<li class="perfil"><a href="#">Perfil </a></li>
-					<li class="conf"><a href="#">ConfiguraÁıes </a></li>
+					<li class="conf"><a href="#">Configura√ß√µes </a></li>
 				</ul>
 				<hr />
 				<c:if test="${userWeb.project == null}">
@@ -42,18 +41,18 @@
 				<c:if test="${userWeb.project != null}">
 					<h4>Projeto: ${userWeb.project.projeto }</h4>
 					<ul class="menu">
-						<li class="visao"><a href="<c:url value="/overview"/>">Vis„o geral</a></li>
+						<li class="visao"><a href="<c:url value="/overview"/>">Vis√£o geral</a></li>
 						<li class="atividade"><a href="<c:url value="/activity"/>">Atividades <span class="stats">- 37 em aberto</span></a></li>
 						<li class="wiki"><a href="#">Wiki</a></li>
 						<li class="doc"><a href="#">Documentos <span class="stats">- 0 docs</span></a></li>
 						<li class="agenda"><a href="#">Agenda <span class="stats">- 2 tarefas hoje</span></a></li>
 						<li class="plan"><a href="#">Planejamento <span class="stats">- 9 planos</span></a></li>
-						<li class="estat"><a href="#">EstatÌsticas</a></li>
-						<li class="adm"><a href="#">AdministraÁ„o</a></li>
+						<li class="estat"><a href="#">Estat√≠sticas</a></li>
+						<li class="adm"><a href="#">Administra√ß√£o</a></li>
 					</ul>
 				</c:if>
 			</div>
 			<div id="content">
 			<script>
-				$("#pesquisaT").puts("Procure o usu·rio...");
+				$("#pesquisaT").puts("Procure o usu√°rio...");
 			</script>
