@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -107,14 +106,14 @@
 		<div id="wrapper">
 			<div id="login">		
 				<h2 class="login">Login</h2>
-				<p>Para fazer uso do youControl, vocÍ deve entrar os dados abaixo para realizar o login. Caso ainda n„o possua uma conta, efetue seu cadastro no formul·rio ao lado.</p>
+				<p>Para fazer uso do youControl, voc√™ deve entrar os dados abaixo para realizar o login. Caso ainda n√£o possua uma conta, efetue seu cadastro no formul√°rio ao lado.</p>
 				<form action="" method="post" id="formLogin">
 					<label for="email">Email:</label>
 					<input type="text" name="user.email" id="email" />
 					<label for="senha">Senha:</label>
 					<input type="password" name="user.senha" id="senha" />
 					<div id="msgs">
-						<span id="msgbox" class="messageboxinfo">Entre com usu·rio/senha...</span>
+						<span id="msgbox" class="messageboxinfo">Entre com usu√°rio/senha...</span>
 					</div>
 					<br />
 					<input type="submit" value="Entrar" />
@@ -140,7 +139,7 @@
 			</div>
 		</div>
 		<div id="footer">
-			youControl © 2012 - VinÌcius Michelutti
+			youControl ¬© 2012 - Vin√≠cius Michelutti
 		</div>
 		
 		<script type="text/javascript">
@@ -160,7 +159,7 @@
 				            });
 						} else {
 							$("#msgbox").fadeTo(200,0.1,function() {
-				            	$(this).html('Dados inv·lidos').addClass('messageboxerror').fadeTo(1900,1);
+				            	$(this).html('Dados inv√°lidos').addClass('messageboxerror').fadeTo(1900,1);
 				            });
 						}
 					});
@@ -175,7 +174,7 @@
 			 		  var senha2 = $('#senha2').val();
 			 		  if (senha1 != senha2) {
 			 			 $("#msgboxReg").fadeTo(200,0.1,function() {
-			                 $(this).html('Senhas n„o conferem!')
+			                 $(this).html('Senhas n√£o conferem!')
 			                    .addClass('messageboxerror')
 			                         .fadeTo(1900,1);
 			               	});
@@ -198,7 +197,7 @@
 			               	});
 			               } else if (data.string=='existeEmail') {
 			            	   $("#msgboxReg").fadeTo(200,0.1,function() {
-					                 $(this).html('Email j· cadastrado!')
+					                 $(this).html('Email j√° cadastrado!')
 					                    .addClass('messageboxerror')
 					                         .fadeTo(1900,1);
 					               	});   
