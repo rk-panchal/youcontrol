@@ -237,6 +237,32 @@ img.fotoDestaque { border: 2px solid #d7d7d7; -moz-border-radius: 6px; -webkit-b
 #content-main h2.atividade { padding-left:56px; background:url('../imgs/icons/Activity.png'); background-repeat:no-repeat; }
 ul.lista li { list-style-type:none; }
 
+/* PAGINA COM LISTA DE ATIVIDADES */
+#activityForm { padding-bottom:20px; }
+#activityForm fieldset { border-width:1px 0 0; font-size:11px; padding-bottom:15px; }
+legend.linkColl { font-family:Verdana, sans-serif; font-size:11px; padding:0px 3px 0px 16px; cursor:pointer; background:url("../imgs/arrow_collapsed.png") no-repeat scroll 0 40% transparent; width:98%; }  
+legend.active { background:url("../imgs/arrow_expanded.png") no-repeat scroll 0 40% transparent;}
+legend.linkColl a, legend.linkColl a:visited { text-decoration:none; color:black; text-transform:uppercase; }
+#columnsAvailable, #columnsSelected { width:300px; height:100px; margin-left:20px; padding:5px; }
+
+#menuActivity { margin:0 auto; width:225px; }
+#menuActivity a {
+	float:left;
+	margin-right:10px;
+	padding:5px; 
+	width:34px; 
+	height:34px;
+	display:block;
+	border:1px solid rgba(0, 0, 0, 0.1);
+	border-radius:4px;
+}
+#menuActivity a:hover { border:1px solid #C6C6C6; }
+
+#menuActivity a.apply { background:url('../imgs/apply.png') no-repeat center #F6F6F6; }
+#menuActivity a.resetActivity { background:url('../imgs/resetActivity.png') no-repeat center #F6F6F6; }
+#menuActivity a.deleteSelected { background:url('../imgs/deleteSelected.png') no-repeat center #F6F6F6; }
+#menuActivity a.createActivity { background:url('../imgs/createActivity.png') no-repeat center #F6F6F6; }
+
 /* PAGINA DE UMA ATIVIDADE */
 #controls a { padding-left:20px; margin-right:7px; }
 a.atualizar { background:url('../imgs/atualizar.png') no-repeat; }
