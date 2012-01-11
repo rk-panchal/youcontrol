@@ -98,7 +98,7 @@
 					<td><fmt:formatDate value="${atividade.dataCriacao }" type="date" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<c:if test="${atividade.responsavel.nome == null}">
-							tarefa não atribuida
+							-
 						</c:if>
 						<c:if test="${atividade.responsavel.nome != null}">
 							<a href="#">${atividade.responsavel.nome }</a>

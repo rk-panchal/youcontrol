@@ -96,6 +96,8 @@ public class OwnProjectController {
 	}
 	@Post @Path("/activity/new")
 	public void createActivity(Activity activity) {
+		if (activity.getResponsavel().getId() == null) activity.setResponsavel(null);
+		
 		Date date = new Date();
 		activity.setDataCriacao(date);
 		

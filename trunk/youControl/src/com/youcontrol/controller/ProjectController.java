@@ -7,7 +7,6 @@ import com.youcontrol.dao.ProjectDao;
 import com.youcontrol.dao.UserProjectsDao;
 import com.youcontrol.images.ImageProject;
 import com.youcontrol.model.Project;
-import com.youcontrol.model.UserProjects;
 import com.youcontrol.model.UserWeb;
 
 import br.com.caelum.vraptor.Get;
