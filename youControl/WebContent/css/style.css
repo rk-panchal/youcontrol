@@ -243,7 +243,8 @@ ul.lista li { list-style-type:none; }
 legend.linkColl { font-family:Verdana, sans-serif; font-size:11px; padding:0px 3px 0px 16px; cursor:pointer; background:url("../imgs/arrow_collapsed.png") no-repeat scroll 0 40% transparent; width:98%; }  
 legend.active { background:url("../imgs/arrow_expanded.png") no-repeat scroll 0 40% transparent;}
 legend.linkColl a, legend.linkColl a:visited { text-decoration:none; color:black; text-transform:uppercase; }
-#columnsAvailable, #columnsSelected { width:300px; height:100px; margin-left:20px; padding:5px; }
+#columnsAvailable, #columnsSelected { width:300px; height:100px; padding:5px; }
+#columnsAvailable { margin-left:20px; }
 
 #menuActivity { margin:0 auto; width:225px; }
 #menuActivity a {

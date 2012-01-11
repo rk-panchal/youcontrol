@@ -3,6 +3,9 @@
 <script type="text/javascript" src="<c:url value="/js/jquery.cookie.js"/>"></script>
 <script>document.documentElement.className = "js";</script>
 
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/tablesorter.css"/>" media="screen" />
+<script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.pager.js"/>"></script>
 <div id="content-main">
 	<h2 class="atividade">Atividades: ${userWeb.project.projeto }</h2>
 </div>
@@ -14,7 +17,7 @@
 				<legend class="linkColl">Filtros</legend>
 				
 				<div>
-					<h1>Funcionalidade em construção</h1>
+					<h1 style="margin-top:10px">Funcionalidade em construção</h1>
 				</div>
 			</fieldset>
 			
@@ -22,13 +25,14 @@
 				<legend class="linkColl">Opções</legend>
 				<div>
 				
-					<table>
+					<table style="margin-top:10px">
 						<tr>
 							<td><label for="columnsAvailable">Colunas: </label></td>
 							<td><table>
 								<tr>
 									<td style="padding:0px 20px">Colunas disponíveis</td>
-									<td style="padding:0px 20px">Colunas selecionadas</td>
+									<td></td>
+									<td>Colunas selecionadas</td>
 								</tr>
 								<tr>
 									<td>
@@ -36,11 +40,15 @@
 											<option value="criticidade">Criticidade</option>
 											<option value="prioridade">Prioridade</option>
 											<option value="concluido">Concluído</option>
-											<option value="id">ID</option>
 										</select>
 									</td>
 									<td>
+										<a href="#" id="add" title="Adicionar" style="padding:0px 20px"><img src="<c:url value="/imgs/arrowright.png"/>" /></a><br/>
+										<a href="#" id="remove" title="Remover" style="padding:0px 20px"><img src="<c:url value="/imgs/arrowleft.png"/>" /></a>
+									</td>
+									<td>
 										<select multiple id="columnsSelected">
+											<option value="id">ID</option>
 											<option value="resumo">Resumo</option>
 											<option value="atribuido">Atribuido para</option>
 											<option value="dataCriacao">Data de criação</option>
@@ -49,8 +57,9 @@
 									</td>
 								</tr>
 								<tr>
-									<td style="padding:0px 20px"><a href="#" id="add">Adicionar</a> <a href="#" id="addAll">Adicionar todos</a></td>
-									<td style="padding:0px 20px"><a href="#" id="remove">Remover</a> <a href="#" id="removeAll">Remover todos</a></td>
+									<td style="text-align:right"><a href="#" id="addAll">Adicionar todos</a></td>
+									<td></td>
+									<td style="text-align:right"><a href="#" id="removeAll">Remover todos</a></td>
 								</tr>
 							</table></td>
 						</tr>
@@ -68,31 +77,56 @@
 		<a href="<c:url value="/activity/new"/>" class="createActivity" title="Criar atividade"></a>
 	</div>
 	
-	<table style="width:100%; padding-top:20px;">
-		<tr>
-			<td>ID</td>
-			<td>Resumo</td>
-			<td>Criado por</td>
-			<td>Criado em</td>
-			<td>Atribuido para</td>
-		</tr>
-		<c:forEach items="${atividades }" var="atividade">
+	<table id="activies" style="width:100%; padding-top:20px;">
+		<thead>
 			<tr>
-				<td><a href="<c:url value="/activity/${atividade.id }"/>">${atividade.id }</a></td>
-				<td>${atividade.resumo }</td>
-				<td>${atividade.criador.nome }</td>
-				<td><fmt:formatDate value="${atividade.dataCriacao }" type="date" pattern="dd/MM/yyyy"/></td>
-				<td>
-					<c:if test="${atividade.responsavel.nome == null}">
-						tarefa não atribuida
-					</c:if>
-					<c:if test="${atividade.responsavel.nome != null}">
-						${atividade.responsavel.nome }
-					</c:if>
-				</td>
+				<th><input type="checkbox" value="0" id="marcar-todos" name="marcar-todos"/></th>
+				<th>ID</th>
+				<th>Resumo</th>
+				<th>Criado por</th>
+				<th>Criado em</th>
+				<th>Atribuido para</th>
 			</tr>
-		</c:forEach>
+		</thead>
+		<tbody>
+			<c:forEach items="${atividades }" var="atividade">
+				<tr>
+					<td><input type="checkbox" value="1" /></td>
+					<td><a href="<c:url value="/activity/${atividade.id }"/>">${atividade.id }</a></td>
+					<td><a href="<c:url value="/activity/${atividade.id }"/>">${atividade.resumo }</a></td>
+					<td><a href="#">${atividade.criador.nome }</a></td>
+					<td><fmt:formatDate value="${atividade.dataCriacao }" type="date" pattern="dd/MM/yyyy"/></td>
+					<td>
+						<c:if test="${atividade.responsavel.nome == null}">
+							tarefa não atribuida
+						</c:if>
+						<c:if test="${atividade.responsavel.nome != null}">
+							<a href="#">${atividade.responsavel.nome }</a>
+						</c:if>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
+	
+	<div id="pager" class="pager">
+    	<form style="width:100%">
+				<span style="float:right; margin-right:20px">
+					Exibir <select class="pagesize" style="width:70px">
+							<option selected="selected"  value="10">10</option>
+							<option value="20">20</option>
+							<option value="30">30</option>
+							<option  value="40">40</option>
+					</select> registros por página
+				</span>
+
+			<img src="<c:url value="/imgs/table/first.png"/>" class="first"/>
+    		<img src="<c:url value="/imgs/table/prev.png"/>" class="prev"/>
+    		<input type="text" class="pagedisplay"/>
+    		<img src="<c:url value="/imgs/table/next.png"/>" class="next"/>
+    		<img src="<c:url value="/imgs/table/last.png"/>" class="last"/>
+    	</form>
+    </div>
 	
 </div>
 
@@ -137,6 +171,39 @@
 			$(this).attr("selected", "selected");  
 		});  
 	});*/
+	
+	/* TABLE OF ACTIVITIES */
+	$(function(){
+      $('table#activies > tbody > tr:odd').addClass('odd');
+      
+      $('table#activies > tbody > tr').hover(function(){
+        $(this).toggleClass('hover');
+      });
+      
+      $('#marcar-todos').click(function(){
+        $('table#activies > tbody > tr > td > :checkbox')
+          .attr('checked', $(this).is(':checked'))
+          .trigger('change');
+      });
+      
+      $('table#activies > tbody > tr > td > :checkbox').bind('click change', function(){
+        var tr = $(this).parent().parent();
+        if($(this).is(':checked')) $(tr).addClass('selected');
+        else $(tr).removeClass('selected');
+      });
+      
+      $("table#activies").tablesorter({
+ 		dateFormat: 'uk',
+        headers: {
+          0: {
+            sorter: false
+          }
+        }
+      }).tablesorterPager({container: $("#pager")}).bind('sortEnd', function(){
+      	$('table#activies > tbody > tr').removeClass('odd');
+        $('table#activies > tbody > tr:odd').addClass('odd');
+      });
+  	});
 	
 	$("#main ul li.atividade a").addClass("selected");
 </script>
