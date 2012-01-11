@@ -106,11 +106,10 @@ public class OwnProjectController {
 		
 		System.out.println("responsavel: " + activity.getResponsavel());
 		System.out.println("resumo: " + activity.getResumo());
-		//if (activity.getResponsavel().equals("nenhum")) activity.setResponsavel(null);
 		
 		activityDao.criarAtividade(activity);
-				
-		result.redirectTo(this).newActivity();
+		
+		result.redirectTo(this).activity();
 	}
 	
 	@Post @Path("/activity/{activity.id}/comment")
