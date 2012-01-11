@@ -16,8 +16,8 @@ public class ActivityDao {
 		this.session = session;
 	}
 	
-	public void criarAtividade(Activity activity) {
-		session.save(activity);
+	public Long criarAtividade(Activity activity) {
+		return (Long) session.save(activity);
 	}
 	
 	public Activity carregar(Activity activity) {
