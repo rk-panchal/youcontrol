@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
+
 import com.youcontrol.dao.ActivityDao;
 import com.youcontrol.dao.CommentActivityDao;
 import com.youcontrol.dao.ProjectDao;
@@ -14,13 +21,7 @@ import com.youcontrol.model.CommentActivity;
 import com.youcontrol.model.User;
 import com.youcontrol.model.UserProjects;
 import com.youcontrol.model.UserWeb;
-
-import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.Resource;
-import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.view.Results;
+import com.youcontrol.model.Version;
 
 @Resource
 public class OwnProjectController {
@@ -55,6 +56,8 @@ public class OwnProjectController {
 		List<User> usersInSystem = userDao.listarUsuarios();
 		List<UserProjects> usersProject =  userProjectsDao.listarUsuariosDoProj(userWeb.getProject());
 		
+		List<Version> versions = userProjectsDao.getVersionsFromProject(userWeb.getProject().getId());
+		
 		List<User> usersNotInProject = new ArrayList<User>();
 		
 		List<User> usersInProject = new ArrayList<User>();
@@ -67,6 +70,7 @@ public class OwnProjectController {
 				usersNotInProject.add(user);
 			}
 		}
+		result.include("versions", versions);
 		result.include("usuarios", usersNotInProject);
 	}
 	

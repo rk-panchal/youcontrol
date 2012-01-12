@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.ioc.Component;
 import com.youcontrol.model.Project;
 import com.youcontrol.model.User;
 import com.youcontrol.model.UserProjects;
+import com.youcontrol.model.Version;
 
 @Component
 public class UserProjectsDao {
@@ -39,6 +40,10 @@ public class UserProjectsDao {
 	@SuppressWarnings("unchecked")
 	public List<UserProjects> listarUsuariosDoProj(Project project) {
 		return session.createCriteria(UserProjects.class).add(Restrictions.eq("project", project)).list();
+	}
+
+	public List<Version> getVersionsFromProject(Long projectId) {
+		return session.createCriteria(Version.class).add(Restrictions.eq("project.id", projectId)).list();
 	}
 	
 }

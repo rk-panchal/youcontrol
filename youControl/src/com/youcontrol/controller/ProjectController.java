@@ -3,6 +3,7 @@ package com.youcontrol.controller;
 import java.io.File;
 import java.util.Date;
 
+
 import com.youcontrol.dao.ProjectDao;
 import com.youcontrol.dao.UserProjectsDao;
 import com.youcontrol.images.ImageProject;
@@ -16,23 +17,35 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
+import com.youcontrol.dao.DefaultDao;
+import com.youcontrol.dao.ProjectDao;
+import com.youcontrol.dao.UserProjectsDao;
+import com.youcontrol.dao.VersionDao;
+import com.youcontrol.images.ImageProject;
+import com.youcontrol.model.Project;
+import com.youcontrol.model.UserWeb;
+import com.youcontrol.model.Version;
+
 @Resource
 public class ProjectController {
 
 	private final Result result;
 	private final UserWeb userWeb;
-	private final ProjectDao dao;
+	private final ProjectDao projectDao;
+	private final VersionDao versionDao;
 	private final UserProjectsDao userProjectsDao;
 	private final ImageProject imageProject;
 	
 	public ProjectController(Result result, 
 							 UserWeb userWeb, 
-							 ProjectDao dao, 
+							 ProjectDao projectDao, 
+							 VersionDao versionDao,
 							 UserProjectsDao userProjectsDao,
 							 ImageProject imageProject) {
 		this.result = result;
 		this.userWeb = userWeb;
-		this.dao = dao;
+		this.projectDao = projectDao;
+		this.versionDao = versionDao;
 		this.userProjectsDao = userProjectsDao;
 		this.imageProject = imageProject;
 	}
@@ -49,7 +62,7 @@ public class ProjectController {
 	public void salvar(Project project) {
 		Date date = new Date();
 		project.setDataDeCriacao(date);
-		Long id = dao.criarProjeto(project);
+		Long id = projectDao.criarProjeto(project);
 		project.setId(id);
 		
 		userProjectsDao.criar(project, userWeb.getUser(), "admin");
@@ -59,10 +72,25 @@ public class ProjectController {
 	
 	@Get @Path("/choose/{project.id}")
 	public void choose(Project project) {
-		Project projeto = dao.carregar(project.getId());
+		Project projeto = projectDao.load(project);
 		userWeb.setProject(projeto);
 		
 		result.redirectTo(OwnProjectController.class).overview();
+	}
+	
+	@Get @Path("/project/{project.id}/version/new")
+	public void newVersion(Project project){
+		project = projectDao.load(project);
+		result.include("project", project);
+	}
+	
+	@Post @Path("/project/{project.id}/version/new")
+	public void newVersion(Project project, Version version){
+		project = projectDao.load(project);
+		version.setProject(project);
+		versionDao.save(version);
+		
+		this.result.redirectTo(OwnProjectController.class).overview();
 	}
 	
 	@Post @Path("/image/project/{project.id}")

@@ -5,18 +5,16 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.caelum.vraptor.ioc.Component;
+
 import com.youcontrol.model.Activity;
 import com.youcontrol.model.Project;
 
-import br.com.caelum.vraptor.ioc.Component;
-
 @Component
-public class ProjectDao {
-
-	private final Session session;
+public class ProjectDao extends DefaultDao<Project>{
 	
 	public ProjectDao(Session session) {
-		this.session = session;
+		super(session);
 	}
 	
 	public Long criarProjeto(Project project) {
@@ -28,10 +26,6 @@ public class ProjectDao {
 	
 	public void atualizar(Project project) {
 		session.merge(project);
-	}
-	
-	public Project carregar(Long id) {
-		return (Project) session.createCriteria(Project.class).add(Restrictions.eq("id", id)).uniqueResult();
 	}
 	
 	@SuppressWarnings("unchecked")
