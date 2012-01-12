@@ -28,6 +28,28 @@
 		</fieldset>
 	</form>
 	
+	<form action="" method="post" id="formAtribuir">
+		<fieldset>
+			<legend>Versões</legend>
+				<div class="versions">
+					<c:if test="${not empty versions}">
+						<ul>
+							<c:forEach items="${versions}" var="version">
+								<li>${version.name }</li>
+							</c:forEach>
+						</ul>
+					</c:if>
+					<c:if test="${empty versions}">
+						<p>Não há versões cadastradas.</p>
+					</c:if>
+				</div>
+			<a href="<c:url value="/project/${userWeb.project.id }/version/new"/>" class="submit">Criar versão</a>
+			<div id="msgs" style="margin-top:10px">
+				<span id="msgbox" class="messageboxinfo" style="display:none">...</span>
+			</div>
+		</fieldset>
+	</form>
+	
 	<form action="<c:url value="/image/project/${userWeb.project.id }"/>" method="post" enctype="multipart/form-data" id="formFoto">
 		<fieldset>
 			<legend>Alterar foto</legend>
