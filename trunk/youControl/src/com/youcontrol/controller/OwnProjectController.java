@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -18,6 +20,7 @@ import com.youcontrol.dao.UserDao;
 import com.youcontrol.dao.UserProjectsDao;
 import com.youcontrol.model.Activity;
 import com.youcontrol.model.CommentActivity;
+import com.youcontrol.model.Project;
 import com.youcontrol.model.User;
 import com.youcontrol.model.UserProjects;
 import com.youcontrol.model.UserWeb;
@@ -33,6 +36,7 @@ public class OwnProjectController {
 	private final UserDao userDao;
 	private final UserProjectsDao userProjectsDao;
 	private final CommentActivityDao commentActivityDao;
+	private HttpServletRequest request;
 	
 	public OwnProjectController(Result result, 
 								UserWeb userWeb, 
@@ -40,7 +44,8 @@ public class OwnProjectController {
 								ActivityDao activityDao,
 								UserDao userDao,
 								UserProjectsDao userProjectsDao,
-								CommentActivityDao commentActivityDao) {
+								CommentActivityDao commentActivityDao,
+								HttpServletRequest request) {
 		this.result = result;
 		this.userWeb = userWeb;
 		this.projectDao = projectDao;
@@ -48,6 +53,7 @@ public class OwnProjectController {
 		this.userDao = userDao;
 		this.userProjectsDao = userProjectsDao;
 		this.commentActivityDao = commentActivityDao;
+		this.request = request;
 	}
 
 	@Get @Path("/overview")
@@ -96,12 +102,16 @@ public class OwnProjectController {
 	
 	@Get @Path("/activity/new")
 	public void newActivity() {
+		Project project = this.projectDao.get(userWeb.getProject());
+		result.include("versions", project.getVersions());
+		
 		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(userWeb.getProject()));
 	}
+	
 	@Post @Path("/activity/new")
-	public void createActivity(Activity activity) {
-		if (activity.getResponsavel().getId() == null) activity.setResponsavel(null);
-		
+	public void createActivity(Activity activity, Long[] versions) {
+		if (activity.getResponsavel().getId() == null) 
+			activity.setResponsavel(null);
 		Date date = new Date();
 		activity.setDataCriacao(date);
 		
