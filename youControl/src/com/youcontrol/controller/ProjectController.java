@@ -72,7 +72,7 @@ public class ProjectController {
 	
 	@Get @Path("/choose/{project.id}")
 	public void choose(Project project) {
-		Project projeto = projectDao.load(project);
+		Project projeto = projectDao.get(project);
 		userWeb.setProject(projeto);
 		
 		result.redirectTo(OwnProjectController.class).overview();
@@ -80,13 +80,13 @@ public class ProjectController {
 	
 	@Get @Path("/project/{project.id}/version/new")
 	public void newVersion(Project project){
-		project = projectDao.load(project);
+		project = projectDao.get(project);
 		result.include("project", project);
 	}
 	
 	@Post @Path("/project/{project.id}/version/new")
 	public void newVersion(Project project, Version version){
-		project = projectDao.load(project);
+		project = projectDao.get(project);
 		version.setProject(project);
 		versionDao.save(version);
 		

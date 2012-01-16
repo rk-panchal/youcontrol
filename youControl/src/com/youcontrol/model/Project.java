@@ -1,9 +1,13 @@
 package com.youcontrol.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.NotNull;
 
@@ -20,6 +24,8 @@ public class Project extends EntityObject{
 	private String descricao;
 	
 	private Date dataDeCriacao;
+	
+	private List<Version> versions; 
 	
 	@NotNull
 	public String getProjeto() {
@@ -60,6 +66,14 @@ public class Project extends EntityObject{
 	@NotNull
 	public Date getDataDeCriacao() {
 		return dataDeCriacao;
+	}
+	
+	@OneToMany(mappedBy="project", fetch=FetchType.LAZY)
+	public List<Version> getVersions() {
+		return this.versions;
+	}
+	public void setVersions(List<Version> versions) {
+		this.versions = versions;
 	}
 	
 }

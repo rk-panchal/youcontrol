@@ -22,7 +22,7 @@ public class DefaultDao<E extends EntityObject> {
 		this.session.save(entity);
 	}
 	
-	public E load(E entityObject){
+	public E get(E entityObject){
 		log.info(entityObject);
 		return (E) this.session.get(entityObject.getClass(), entityObject.getId());
 	}
