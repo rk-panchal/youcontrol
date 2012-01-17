@@ -37,4 +37,8 @@ public class ProjectDao extends DefaultDao<Project>{
 	public List<Activity> listarAtividades(Project project) {
 		return session.createCriteria(Activity.class).add(Restrictions.eq("projeto", project)).list();
 	}
+	
+	public Project loadById(Long id) {
+		return (Project) session.createCriteria(Project.class).add(Restrictions.eq("id", id)).uniqueResult();
+	}
 }

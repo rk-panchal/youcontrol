@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -36,7 +34,6 @@ public class OwnProjectController {
 	private final UserDao userDao;
 	private final UserProjectsDao userProjectsDao;
 	private final CommentActivityDao commentActivityDao;
-	private HttpServletRequest request;
 	
 	public OwnProjectController(Result result, 
 								UserWeb userWeb, 
@@ -44,8 +41,7 @@ public class OwnProjectController {
 								ActivityDao activityDao,
 								UserDao userDao,
 								UserProjectsDao userProjectsDao,
-								CommentActivityDao commentActivityDao,
-								HttpServletRequest request) {
+								CommentActivityDao commentActivityDao) {
 		this.result = result;
 		this.userWeb = userWeb;
 		this.projectDao = projectDao;
@@ -53,16 +49,15 @@ public class OwnProjectController {
 		this.userDao = userDao;
 		this.userProjectsDao = userProjectsDao;
 		this.commentActivityDao = commentActivityDao;
-		this.request = request;
 	}
 
-	@Get @Path("/overview")
-	public void overview() {
+	@Get @Path("/projects/{project.id}")
+	public void overview(Project project) {
 		/* LOAD ONLY USERS THAT AREN'T IN THE PROJECT */
 		List<User> usersInSystem = userDao.listarUsuarios();
-		List<UserProjects> usersProject =  userProjectsDao.listarUsuariosDoProj(userWeb.getProject());
+		List<UserProjects> usersProject =  userProjectsDao.listarUsuariosDoProj(project);
 		
-		List<Version> versions = userProjectsDao.getVersionsFromProject(userWeb.getProject().getId());
+		List<Version> versions = userProjectsDao.getVersionsFromProject(project.getId());
 		
 		List<User> usersNotInProject = new ArrayList<User>();
 		
@@ -80,17 +75,17 @@ public class OwnProjectController {
 		result.include("usuarios", usersNotInProject);
 	}
 	
-	@Post @Path("/project/addUser")
-	public void addUserToProject(User user) {
+	@Post @Path("/projects/{project.id}/addUser")
+	public void addUserToProject(User user, Project project) {
 		userProjectsDao.criar(userWeb.getProject(), user, "desenv");
 		
 		String retorno = "added";
 		result.use(Results.json()).from(retorno).serialize();
 	}
 	
-	@Get @Path("/activity")
-	public void activity() {
-		result.include("atividades", projectDao.listarAtividades(userWeb.getProject()));
+	@Get @Path("/projects/{project.id}/activity")
+	public void activity(Project project) {
+		result.include("atividades", projectDao.listarAtividades(project));
 	}
 	@Get @Path("/activity/{activity.id}")
 	public void getActivity(Activity activity) {
@@ -100,30 +95,29 @@ public class OwnProjectController {
 		result.include("qtdComentarios", comentarios.size());
 	}
 	
-	@Get @Path("/activity/new")
-	public void newActivity() {
-		Project project = this.projectDao.get(userWeb.getProject());
-		result.include("versions", project.getVersions());
+	@Get @Path("/projects/{project.id}/activity/new")
+	public void newActivity(Project project) {
+		Project projectVersion = this.projectDao.get(userWeb.getProject());
+		result.include("versions", projectVersion.getVersions());
 		
-		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(userWeb.getProject()));
+		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
 	}
-	
-	@Post @Path("/activity/new")
-	public void createActivity(Activity activity, Long[] versions) {
-		if (activity.getResponsavel().getId() == null) 
-			activity.setResponsavel(null);
+	@Post @Path("/projects/{project.id}/activity/new")
+	public void createActivity(Activity activity, Project project, Long[] versions) {
+		if (activity.getResponsavel().getId() == null) activity.setResponsavel(null);
+		
 		Date date = new Date();
 		activity.setDataCriacao(date);
 		
 		activity.setCriador(userWeb.getUser());
-		activity.setProjeto(userWeb.getProject());
+		activity.setProjeto(project);
 		
 		System.out.println("responsavel: " + activity.getResponsavel());
 		System.out.println("resumo: " + activity.getResumo());
 		
 		activityDao.criarAtividade(activity);
 		
-		result.redirectTo(this).activity();
+		result.redirectTo(this).activity(project);
 	}
 	
 	@Post @Path("/activity/{activity.id}/comment")

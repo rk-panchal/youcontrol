@@ -41,8 +41,8 @@
 				<c:if test="${userWeb.project != null}">
 					<h4>Projeto: ${userWeb.project.projeto }</h4>
 					<ul class="menu">
-						<li class="visao"><a href="<c:url value="/overview"/>">Visão geral</a></li>
-						<li class="atividade"><a href="<c:url value="/activity"/>">Atividades <span class="stats">- 37 em aberto</span></a></li>
+						<li class="visao"><a href="<c:url value="/projects/${userWeb.project.id }"/>">Visão geral</a></li>
+						<li class="atividade"><a href="<c:url value="/projects/${userWeb.project.id }/activity"/>">Atividades <span class="stats">- 37 em aberto</span></a></li>
 						<li class="wiki"><a href="#">Wiki</a></li>
 						<li class="doc"><a href="#">Documentos <span class="stats">- 0 docs</span></a></li>
 						<li class="agenda"><a href="#">Agenda <span class="stats">- 2 tarefas hoje</span></a></li>

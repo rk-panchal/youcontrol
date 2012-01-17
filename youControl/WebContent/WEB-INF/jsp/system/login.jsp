@@ -139,7 +139,7 @@
 			</div>
 		</div>
 		<div id="footer">
-			youControl © 2012 - Vinícius Michelutti
+			youControl © 2012 - Marcos Ferreira & Vinícius Michelutti
 		</div>
 		
 		<script type="text/javascript">

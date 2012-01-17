@@ -1,6 +1,6 @@
 <%@ include file="../commons/header.jsp" %>
 <div id="content-main">
-	<h2 class="atividade">Atividades: ${userWeb.project.projeto }</h2>
+	<h2 class="atividade">Administração</h2>
 </div>
 <div id="content-general">
 	<h1>Área administrativa</h1>

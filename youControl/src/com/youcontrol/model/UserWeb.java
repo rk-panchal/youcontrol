@@ -26,13 +26,13 @@ public class UserWeb {
 	public boolean estaLogado() {
 		return this.user != null;
 	}
-	
+
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	
+
 	public Project getProject() {
-		return this.project;
+		return project;
 	}
 	
 }
