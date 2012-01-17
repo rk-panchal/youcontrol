@@ -72,14 +72,9 @@ public class ProjectController {
 	
 	@Post @Path("/projects/{project.id}/version/new")
 	public void newVersion(Project project, Version version){
-		System.out.println("neeew");
 		Project projectVersion = projectDao.get(project);
-		
 		version.setProject(projectVersion);
-		System.out.println("save..");
-		
 		versionDao.save(version);
-		System.out.println("redirecting..");
 		
 		this.result.redirectTo(OwnProjectController.class).overview(project);
 	}
