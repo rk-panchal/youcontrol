@@ -42,6 +42,7 @@ public class UserProjectsDao {
 		return session.createCriteria(UserProjects.class).add(Restrictions.eq("project", project)).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Version> getVersionsFromProject(Long projectId) {
 		return session.createCriteria(Version.class).add(Restrictions.eq("project.id", projectId)).list();
 	}

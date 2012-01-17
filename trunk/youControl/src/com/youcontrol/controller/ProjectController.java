@@ -17,13 +17,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 
-import com.youcontrol.dao.DefaultDao;
-import com.youcontrol.dao.ProjectDao;
-import com.youcontrol.dao.UserProjectsDao;
 import com.youcontrol.dao.VersionDao;
-import com.youcontrol.images.ImageProject;
-import com.youcontrol.model.Project;
-import com.youcontrol.model.UserWeb;
 import com.youcontrol.model.Version;
 
 @Resource
@@ -67,37 +61,34 @@ public class ProjectController {
 		
 		userProjectsDao.criar(project, userWeb.getUser(), "admin");
 		
-		result.redirectTo(this).choose(project);
+		result.redirectTo(OwnProjectController.class).overview(project);
 	}
 	
-	@Get @Path("/choose/{project.id}")
-	public void choose(Project project) {
-		Project projeto = projectDao.get(project);
-		userWeb.setProject(projeto);
-		
-		result.redirectTo(OwnProjectController.class).overview();
-	}
-	
-	@Get @Path("/project/{project.id}/version/new")
+	@Get @Path("/projects/{project.id}/version/new")
 	public void newVersion(Project project){
 		project = projectDao.get(project);
 		result.include("project", project);
 	}
 	
-	@Post @Path("/project/{project.id}/version/new")
+	@Post @Path("/projects/{project.id}/version/new")
 	public void newVersion(Project project, Version version){
-		project = projectDao.get(project);
-		version.setProject(project);
-		versionDao.save(version);
+		System.out.println("neeew");
+		Project projectVersion = projectDao.get(project);
 		
-		this.result.redirectTo(OwnProjectController.class).overview();
+		version.setProject(projectVersion);
+		System.out.println("save..");
+		
+		versionDao.save(version);
+		System.out.println("redirecting..");
+		
+		this.result.redirectTo(OwnProjectController.class).overview(project);
 	}
 	
 	@Post @Path("/image/project/{project.id}")
 	public void uploadImg(Project project, final UploadedFile arquivo) {
 		System.out.println("usuario id:" + project.getId() + " arq:"+arquivo);
 		imageProject.upload(arquivo, project);
-		result.redirectTo(this).choose(project);
+		result.redirectTo(OwnProjectController.class).overview(project);
 	}
 	@Get @Path("/image/project/{project.id}")
 	public File showImageProject(Project project) {

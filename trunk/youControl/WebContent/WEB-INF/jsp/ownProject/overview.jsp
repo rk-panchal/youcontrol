@@ -43,7 +43,7 @@
 						<p>Não há versões cadastradas.</p>
 					</c:if>
 				</div>
-			<a href="<c:url value="/project/${userWeb.project.id }/version/new"/>" class="submit">Criar versão</a>
+			<a href="<c:url value="/projects/${userWeb.project.id }/version/new"/>" class="submit">Criar versão</a>
 			<div id="msgs" style="margin-top:10px">
 				<span id="msgbox" class="messageboxinfo" style="display:none">...</span>
 			</div>
@@ -58,6 +58,8 @@
 			<input type="submit" value="Alterar foto" />
 		</fieldset>
 	</form>
+	
+	<div style="clear:both"></div>
 </div>
 <script>
 	$("#main ul li.visao a").addClass("selected");
@@ -67,7 +69,7 @@
 		$("#formAtribuir").submit(function() {
 			$("#msgbox").removeClass().addClass('messageboxinfo').text('Adicionando...').fadeIn(2000);
 			
-			$.post('<c:url value="/project/addUser"/>', {'user.id': $('#pessoas').val()}, function(data) {
+			$.post('<c:url value="/projects/${userWeb.project.id }/addUser"/>', {'user.id': $('#pessoas').val()}, function(data) {
 				if (data.string == 'added') {
 					$("#msgbox").fadeTo(200,0.1,function() {
 		            	$(this).html('Usuário adicionado com sucesso!').removeClass().addClass('messageboxok').fadeTo(1900,1);

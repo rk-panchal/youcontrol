@@ -74,7 +74,7 @@
 		<a href="#" class="apply" title="Aplicar e atualizar lista"></a>
 		<a href="#" class="resetActivity" title="Reset filtros e opções"></a>
 		<a href="#" class="deleteSelected" title="Deletar selecionadas"></a>
-		<a href="<c:url value="/activity/new"/>" class="createActivity" title="Criar atividade"></a>
+		<a href="<c:url value="/projects/${userWeb.project.id }/activity/new"/>" class="createActivity" title="Criar atividade"></a>
 	</div>
 	
 	<table id="activies" style="width:100%; padding-top:20px;">

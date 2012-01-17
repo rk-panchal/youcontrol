@@ -6,7 +6,7 @@
 	<h2 class="projeto">Atividades > Nova atividade</h2>
 </div>
 <div id="content-general">
-	<form action="<c:url value="/activity/new"/>" method="post" id="newActivity">
+	<form action="<c:url value="/projects/${userWeb.project.id}/activity/new"/>" method="post" id="newActivity">
 		<fieldset class="first">
 			<legend>Informações</legend>
 			
@@ -29,7 +29,7 @@
 			</p>
 			
 			<p>
-				<label for="responsavel">
+				<label for="activity_versions">
 					Versões <img src="<c:url value="/imgs/help.png"/>" class="help" title="Esta atividade está relacionada a quais versões?" />
 				</label>
 				<select name="versions" id="activity_versions" multiple="multiple">

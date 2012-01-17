@@ -19,12 +19,12 @@
 				</div>
 				<div class="details">
 					<div class="imgDetails">
-						<a href="<c:url value="/choose/${projeto.project.id }"/>">
+						<a href="<c:url value="/projects/${projeto.project.id }"/>">
 							<img src="<c:url value="/image/project/${projeto.project.id }"/>" alt="${projeto.project.projeto }" />
 						</a>
 					</div>
 					<div class="textDetails">
-						<span class="projTit"><a href="<c:url value="/choose/${projeto.project.id }"/>">${projeto.project.projeto }</a></span>
+						<span class="projTit"><a href="<c:url value="/projects/${projeto.project.id }"/>">${projeto.project.projeto }</a></span>
 						<p>${projeto.project.descricao }</p>
 					</div>
 				</div>
