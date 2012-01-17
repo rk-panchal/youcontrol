@@ -27,6 +27,18 @@
 					</c:forEach>
 				</select>
 			</p>
+			
+			<p>
+				<label for="responsavel">
+					Versões <img src="<c:url value="/imgs/help.png"/>" class="help" title="Esta atividade está relacionada a quais versões?" />
+				</label>
+				<select name="versions" id="activity_versions" multiple="multiple">
+					<option value=""></option>
+					<c:forEach items="${versions}" var="version">
+						<option value="${version.id}">${version.name}</option>
+					</c:forEach>
+				</select>
+			</p>
 		</fieldset>
 		<fieldset>
 			<p>
