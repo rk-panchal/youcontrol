@@ -22,7 +22,11 @@ public class DefaultDao<E extends EntityObject> {
 		this.session.save(entity);
 	}
 	
-	@SuppressWarnings("unchecked")
+	public E get(Class<?> clazz, Long id){
+		log.info(clazz + ": " + id);
+		return (E) this.session.get(clazz, id);
+	}
+	
 	public E get(E entityObject){
 		log.info(entityObject);
 		return (E) this.session.get(entityObject.getClass(), entityObject.getId());

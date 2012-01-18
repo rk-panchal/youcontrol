@@ -8,16 +8,16 @@ import com.youcontrol.model.Activity;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component
-public class ActivityDao {
+public class ActivityDao extends DefaultDao<Activity>{
 
-	private final Session session;
+	private Session session;
 	
 	public ActivityDao(Session session) {
-		this.session = session;
+		super(session);
 	}
 	
-	public Long criarAtividade(Activity activity) {
-		return (Long) session.save(activity);
+	public void criarAtividade(Activity activity) {
+		session.merge(activity);
 	}
 	
 	public Activity carregar(Activity activity) {

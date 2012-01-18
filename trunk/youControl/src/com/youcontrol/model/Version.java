@@ -5,10 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.hibernate.validator.NotNull;
 
@@ -51,10 +49,7 @@ public class Version extends EntityObject{
 		this.project = project;
 	}
 
-	@OneToMany
-	@JoinTable(name="Version_Activity",
-    joinColumns = @JoinColumn(name="activity_id"),
-    inverseJoinColumns = @JoinColumn(name="version_id"))
+	@ManyToMany(targetEntity=Activity.class, mappedBy="versions")
 	public List<Activity> getActivities() {
 		return this.activities;
 	}

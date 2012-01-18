@@ -28,6 +28,14 @@
 				<span class="detailTitle">Data prevista: </span><span>-</span><br />
 				<span class="detailTitle">Concluído: </span><span>0%</span><br />
 				<span class="detailTitle">Tempo gasto: </span><span>-</span><br />
+				<span class="detailTitle">Versão(s): </span>
+				<span>
+					<ul>
+						<c:forEach items="${atividade.versions}" var="version">
+							<li>${version.name}</li>
+						</c:forEach>
+					</ul>
+				</span><br />
 			</div>
 		</div>
 		<hr />
