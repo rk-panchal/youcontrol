@@ -187,6 +187,7 @@
 			               if(data.string=='ok') {
 			               	$("#msgboxReg").fadeTo(200,0.1,function() {
 			               		document.getElementById("email").value = $('#emailRegister').val();
+			               		document.getElementById("senha").focus();
 			                	$(this).html('Sucesso! Realize o seu login.').addClass('messageboxok').fadeTo(1900,1);
 			               	});
 			               } else if (data.string=='emBranco') {
