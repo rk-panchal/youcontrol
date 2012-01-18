@@ -1,22 +1,25 @@
 package com.youcontrol.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.youcontrol.dao.ActivityDao;
-import com.youcontrol.dao.CommentActivityDao;
-import com.youcontrol.dao.ProjectDao;
-import com.youcontrol.dao.UserProjectsDao;
-import com.youcontrol.model.Activity;
-import com.youcontrol.model.CommentActivity;
-import com.youcontrol.model.Project;
-import com.youcontrol.model.UserWeb;
 
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+
+import com.youcontrol.dao.ActivityDao;
+import com.youcontrol.dao.CommentActivityDao;
+import com.youcontrol.dao.ProjectDao;
+import com.youcontrol.dao.UserProjectsDao;
+import com.youcontrol.dao.VersionDao;
+import com.youcontrol.model.Activity;
+import com.youcontrol.model.CommentActivity;
+import com.youcontrol.model.Project;
+import com.youcontrol.model.UserWeb;
+import com.youcontrol.model.Version;
 
 @Resource
 public class ActivityController {
@@ -26,6 +29,7 @@ public class ActivityController {
 	
 	private final UserProjectsDao userProjectsDao;
 	private final ProjectDao projectDao;
+	private final VersionDao versionDao;
 	private final ActivityDao activityDao;
 	private final CommentActivityDao commentActivityDao;
 	
@@ -33,12 +37,14 @@ public class ActivityController {
 							  UserWeb userWeb,
 							  UserProjectsDao userProjectsDao,
 							  ProjectDao projectDao,
+							  VersionDao versionDao,
 							  ActivityDao activityDao,
 							  CommentActivityDao commentActivityDao) {
 		this.result = result;
 		this.userWeb = userWeb;
 		this.userProjectsDao = userProjectsDao;
 		this.projectDao = projectDao;
+		this.versionDao = versionDao;
 		this.activityDao = activityDao;
 		this.commentActivityDao = commentActivityDao;
 	}
@@ -49,7 +55,8 @@ public class ActivityController {
 	}
 	@Get @Path("/activity/{activity.id}")
 	public void getActivity(Activity activity) {
-		result.include("atividade", activityDao.carregar(activity));
+		activity = activityDao.get(activity);
+		result.include("atividade", activity);
 		List<CommentActivity> comentarios = commentActivityDao.listar(activity);
 		result.include("comentarios", comentarios);
 		result.include("qtdComentarios", comentarios.size());
@@ -68,14 +75,21 @@ public class ActivityController {
 		
 		Date date = new Date();
 		activity.setDataCriacao(date);
-		
 		activity.setCriador(userWeb.getUser());
 		activity.setProjeto(project);
 		
 		System.out.println("responsavel: " + activity.getResponsavel());
 		System.out.println("resumo: " + activity.getResumo());
 		
-		activityDao.criarAtividade(activity);
+		
+		List<Version> versionList = new ArrayList<Version>();
+		for(Long versionId : versions){
+			Version version = versionDao.get(Version.class, versionId);
+			versionList.add(version);
+		}
+		activity.setVersions(versionList);
+		
+		activityDao.save(activity);
 		
 		result.redirectTo(this).activity(project);
 	}
