@@ -11,10 +11,10 @@
 </div>
 <div id="content-general">
 	<div id="options" style="width:100%">
-		<form id="activityForm">
+		<form id="activityForm" class="clearfix">
 		
 			<fieldset class="collapsable">
-				<legend class="linkColl">Filtros</legend>
+				<legend class="linkColl" style="border:none">Filtros</legend>
 				
 				<div>
 					<h1 style="margin-top:10px">Funcionalidade em construção</h1>
@@ -22,8 +22,8 @@
 			</fieldset>
 			
 			<fieldset class="collapsable">
-				<legend class="linkColl">Opções</legend>
-				<div>
+				<legend class="linkColl active" style="border:none">Opções</legend>
+				<div style="border-bottom:1px solid #ccc">
 				
 					<table style="margin-top:10px">
 						<tr>
@@ -68,13 +68,26 @@
 				</div>
 			</fieldset>
 		</form>
-	</div>
-	
-	<div id="menuActivity">
-		<a href="#" class="apply" title="Aplicar e atualizar lista"></a>
-		<a href="#" class="resetActivity" title="Reset filtros e opções"></a>
-		<a href="#" class="deleteSelected" title="Deletar selecionadas"></a>
-		<a href="<c:url value="/projects/${userWeb.project.id }/activity/new"/>" class="createActivity" title="Criar atividade"></a>
+
+		<div id="menuActivity" style="padding:10px 0; min-height:47px">
+			<a href="#" class="apply" title="Aplicar e atualizar lista"></a>
+			<a href="#" class="resetActivity" title="Reset filtros e opções"></a>
+			<a href="#" class="deleteSelected" title="Deletar selecionadas"></a>
+			<a href="<c:url value="/projects/${userWeb.project.id }/activity/new"/>" class="createActivity" title="Criar atividade"></a>
+		
+			<div id="pager2" class="pager">
+		    	<form style="float:right;">
+					<span>
+						por página <select class="pagesize" style="width:70px">
+								<option selected="selected"  value="10">10</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+								<option  value="40">40</option>
+						</select>
+					</span>
+		    	</form>
+		    </div>
+		</div>
 	</div>
 	
 	<table id="activies" style="width:100%; padding-top:20px;">
@@ -199,7 +212,7 @@
             sorter: false
           }
         }
-      }).tablesorterPager({container: $("#pager")}).bind('sortEnd', function(){
+      }).tablesorterPager({container: $("#pager, #pager2")}).bind('sortEnd', function(){
       	$('table#activies > tbody > tr').removeClass('odd');
         $('table#activies > tbody > tr:odd').addClass('odd');
       });
