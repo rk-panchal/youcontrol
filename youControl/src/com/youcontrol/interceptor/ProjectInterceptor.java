@@ -28,7 +28,7 @@ public class ProjectInterceptor implements Interceptor {
 	@Override
 	public boolean accepts(ResourceMethod method) {
 		/* DOES THE URL MATCHES WITH /projects/number? */
-		if (request.getRequestURI().matches("/projects/\\d+")) return true;
+		if (request.getRequestURI().matches("/projects/\\d+.*")) return true;
 		return false;
 	}
 	
@@ -42,13 +42,16 @@ public class ProjectInterceptor implements Interceptor {
 		String[] pieces = url.split("/");
 		Long id = Long.parseLong(pieces[2]);
 		
+		System.out.println("id = " + id);
 		if (userWeb.getProject() != null) {
 			if (!id.equals(userWeb.getProject().getId())) {
+				System.out.println("Another project. Saving in the session. :)");
 				Project project = new Project();
 				project.setId(id);
 				userWeb.setProject(projectDao.loadById(id));
 			}
 		} else {
+			System.out.println("First project in the session. Lets save!");
 			Project project = new Project();
 			project.setId(id);
 			userWeb.setProject(projectDao.loadById(id));
