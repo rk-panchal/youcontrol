@@ -33,6 +33,10 @@ public class UserDao {
 														.uniqueResult();
 	}
 	
+	public void update(User user) {
+		session.merge(user);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<User> listarUsuarios() {
 		return session.createCriteria(User.class).list();

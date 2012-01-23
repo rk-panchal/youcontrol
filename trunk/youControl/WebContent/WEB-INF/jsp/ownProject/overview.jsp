@@ -53,7 +53,7 @@
 	<form action="<c:url value="/image/project/${userWeb.project.id }"/>" method="post" enctype="multipart/form-data" id="formFoto">
 		<fieldset>
 			<legend>Alterar foto</legend>
-			<img src="<c:url value="/image/project/${userWeb.project.id }"/>" alt="${userWeb.project.projeto }" style="width:150px; height:150px"/>
+			<img src="<c:url value="/image/project/${userWeb.project.id }"/>" alt="${userWeb.project.projeto }" style="width:150px; height:150px; margin-top:10px"/>
 			<input type="file" name="arquivo" />
 			<input type="submit" value="Alterar foto" />
 		</fieldset>
