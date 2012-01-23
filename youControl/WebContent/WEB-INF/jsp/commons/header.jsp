@@ -23,7 +23,7 @@
 		</div>
 		<div id="principal">
 			<div id="greetings" style="text-align:right; margin-bottom:15px">
-				<p>Bem vindo, ${userWeb.user.nome }. <a href="#">Editar</a> <a href="#">Help</a> <a href="<c:url value="/logout"/>">Sair</a></p>
+				<p>Bem vindo, ${userWeb.user.nome }. <a href="<c:url value="/users/profile"/>">Editar</a> <a href="#">Help</a> <a href="<c:url value="/logout"/>">Sair</a></p>
 			</div>
 			<div style="clear:both"></div>
 			<div id="main">
@@ -31,7 +31,7 @@
 					<li class="inicio"><a href="<c:url value="/start"/>">Início</a></li>
 					<li class="projetos"><a href="<c:url value="/projects"/>">Projetos <span class="stats">- 5 ativos</span></a></li>
 					<li class="msgs"><a href="#">Mensagens <span class="stats">- (0/0)</span></a></li>
-					<li class="perfil"><a href="#">Perfil </a></li>
+					<li class="perfil"><a href="<c:url value="/users/profile"/>">Perfil </a></li>
 					<li class="conf"><a href="#">Configurações </a></li>
 				</ul>
 				<hr />

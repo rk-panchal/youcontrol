@@ -4,12 +4,12 @@
 </div>
 <div id="content-general">
 	<div id="tipoVisualizacao">
-		<span id="grid_view" title="Modo visualização grid">Grid</span>
-		<span id="list_view" class="active" title="Modo visualização de lista">Lista</span>
+		<span id="grid_view" class="active" title="Modo visualização grid">Grid</span>
+		<span id="list_view" title="Modo visualização de lista">Lista</span>
 	</div>
 	<a href="<c:url value="/projects/new"/>" class="submit">Criar projeto</a>
 
-	<div id="vis" class="listV">
+	<div id="vis" class="gridV">
 		<c:forEach items="${projetos }" var="projeto">
 			<div class="projBox">
 				<div class="topDetails">
