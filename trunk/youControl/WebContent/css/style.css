@@ -168,7 +168,7 @@ form input[type=submit], form input[type=reset], a.submit{
 }
 form input[type=reset] { border: 1px solid #AB0E15; background: none repeat scroll 0 0 #C5101A; }
 
-/* MODO DE VISUALIZAÇÃO */
+/* MODO DE VISUALIZAï¿½ï¿½O */
 #list_view, #grid_view {
 height: 20px;
 font-size: 13px;
@@ -328,3 +328,6 @@ div.commentText p.detail  { font-size:11px; text-align:right; margin-bottom:5px;
 div.commentText span.detailComment { color:#999; }
 div.divisor { border:1px solid #484848; }
 
+#projectSelector {
+	border: solid 1px #CCC;
+}
