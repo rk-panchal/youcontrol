@@ -11,7 +11,9 @@
 <script type="text/javascript" src="<c:url value="/js/jquery-1.5.1.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/puts.js"/>"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>" media="screen" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/projectSelector.css"/>"/>
 <link rel="shortcut icon" href="<c:url value="/imgs/favicon.png"/>" type="image/png" />
+
 </head>
 <body>
 	<div id="general">
@@ -36,7 +38,18 @@
 				</ul>
 				<hr />
 				<c:if test="${userWeb.project == null}">
-					<h4>Selecione um projeto</h4>
+					<div id="ycprojects">
+						<ul>
+							<li>
+								<a>Selecione um projeto <img src="<c:url value="/imgs/menu_down.png"/>"/></a>
+									<ul>
+										<c:forEach items="${userWeb.availableProjects}" var="availableProjects">
+												<li><a href="<c:url value="/projects/${availableProjects.id}"/>">${availableProjects.projeto}</a></li>
+										</c:forEach>
+									</ul>
+							</li>
+						</ul>
+					</div>
 				</c:if>
 				<c:if test="${userWeb.project != null}">
 					<h4>Projeto: ${userWeb.project.projeto }</h4>
