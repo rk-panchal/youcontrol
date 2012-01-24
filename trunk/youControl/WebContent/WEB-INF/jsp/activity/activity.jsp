@@ -107,14 +107,14 @@
 					<td><input type="checkbox" value="1" /></td>
 					<td><a href="<c:url value="/activity/${atividade.id }"/>">${atividade.id }</a></td>
 					<td><a href="<c:url value="/activity/${atividade.id }"/>">${atividade.resumo }</a></td>
-					<td><a href="#">${atividade.criador.nome }</a></td>
+					<td><a href="<c:url value="/users/${atividade.criador.id }"/>">${atividade.criador.nome }</a></td>
 					<td><fmt:formatDate value="${atividade.dataCriacao }" type="date" pattern="dd/MM/yyyy"/></td>
 					<td>
 						<c:if test="${atividade.responsavel.nome == null}">
 							-
 						</c:if>
 						<c:if test="${atividade.responsavel.nome != null}">
-							<a href="#">${atividade.responsavel.nome }</a>
+							<a href="<c:url value="/users/${atividade.responsavel.id }"/>">${atividade.responsavel.nome }</a>
 						</c:if>
 					</td>
 				</tr>

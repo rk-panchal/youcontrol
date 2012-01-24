@@ -9,7 +9,7 @@
 			<h2>Usuários</h2>
 			<ul>
 				<c:forEach items="${users }" var="user">
-					<li>${user.id } - ${user.nome } / ${user.email }</li>
+					<li><a href="<c:url value="/users/${user.id }"/>">${user.nome }</a> / ${user.email }</li>
 				</c:forEach>
 			</ul>
 		</div>

@@ -10,12 +10,10 @@ import com.youcontrol.model.User;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component
-public class UserDao {
+public class UserDao extends DefaultDao<User> {
 
-	private final Session session;
-	
 	public UserDao(Session session) {
-		this.session = session;
+		super(session);
 	}
 	
 	public Long criarUsuario(User user) {
