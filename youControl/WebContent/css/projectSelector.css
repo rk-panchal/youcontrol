@@ -1,0 +1,66 @@
+#ycprojects {
+	margin-bottom: 15px;
+}
+
+#ycprojects ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	width: 185px; /* Width of Menu Items */
+	font-size: 12px;
+}
+
+#ycprojects ul li ul li a{
+	border-left: none;
+}
+
+#ycprojects ul li {
+	display: block;	
+	color:#999999; 
+	font-size:11px; 
+	margin-bottom:10px; 
+	font-weight:bold; 
+	text-transform:uppercase;
+}
+
+
+#ycprojects li ul {
+	position: absolute;
+	left: 35px; /* Set 1px less than menu width */
+	display: none;
+	z-index: 100;
+	color: #000;
+	background: #E5E3DE;
+	width: 220px;
+}
+
+#ycprojects ul li a:hover {
+	color: #000;
+}
+
+#ycprojects ul li ul li a:hover {
+	color: #000;
+}
+
+
+/* Styles for Menu Items */
+#ycprojects ul li a {
+	display: block;
+	text-decoration: none;
+	padding: 5px;
+	cursor: pointer;
+}
+
+/* Fix IE. Hide from IE Mac \*/
+* html #ycprojects ul li {
+	float: left;
+	height: 1%;
+}
+
+* html #ycprojects ul li a {
+	height: 1%;
+}
+/* End */
+#ycprojects li:hover ul {
+	display: block;
+} /*  The magic */
