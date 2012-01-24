@@ -67,7 +67,9 @@ public class UserController {
 	
 	@Get @Path("/users/{user.id}")
 	public void userProfile(User user) {
-		
+		user = userDao.get(user);
+		result.include("user", user);
+		result.include("projects", userProjectsDao.listarProjDoUsuario(user));
 	}
 	
 	@Post @Path("/image/user/{user.id}")

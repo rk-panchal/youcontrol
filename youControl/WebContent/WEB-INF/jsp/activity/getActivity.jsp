@@ -14,13 +14,13 @@
 		<h2>${atividade.resumo }</h2>
 		<div id="detailTop">
 			<a href="#"><img src="<c:url value="/image/user/${atividade.criador.id }"/>" alt="${atividade.criador.nome }" /></a>
-			<p>Criado por <a href="#">${atividade.criador.nome }</a><br />Última atualização em: 04/01/2012</p>
+			<p>Criado por <a href="<c:url value="/users/${atividade.criador.id }"/>">${atividade.criador.nome }</a><br />Última atualização em: 04/01/2012</p>
 		</div>
 		<div id="detail">
 			<div class="detailLeft">
 				<span class="detailTitle">Criticidade: </span><span>${atividade.criticidade }</span><br />
 				<span class="detailTitle">Prioridade: </span><span>${atividade.prioridade }</span><br />
-				<span class="detailTitle">Atribuido para: </span><span><a href="#">${atividade.responsavel.nome }</a></span><br />
+				<span class="detailTitle">Atribuido para: </span><span><a href="<c:url value="/users/${atividade.responsavel.id }"/>">${atividade.responsavel.nome }</a></span><br />
 				<span class="detailTitle">Projeto: </span><span>${atividade.projeto.projeto }</span><br />
 			</div>
 			<div class="detailRight">
@@ -70,7 +70,7 @@
 		<c:if test="${not empty comentarios}">
 			<c:forEach items="${comentarios }" var="comentario">
 				<div class="commentText">
-					<p class="detail"><span class="detailComment"><fmt:formatDate value="${comentario.dataCriacao }" type="date" pattern="dd/MM/yyyy - hh:mm"/> por <a href="#">${comentario.usuario.nome }</a></span></p>
+					<p class="detail"><span class="detailComment"><fmt:formatDate value="${comentario.dataCriacao }" type="date" pattern="dd/MM/yyyy - hh:mm"/> por <a href="<c:url value="/users/${comentario.usuario.id }"/>">${comentario.usuario.nome }</a></span></p>
 					<img src="<c:url value="/image/user/${comentario.usuario.id }"/>" alt="usuario" />
 					<p>${comentario.comentario }</p>
 				</div>
