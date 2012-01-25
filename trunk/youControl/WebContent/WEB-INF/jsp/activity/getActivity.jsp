@@ -13,7 +13,7 @@
 	<div id="issueBox">
 		<h2>${atividade.resumo }</h2>
 		<div id="detailTop">
-			<a href="#"><img src="<c:url value="/image/user/${atividade.criador.id }"/>" alt="${atividade.criador.nome }" /></a>
+			<a href="<c:url value="/users/${comentario.usuario.id }"/>"><img src="<c:url value="/image/user/${atividade.criador.id }"/>" alt="${atividade.criador.nome }" /></a>
 			<p>Criado por <a href="<c:url value="/users/${atividade.criador.id }"/>">${atividade.criador.nome }</a><br />Última atualização em: 04/01/2012</p>
 		</div>
 		<div id="detail">
