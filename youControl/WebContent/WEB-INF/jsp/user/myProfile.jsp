@@ -7,15 +7,20 @@
 	<h2 class="inicio">Meu perfil</h2>
 </div>
 <div id="content-general">
-	<form action="<c:url value="/image/user/${userWeb.user.id }"/>" method="post" enctype="multipart/form-data" id="formFoto">
-		<fieldset>
-			<legend>Alterar foto</legend>
-			<img src="<c:url value="/image/user/${userWeb.user.id }"/>" alt="${userWeb.user.nome }" style="width:80px; height:150px; margin-top:10px"/>
-			<input type="file" name="arquivo" />
-			<input type="submit" value="Alterar foto" />
-		</fieldset>
-	</form>
-	
+
+	<div id="issueBox">
+		<h2>${userWeb.user.nome }</h2>
+		<div id="detailTop">
+			<a href="#"><img src="<c:url value="/image/user/${userWeb.user.id }"/>" alt="${userWeb.user.nome }" style="width:80px; height:80px"/></a>
+			<p>${userWeb.user.email }<br />Registrado em <fmt:formatDate value="${userWeb.user.dataDeCriacao }" type="date" pattern="dd/MM/yyyy - hh:mm"/></p>
+		
+			<form action="<c:url value="/image/user/${userWeb.user.id }"/>" method="post" enctype="multipart/form-data" id="formFoto">
+				<input type="file" name="arquivo" />
+				<input type="submit" value="Alterar foto" />
+			</form>
+		</div>
+	</div>
+
 	<form action="<c:url value="/users/profile"/>" method="post" id="myData">
 		<fieldset>
 			<legend style="padding-top:10px">Meus dados</legend>
@@ -55,29 +60,13 @@
 			<legend>Meus projetos</legend>
 		</fieldset>
 	</form>
-	<div id="vis" class="gridV">
-		<c:forEach items="${projetos }" var="projeto">
-			<div class="projBox">
-				<div class="topDetails">
-					<span class="left">${projeto.project.publicoAlvo }</span>
-					<span class="right"><fmt:formatDate value="${projeto.project.dataDeCriacao }" type="date" pattern="dd/MM/yyyy"/></span>
-					<span class="right">31 usuários</span>
-				</div>
-				<div class="details">
-					<div class="imgDetails">
-						<a href="<c:url value="/projects/${projeto.project.id }"/>">
-							<img src="<c:url value="/image/project/${projeto.project.id }"/>" alt="${projeto.project.projeto }" />
-						</a>
-					</div>
-					<div class="textDetails">
-						<span class="projTit"><a href="<c:url value="/projects/${projeto.project.id }"/>">${projeto.project.projeto }</a></span>
-						<p>${projeto.project.descricao }</p>
-					</div>
-				</div>
-			</div>
-		</c:forEach>
-	</div>
 	<div style="clear:both"></div>
+	<ol style="margin:10px 0 0 30px">
+		<c:forEach items="${projetos }" var="project">
+			<li><a href="<c:url value="/projects/${project.project.id }"/>">${project.project.projeto }</a> - (<fmt:formatDate value="${project.project.dataDeCriacao }" type="date" pattern="dd/MM/yyyy"/>)</li>
+		</c:forEach>
+	</ol>
+	
 </div>
 
 <script type="text/javascript">
