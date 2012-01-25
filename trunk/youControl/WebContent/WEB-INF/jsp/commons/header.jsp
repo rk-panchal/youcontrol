@@ -10,6 +10,8 @@
 <title>youControl - Projects Management</title>
 <script type="text/javascript" src="<c:url value="/js/jquery-1.5.1.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/puts.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.scrollablecombo.js"/>"></script>
+
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>" media="screen" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/projectSelector.css"/>"/>
 <link rel="shortcut icon" href="<c:url value="/imgs/favicon.png"/>" type="image/png" />
@@ -37,23 +39,24 @@
 					<li class="conf"><a href="#">Configurações </a></li>
 				</ul>
 				<hr />
-				<c:if test="${userWeb.project == null}">
-					<div id="ycprojects">
-						<ul>
-							<li>
-								<a>Selecione um projeto <img src="<c:url value="/imgs/menu_down.png"/>"/></a>
-									<ul>
-										<c:forEach items="${userWeb.availableProjects}" var="availableProjects">
-												<li><a href="<c:url value="/projects/${availableProjects.id}"/>">${availableProjects.projeto}</a></li>
-										</c:forEach>
-									</ul>
-							</li>
-						</ul>
-					</div>
-				</c:if>
+				
+				<div style="width:100%; margin-bottom:15px">
+					<select id="selectProjects" onChange="alert('teste')">
+						<option value="">Selecione um projeto</option>			
+						<c:forEach items="${userWeb.availableProjects}" var="availableProjects">
+							<c:if test="${availableProjects.id == userWeb.project.id }">
+								<option value="<c:url value="/projects/${availableProjects.id}"/>" selected="selected">${availableProjects.projeto}</option>
+							</c:if>
+							<c:if test="${availableProjects.id != userWeb.project.id }">
+								<option value="<c:url value="/projects/${availableProjects.id}"/>">${availableProjects.projeto}</option>
+							</c:if>
+						</c:forEach>		
+					</select>
+				</div>
+				
+				
 				<c:if test="${userWeb.project != null}">
-					<h4>Projeto: ${userWeb.project.projeto }</h4>
-					<ul class="menu">
+					<ul class="menu" style="margin-top:50px">
 						<li class="visao"><a href="<c:url value="/projects/${userWeb.project.id }"/>">Visão geral</a></li>
 						<li class="atividade"><a href="<c:url value="/projects/${userWeb.project.id }/activity"/>">Atividades <span class="stats">- 37 em aberto</span></a></li>
 						<li class="wiki"><a href="#">Wiki</a></li>
@@ -64,8 +67,10 @@
 						<li class="adm"><a href="#">Administração</a></li>
 					</ul>
 				</c:if>
+				
 			</div>
 			<div id="content">
 			<script>
 				$("#pesquisaT").puts("Procure o usuário...");
+				$('#selectProjects').scrollablecombo();
 			</script>

@@ -1,66 +1,72 @@
-#ycprojects {
-	margin-bottom: 15px;
+.cb_select{
+  position:relative;
+  margin:5px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size:11px;
+  text-transform:uppercase;
+  color:#999;
 }
-
-#ycprojects ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	width: 185px; /* Width of Menu Items */
-	font-size: 12px;
+.cb_select .cb_selectMain{
+  color:#999;
+  border:1px solid #ccc;
+  background-color:#f0f0f0;
+  background-repeat:no-repeat;
+  background-position:95% 50%;
+  padding:2px;
+  cursor:pointer;
+  text-align:left;
+  height:20px;
+  line-height:20px;
+  text-indent:10px;
+  width:200px;
+  position:absolute;
+  top:0px;
+  right:5px;
+  z-index:10;
+  text-shadow:1px 1px 1px #fff;
+  -moz-box-shadow:0px 0px 1px #333 inset;
+  -webkit-box-shadow:0px 0px 1px #333 inset;
+  box-shadow:0px 0px 1px #333 inset;
 }
-
-#ycprojects ul li ul li a{
-	border-left: none;
+.cb_down{
+  background-image:url(../imgs/comboselector/down.png);
 }
-
-#ycprojects ul li {
-	display: block;	
-	color:#999999; 
-	font-size:11px; 
-	margin-bottom:10px; 
-	font-weight:bold; 
-	text-transform:uppercase;
+.cb_up{
+  background-image:url(../imgs/comboselector/up.png);
 }
-
-
-#ycprojects li ul {
-	position: absolute;
-	left: 35px; /* Set 1px less than menu width */
-	display: none;
-	z-index: 100;
-	color: #000;
-	background: #E5E3DE;
-	width: 220px;
+.cb_selectWrapper{
+  display:none;
+  position:absolute;
+  top:0px;
+  left:0px;
+  z-index:1000;
+  height:150px;
+  border:1px solid #ccc;
+  background-color:#fff;
+  margin:25px 0px 0px 0px;
+  background:#f0f0f0 url(../imgs/comboselector/overlay.png) repeat-x top left;
+  -moz-box-shadow:0px 0px 1px #333 inset;
+  -webkit-box-shadow:0px 0px 1px #333 inset;
+  box-shadow:0px 0px 1px #333 inset;
 }
-
-#ycprojects ul li a:hover {
-	color: #000;
+.cb_selectWrapper ul {
+  list-style:none;
+  padding:0px;
+  margin:0px;
+  width:100%;
 }
-
-#ycprojects ul li ul li a:hover {
-	color: #000;
+.cb_selectWrapper ul li a{
+  text-decoration:none;
+  cursor:pointer;
+  display:block;
+  padding:3px 0px;
+  text-indent:10px;
+  letter-spacing:1px;
+  color:#999;
+  text-shadow:1px 1px 1px #fff;
 }
-
-
-/* Styles for Menu Items */
-#ycprojects ul li a {
-	display: block;
-	text-decoration: none;
-	padding: 5px;
-	cursor: pointer;
+.cb_selectWrapper ul li a:hover{
+  background-color:#616161;
+  color:#fff;
+  text-shadow:1px 1px 1px #000;
 }
-
-/* Fix IE. Hide from IE Mac \*/
-* html #ycprojects ul li {
-	float: left;
-	height: 1%;
-}
-
-* html #ycprojects ul li a {
-	height: 1%;
-}
-/* End */
-#ycprojects li:hover ul {
-	display: block;
-} /*  The magic */
