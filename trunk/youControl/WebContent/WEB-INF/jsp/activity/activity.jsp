@@ -70,10 +70,10 @@
 		</form>
 
 		<div id="menuActivity" style="padding:10px 0; min-height:47px">
-			<a href="#" class="apply" title="Aplicar e atualizar lista"></a>
-			<a href="#" class="resetActivity" title="Reset filtros e opções"></a>
-			<a href="#" class="deleteSelected" title="Deletar selecionadas"></a>
-			<a href="<c:url value="/projects/${userWeb.project.id }/activity/new"/>" class="createActivity" title="Criar atividade"></a>
+			<a href="#" class="apply" alt="Aplicar e atualizar lista"></a>
+			<a href="#" class="resetActivity" alt="Reset filtros e opções"></a>
+			<a href="#" class="deleteSelected" alt="Deletar selecionadas"></a>
+			<a href="<c:url value="/projects/${userWeb.project.id }/activity/new"/>" class="createActivity" alt="Criar atividade"></a>
 		
 			<div id="pager2" class="pager">
 		    	<form style="float:right;">
@@ -88,6 +88,7 @@
 		    	</form>
 		    </div>
 		</div>
+		
 	</div>
 	
 	<table id="activies" style="width:100%; padding-top:20px;">
@@ -144,6 +145,19 @@
 </div>
 
 <script>
+	/* TOOLTIP MENU */
+	$('#menuActivity a').append('<span></span>');
+	$('#menuActivity a').hover(
+		function(){
+			$(this).find('span').animate({opacity:'show', top: '46'}, 0);
+			var hoverTexts = $(this).attr('alt');
+			$(this).find('span').text(hoverTexts);
+		},
+		function(){
+			$(this).find('span').animate({opacity:'hide', top: '-90'}, 0);
+		}
+	);
+
 	/* ADD AND REMOVE OPTIONS */
 	$('#add').click(function() {  
 		return !$('#columnsAvailable option:selected').remove().appendTo('#columnsSelected');  
@@ -220,5 +234,4 @@
 	
 	$("#main ul li.atividade a").addClass("selected");
 </script>
-
 <%@ include file="../commons/footer.jsp" %>

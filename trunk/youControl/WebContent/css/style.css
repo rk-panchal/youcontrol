@@ -289,6 +289,22 @@ legend.linkColl a, legend.linkColl a:visited { text-decoration:none; color:black
 	border-radius:3px;
 }
 #menuActivity a:hover { border:1px solid #C6C6C6; }
+#menuActivity a { position:relative; }
+#menuActivity a span{
+	font-size:10px;
+	font-weight:bold;
+	font-family:Verdana, sans-serif;
+	background:url(../imgs/tooltip_bg.png);
+	width:139px;
+	height:50px;
+	line-height:63px;
+	position:absolute;
+	display:none;
+	top:-90px;
+	color:#fff;
+	right:-49px;
+	text-align:center;
+}
 
 #menuActivity a.apply { background:url('../imgs/apply.png') no-repeat center #F6F6F6; }
 #menuActivity a.resetActivity { background:url('../imgs/resetActivity.png') no-repeat center #F6F6F6; }
