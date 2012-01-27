@@ -4,7 +4,7 @@
 <script type="text/javascript" src="<c:url value="/js/jquery.validate.js"/>"></script>
 
 <div id="content-main">
-	<h2 class="inicio">Meu perfil</h2>
+	<h2 class="perfil">Meu perfil</h2>
 </div>
 <div id="content-general">
 

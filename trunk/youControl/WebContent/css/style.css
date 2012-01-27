@@ -266,6 +266,7 @@ img.fotoDestaque { border: 2px solid #d7d7d7; -moz-border-radius: 6px; -webkit-b
 #content-main h2.projeto { padding-left:56px; background-image:url('../imgs/icons/Project.png'); background-repeat:no-repeat; }
 #content-main h2.visao { padding-left:56px; background:url('../imgs/icons/Overview.png'); background-repeat:no-repeat; }
 #content-main h2.atividade { padding-left:56px; background:url('../imgs/icons/Activity.png'); background-repeat:no-repeat; }
+#content-main h2.perfil { padding-left:56px; background:url('../imgs/icons/ID.png'); background-repeat:no-repeat; }
 ul.lista li { list-style-type:none; }
 
 /* PAGINA COM LISTA DE ATIVIDADES */
@@ -337,7 +338,7 @@ span.detailTitle { font-weight: bold; width:130px; }
  
 #commentsBox { padding-top:10px; }
 #commentsBox hr { clear:left; }
-#commentsBox form img.loaderajax { float:right; margin:12px 10px 0 0; display:none; }
+img.loaderajax { float:right; margin:12px 10px 0 0; display:none; width:24px; height:24px }
 div.commentText { clear:right; padding:0px; min-height:75px; } 
 div.commentText img { float:left; width:50px; height:50px; margin-right:10px; }
 div.commentText p.detail  { font-size:11px; text-align:right; margin-bottom:5px; }

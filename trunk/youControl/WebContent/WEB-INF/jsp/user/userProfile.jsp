@@ -1,7 +1,7 @@
 <%@ include file="../commons/header.jsp" %>
 
 <div id="content-main">
-	<h2 class="inicio">Perfil de usuário</h2>
+	<h2 class="perfil">Perfil de usuário</h2>
 </div>
 <div id="content-general">
 
