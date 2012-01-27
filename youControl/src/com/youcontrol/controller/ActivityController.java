@@ -53,6 +53,7 @@ public class ActivityController {
 	public void activity(Project project) {
 		result.include("atividades", projectDao.listarAtividades(project));
 	}
+	
 	@Get @Path("/activity/{activity.id}")
 	public void getActivity(Activity activity) {
 		activity = activityDao.get(activity);
@@ -60,6 +61,11 @@ public class ActivityController {
 		List<CommentActivity> comentarios = commentActivityDao.listar(activity);
 		result.include("comentarios", comentarios);
 		result.include("qtdComentarios", comentarios.size());
+		
+		Project project = userWeb.getProject();
+		Project projectVersion = this.projectDao.get(project);
+		result.include("versions", projectVersion.getVersions());
+		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
 	}
 	
 	@Get @Path("/projects/{project.id}/activity/new")
@@ -77,10 +83,6 @@ public class ActivityController {
 		activity.setDataCriacao(date);
 		activity.setCriador(userWeb.getUser());
 		activity.setProjeto(project);
-		
-		System.out.println("responsavel: " + activity.getResponsavel());
-		System.out.println("resumo: " + activity.getResumo());
-		
 		
 		List<Version> versionList = new ArrayList<Version>();
 		for(Long versionId : versions){

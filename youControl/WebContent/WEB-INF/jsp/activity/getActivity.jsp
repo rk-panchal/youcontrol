@@ -1,11 +1,18 @@
 <%@ include file="../commons/header.jsp" %>
+
+<script type="text/javascript" src="<c:url value="/js/jquery.validate.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.limit-1.2.source.js"/>"></script>
+
+<script type="text/javascript" src="<c:url value="/js/jquery.colorbox.js"/>"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/colorbox.css"/>"/>
+
 <div id="content-main">
 	<h2 class="atividade">Atividades</h2>
 </div>
 <div id="content-general">
 
 	<div id="controls">
-		<a href="#" class="atualizar">Atualizar</a>
+		<a href="#editarAtividade" class="atualizar">Atualizar</a>
 		<a href="#" class="acompanhar">Acompanhar</a>
 		<a href="#" class="anexar">Anexar documento</a>
 	</div>
@@ -13,7 +20,7 @@
 	<div id="issueBox">
 		<h2>${atividade.resumo }</h2>
 		<div id="detailTop">
-			<a href="<c:url value="/users/${comentario.usuario.id }"/>"><img src="<c:url value="/image/user/${atividade.criador.id }"/>" alt="${atividade.criador.nome }" /></a>
+			<a href="<c:url value="/users/${atividade.criador.id }"/>"><img src="<c:url value="/image/user/${atividade.criador.id }"/>" alt="${atividade.criador.nome }" /></a>
 			<p>Criado por <a href="<c:url value="/users/${atividade.criador.id }"/>">${atividade.criador.nome }</a><br />Última atualização em: 04/01/2012</p>
 		</div>
 		<div id="detail">
@@ -28,13 +35,11 @@
 				<span class="detailTitle">Data prevista: </span><span>-</span><br />
 				<span class="detailTitle">Concluído: </span><span>0%</span><br />
 				<span class="detailTitle">Tempo gasto: </span><span>-</span><br />
-				<span class="detailTitle">Versão(s): </span>
+				<span class="detailTitle">Versão(ões): </span>
 				<span>
-					<ul>
-						<c:forEach items="${atividade.versions}" var="version">
-							<li>${version.name}</li>
-						</c:forEach>
-					</ul>
+					<c:forEach items="${atividade.versions}" var="version">
+						${version.name} 
+					</c:forEach>
 				</span><br />
 			</div>
 		</div>
@@ -95,4 +100,72 @@
 		return false;
 	});
 </script>
+
+<!-- UPDATE ACTIVITY -->
+<div style='display:none'>
+	<div id="editarAtividade">
+		<div id="content-main">
+			<h2 class="atividade">Editar atividade</h2>
+		</div>
+		<div id="content-general">
+			<form action="" method="post" id="updateActivity">
+				<fieldset class="first">
+					<legend>Informações</legend>
+					
+					<p style="margin-top:20px">
+						<label for="resumo">Resumo</label>
+						<input type="text" name="activity.resumo" id="resumo" class="required" size="30" maxlength="255" value="${atividade.resumo }" />
+					</p> 
+					<p>
+						<label for="responsavel">Atribuir para</label>
+						<select name="activity.responsavel.id" id="responsavel">
+							<option value="">Não atribuir esta atividade</option>
+							<c:forEach items="${usuarios }" var="user">
+								<c:if test="${user.user.id == atividade.responsavel.id}">
+									<option value="${user.user.id }" selected="selected">${user.user.nome }</option>
+								</c:if>
+								<c:if test="${user.user.id != atividade.responsavel.id}">
+									<option value="${user.user.id }">${user.user.nome }</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</p>
+					<p>
+						<label for="activity_versions">Versões</label>
+						<select name="versions" id="activity_versions" multiple="multiple">
+							<option value=""></option>
+							<c:forEach items="${versions}" var="version">
+								<option value="${version.id}">${version.name}</option>
+							</c:forEach>
+						</select>
+					</p>
+				</fieldset>
+				<fieldset>
+					<p>
+						<label for="descricao">Descrição</label>
+						<textarea rows="15" cols="50" name="activity.descricao" class="required" id="descricao">${atividade.descricao }</textarea>
+						<label><span id="restantes"></span> caracteres restantes</label>
+					</p>
+				</fieldset>
+				<p class="submit">
+					<input type="submit" value="Atualizar" />
+				</p>
+			</form>
+		</div>
+		
+		<script>
+			$('#descricao').limit(700, '#restantes');
+			$('#updateActivity').validate();
+			$(".atualizar").colorbox({inline:true, width:"55%"});
+			
+			$("#updateActivity").submit(function() {
+				setTimeout($.colorbox.close, 0);
+				var desc = document.getElementById("descricao").value;
+				
+				return false;
+			});
+		</script>
+	</div>
+</div>
+
 <%@ include file="../commons/footer.jsp" %>
