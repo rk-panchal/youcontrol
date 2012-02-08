@@ -5,10 +5,10 @@
   font-size:11px;
   text-transform:uppercase;
   color:#999;
+  min-width:200px;
 }
 .cb_select .cb_selectMain{
   color:#999;
-  border:1px solid #ccc;
   background-color:#f0f0f0;
   background-repeat:no-repeat;
   background-position:95% 50%;
@@ -41,13 +41,13 @@
   left:0px;
   z-index:1000;
   height:150px;
-  border:1px solid #ccc;
   background-color:#fff;
   margin:25px 0px 0px 0px;
-  background:#f0f0f0 url(../imgs/comboselector/overlay.png) repeat-x top left;
+  background:#f0f0f0;
   -moz-box-shadow:0px 0px 1px #333 inset;
   -webkit-box-shadow:0px 0px 1px #333 inset;
   box-shadow:0px 0px 1px #333 inset;
+  min-width:200px;
 }
 .cb_selectWrapper ul {
   list-style:none;
