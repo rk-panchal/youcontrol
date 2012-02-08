@@ -40,8 +40,8 @@
 				</ul>
 				<hr />
 				
-				<div style="width:100%; margin-bottom:15px">
-					<select id="selectProjects" onChange="alert('teste')">
+				<div>
+					<select id="selectProjects">
 						<option value="">Selecione um projeto</option>			
 						<c:forEach items="${userWeb.availableProjects}" var="availableProjects">
 							<c:if test="${availableProjects.id == userWeb.project.id }">
