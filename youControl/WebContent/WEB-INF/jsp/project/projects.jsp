@@ -7,7 +7,7 @@
 		<span id="grid_view" class="active" title="Modo visualização grid">Grid</span>
 		<span id="list_view" title="Modo visualização de lista">Lista</span>
 	</div>
-	<a href="<c:url value="/projects/new"/>" class="submit">Criar projeto</a>
+	<a href="<c:url value="/project/new"/>" class="submit">Criar projeto</a>
 
 	<div id="vis" class="gridV">
 		<c:forEach items="${projetos }" var="projeto">
@@ -19,12 +19,12 @@
 				</div>
 				<div class="details">
 					<div class="imgDetails">
-						<a href="<c:url value="/projects/${projeto.project.id }"/>">
+						<a href="<c:url value="/project/${projeto.project.id }"/>">
 							<img src="<c:url value="/image/project/${projeto.project.id }"/>" alt="${projeto.project.projeto }" />
 						</a>
 					</div>
 					<div class="textDetails">
-						<span class="projTit"><a href="<c:url value="/projects/${projeto.project.id }"/>">${projeto.project.projeto }</a></span>
+						<span class="projTit"><a href="<c:url value="/project/${projeto.project.id }"/>">${projeto.project.projeto }</a></span>
 						<p>${projeto.project.descricao }</p>
 					</div>
 				</div>

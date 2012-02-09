@@ -6,7 +6,7 @@
 	<h2 class="projeto">Projeto ${project.projeto} > Nova Versão</h2>
 </div>
 <div id="content-general">
-	<form action="<c:url value="/projects/${project.id}/version/new"/>" method="post" id="newVersion">
+	<form action="<c:url value="/project/${project.id}/version/new"/>" method="post" id="newVersion">
 		<fieldset class="first">
 			<legend>Informações</legend>
 			
