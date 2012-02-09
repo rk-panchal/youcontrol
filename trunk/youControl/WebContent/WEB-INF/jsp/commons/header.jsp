@@ -19,16 +19,48 @@
 </head>
 <body>
 	<div id="general">
-		<div id="header">
-			<div id="logo"><img src="<c:url value="/imgs/logoH.png"/>" alt="youControl" /></div>
-			<div id="pesquisa">
-				<input type="text" name="pesquisa" id="pesquisaT" value="" />
+	
+		<div id="topNav">
+			<div class="fixed">
+				<div class="welcome">
+					<a href="#"><img src="<c:url value="/imgs/topmenu/userPic.png"/>" alt="" /></a>
+					<span>${userWeb.user.nome }</span>
+				</div>
+				<div class="userNav">
+					<ul>
+						<li>
+							<a href="<c:url value="/start"/>">
+								<img src="<c:url value="/imgs/topmenu/profile.png"/>" />
+								<span>Início</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<img src="<c:url value="/imgs/topmenu/messages.png"/>" />
+								<span>Mensagens</span>
+								<span class="numberTop">8</span>
+							</a>
+						</li>
+						<li>
+							<a href="<c:url value="/users/profile"/>">
+								<img src="<c:url value="/imgs/topmenu/settings.png"/>" />
+								<span>Editar configurações</span>
+							</a>
+						</li>
+						<li>
+							<a href="<c:url value="/logout"/>">
+								<img src="<c:url value="/imgs/topmenu/logout.png"/>" />
+								<span>Sair</span>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
+		
+		<!-- <img src="<c:url value="/imgs/logoH.png"/>" alt="youControl" /> -->
+		
 		<div id="principal">
-			<div id="greetings" style="text-align:right; margin-bottom:15px">
-				<p>Bem vindo, ${userWeb.user.nome }. <a href="<c:url value="/users/profile"/>">Editar</a> <a href="#">Help</a> <a href="<c:url value="/logout"/>">Sair</a></p>
-			</div>
 			<div style="clear:both"></div>
 			<div id="main">
 				<ul class="menu">
@@ -71,6 +103,5 @@
 			</div>
 			<div id="content">
 			<script>
-				$("#pesquisaT").puts("Procure o usuário...");
 				$('#selectProjects').scrollablecombo();
 			</script>
