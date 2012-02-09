@@ -1,13 +1,18 @@
 package com.youcontrol.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 import com.youcontrol.dao.ProjectDao;
+import com.youcontrol.dao.UserDao;
 import com.youcontrol.dao.UserProjectsDao;
 import com.youcontrol.images.ImageProject;
 import com.youcontrol.model.Project;
+import com.youcontrol.model.User;
+import com.youcontrol.model.UserProjects;
 import com.youcontrol.model.UserWeb;
 
 import br.com.caelum.vraptor.Get;
@@ -16,6 +21,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.view.Results;
 
 import com.youcontrol.dao.VersionDao;
 import com.youcontrol.model.Version;
@@ -25,6 +31,7 @@ public class ProjectController {
 
 	private final Result result;
 	private final UserWeb userWeb;
+	private final UserDao userDao;
 	private final ProjectDao projectDao;
 	private final VersionDao versionDao;
 	private final UserProjectsDao userProjectsDao;
@@ -32,12 +39,14 @@ public class ProjectController {
 	
 	public ProjectController(Result result, 
 							 UserWeb userWeb, 
+							 UserDao userDao,
 							 ProjectDao projectDao, 
 							 VersionDao versionDao,
 							 UserProjectsDao userProjectsDao,
 							 ImageProject imageProject) {
 		this.result = result;
 		this.userWeb = userWeb;
+		this.userDao = userDao;
 		this.projectDao = projectDao;
 		this.versionDao = versionDao;
 		this.userProjectsDao = userProjectsDao;
@@ -49,10 +58,10 @@ public class ProjectController {
 		result.include("projetos", userProjectsDao.listarProjDoUsuario(userWeb.getUser()));
 	}
 	
-	@Get @Path("/projects/new")
+	@Get @Path("/project/new")
 	public void newProject() {
 	}
-	@Post @Path("/projects/new")
+	@Post @Path("/project/new")
 	public void salvar(Project project) {
 		Date date = new Date();
 		project.setDataDeCriacao(date);
@@ -61,33 +70,67 @@ public class ProjectController {
 		
 		userProjectsDao.criar(project, userWeb.getUser(), "admin");
 		
-		result.redirectTo(OwnProjectController.class).overview(project);
+		result.redirectTo(this.getClass()).overview(project);
 	}
 	
-	@Get @Path("/projects/{project.id}/version/new")
+	@Get @Path("/project/{project.id}/version/new")
 	public void newVersion(Project project){
 		project = projectDao.get(project);
 		result.include("project", project);
 	}
 	
-	@Post @Path("/projects/{project.id}/version/new")
+	@Post @Path("/project/{project.id}/version/new")
 	public void newVersion(Project project, Version version){
 		Project projectVersion = projectDao.get(project);
 		version.setProject(projectVersion);
 		versionDao.save(version);
 		
-		this.result.redirectTo(OwnProjectController.class).overview(project);
+		this.result.redirectTo(this.getClass()).overview(project);
 	}
 	
 	@Post @Path("/image/project/{project.id}")
 	public void uploadImg(Project project, final UploadedFile arquivo) {
 		System.out.println("usuario id:" + project.getId() + " arq:"+arquivo);
 		imageProject.upload(arquivo, project);
-		result.redirectTo(OwnProjectController.class).overview(project);
+		result.redirectTo(this.getClass()).overview(project);
 	}
 	@Get @Path("/image/project/{project.id}")
 	public File showImageProject(Project project) {
 		return imageProject.showImage(project);
 	}
+	
+
+	@Get @Path("/project/{project.id}")
+	public void overview(Project project) {
+		/* LOAD ONLY USERS THAT AREN'T IN THE PROJECT */
+		List<User> usersInSystem = userDao.listarUsuarios();
+		List<UserProjects> usersProject =  userProjectsDao.listarUsuariosDoProj(project);
+		
+		List<Version> versions = userProjectsDao.getVersionsFromProject(project.getId());
+		
+		List<User> usersNotInProject = new ArrayList<User>();
+		
+		List<User> usersInProject = new ArrayList<User>();
+		for (UserProjects userProject : usersProject) {
+			usersInProject.add(userProject.getUser());
+		}
+		
+		for (User user : usersInSystem) {
+			if (!usersInProject.contains(user)) {
+				usersNotInProject.add(user);
+			}
+		}
+		result.include("versions", versions);
+		result.include("usuarios", usersNotInProject);
+	}
+	
+	@Post @Path("/project/{project.id}/addUser")
+	public void addUserToProject(User user, Project project) {
+		userProjectsDao.criar(userWeb.getProject(), user, "desenv");
+		
+		String retorno = "added";
+		result.use(Results.json()).from(retorno).serialize();
+	}
+
 	
 }
