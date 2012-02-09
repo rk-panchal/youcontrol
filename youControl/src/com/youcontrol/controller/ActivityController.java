@@ -49,7 +49,7 @@ public class ActivityController {
 		this.commentActivityDao = commentActivityDao;
 	}
 	
-	@Get @Path("/projects/{project.id}/activity")
+	@Get @Path("/project/{project.id}/activity")
 	public void activity(Project project) {
 		result.include("atividades", projectDao.listarAtividades(project));
 	}
@@ -68,14 +68,14 @@ public class ActivityController {
 		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
 	}
 	
-	@Get @Path("/projects/{project.id}/activity/new")
+	@Get @Path("/project/{project.id}/activity/new")
 	public void newActivity(Project project) {
 		Project projectVersion = this.projectDao.get(userWeb.getProject());
 		result.include("versions", projectVersion.getVersions());
 		
 		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
 	}
-	@Post @Path("/projects/{project.id}/activity/new")
+	@Post @Path("/project/{project.id}/activity/new")
 	public void createActivity(Activity activity, Project project, Long[] versions) {
 		if (activity.getResponsavel().getId() == null) activity.setResponsavel(null);
 		
@@ -85,9 +85,11 @@ public class ActivityController {
 		activity.setProjeto(project);
 		
 		List<Version> versionList = new ArrayList<Version>();
-		for(Long versionId : versions){
-			Version version = versionDao.get(Version.class, versionId);
-			versionList.add(version);
+		if(versions!=null){
+			for(Long versionId : versions){
+				Version version = versionDao.get(Version.class, versionId);
+				versionList.add(version);
+			}
 		}
 		activity.setVersions(versionList);
 		

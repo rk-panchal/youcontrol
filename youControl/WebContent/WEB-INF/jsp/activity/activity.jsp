@@ -73,7 +73,7 @@
 			<a href="#" class="apply" alt="Aplicar e atualizar lista"></a>
 			<a href="#" class="resetActivity" alt="Reset filtros e opções"></a>
 			<a href="#" class="deleteSelected" alt="Deletar selecionadas"></a>
-			<a href="<c:url value="/projects/${userWeb.project.id }/activity/new"/>" class="createActivity" alt="Criar atividade"></a>
+			<a href="<c:url value="/project/${userWeb.project.id }/activity/new"/>" class="createActivity" alt="Criar atividade"></a>
 		
 			<div id="pager2" class="pager">
 		    	<form style="float:right;">

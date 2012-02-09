@@ -28,7 +28,7 @@ public class ProjectInterceptor implements Interceptor {
 	@Override
 	public boolean accepts(ResourceMethod method) {
 		/* DOES THE URL MATCHES WITH /projects/number? */
-		if (request.getRequestURI().matches("/projects/\\d+.*")) return true;
+		if (request.getRequestURI().matches("/project/\\d+.*")) return true;
 		return false;
 	}
 	

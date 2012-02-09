@@ -19,7 +19,7 @@ public class ImageProject {
 	private File projectFolder;
 	
 	public ImageProject(ServletContext context) {
-		String path = context.getRealPath("/WEB-INF/images/projects");
+		String path = context.getRealPath("/WEB-INF/images/project");
 		projectFolder = new File(path);
 		projectFolder.mkdir();
 	}

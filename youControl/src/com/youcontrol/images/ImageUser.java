@@ -19,7 +19,7 @@ public class ImageUser {
 	private File userFolder;
 	
 	public ImageUser(ServletContext context) {
-		String path = context.getRealPath("/WEB-INF/images/users");
+		String path = context.getRealPath("/WEB-INF/images/user");
 		userFolder = new File(path);
 		userFolder.mkdir();
 	}
