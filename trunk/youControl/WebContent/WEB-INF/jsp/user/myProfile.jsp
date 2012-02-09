@@ -63,7 +63,7 @@
 	<div style="clear:both"></div>
 	<ol style="margin:10px 0 0 30px">
 		<c:forEach items="${projetos }" var="project">
-			<li><a href="<c:url value="/projects/${project.project.id }"/>">${project.project.projeto }</a> - (<fmt:formatDate value="${project.project.dataDeCriacao }" type="date" pattern="dd/MM/yyyy"/>)</li>
+			<li><a href="<c:url value="/project/${project.project.id }"/>">${project.project.projeto }</a> - (<fmt:formatDate value="${project.project.dataDeCriacao }" type="date" pattern="dd/MM/yyyy"/>)</li>
 		</c:forEach>
 	</ol>
 	

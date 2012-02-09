@@ -45,10 +45,10 @@
 						<option value="">Selecione um projeto</option>			
 						<c:forEach items="${userWeb.availableProjects}" var="availableProjects">
 							<c:if test="${availableProjects.id == userWeb.project.id }">
-								<option value="<c:url value="/projects/${availableProjects.id}"/>" selected="selected">${availableProjects.projeto}</option>
+								<option value="<c:url value="/project/${availableProjects.id}"/>" selected="selected">${availableProjects.projeto}</option>
 							</c:if>
 							<c:if test="${availableProjects.id != userWeb.project.id }">
-								<option value="<c:url value="/projects/${availableProjects.id}"/>">${availableProjects.projeto}</option>
+								<option value="<c:url value="/project/${availableProjects.id}"/>">${availableProjects.projeto}</option>
 							</c:if>
 						</c:forEach>		
 					</select>
@@ -57,8 +57,8 @@
 				
 				<c:if test="${userWeb.project != null}">
 					<ul class="menu" style="margin-top:50px">
-						<li class="visao"><a href="<c:url value="/projects/${userWeb.project.id }"/>">Visão geral</a></li>
-						<li class="atividade"><a href="<c:url value="/projects/${userWeb.project.id }/activity"/>">Atividades <span class="stats">- 37 em aberto</span></a></li>
+						<li class="visao"><a href="<c:url value="/project/${userWeb.project.id }"/>">Visão geral</a></li>
+						<li class="atividade"><a href="<c:url value="/project/${userWeb.project.id }/activity"/>">Atividades <span class="stats">- 37 em aberto</span></a></li>
 						<li class="wiki"><a href="#">Wiki</a></li>
 						<li class="doc"><a href="#">Documentos <span class="stats">- 0 docs</span></a></li>
 						<li class="agenda"><a href="#">Agenda <span class="stats">- 2 tarefas hoje</span></a></li>

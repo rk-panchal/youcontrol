@@ -6,7 +6,7 @@
 	<h2 class="projeto">Projetos > Novo Projeto</h2>
 </div>
 <div id="content-general">
-	<form action="<c:url value="/projects/new"/>" method="post" id="newProject">
+	<form action="<c:url value="/project/new"/>" method="post" id="newProject">
 		<fieldset class="first">
 			<legend>Informações</legend>
 			
