@@ -49,8 +49,8 @@ public class ActivityController {
 		this.commentActivityDao = commentActivityDao;
 	}
 	
-	@Get @Path("/project/{project.id}/activity")
-	public void activity(Project project) {
+	@Get @Path("/project/{project.id}/activities")
+	public void activities(Project project) {
 		result.include("atividades", projectDao.listarAtividades(project));
 	}
 	
@@ -75,6 +75,16 @@ public class ActivityController {
 		
 		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
 	}
+	
+	@Get @Path("/project/{project.id}/activity/add")
+	public void activityForm(Project project) {
+		Project projectVersion = this.projectDao.get(userWeb.getProject());
+		result.include("versions", projectVersion.getVersions());
+		
+		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
+	}
+	
+	
 	@Post @Path("/project/{project.id}/activity/new")
 	public void createActivity(Activity activity, Project project, Long[] versions) {
 		if (activity.getResponsavel().getId() == null) activity.setResponsavel(null);
@@ -95,7 +105,7 @@ public class ActivityController {
 		
 		activityDao.save(activity);
 		
-		result.redirectTo(this).activity(project);
+		result.redirectTo(this).activities(project);
 	}
 	
 	@Post @Path("/activity/{activity.id}/comment")
