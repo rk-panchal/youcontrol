@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Resource;
+import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.caelum.vraptor.view.Results;
 
 import com.youcontrol.dao.ProjectDao;
 import com.youcontrol.dao.UserDao;
@@ -14,16 +21,6 @@ import com.youcontrol.model.Project;
 import com.youcontrol.model.User;
 import com.youcontrol.model.UserProjects;
 import com.youcontrol.model.UserWeb;
-
-import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.Resource;
-import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
-import br.com.caelum.vraptor.view.Results;
-
-import com.youcontrol.dao.VersionDao;
 import com.youcontrol.model.Version;
 
 @Resource
@@ -33,7 +30,6 @@ public class ProjectController {
 	private final UserWeb userWeb;
 	private final UserDao userDao;
 	private final ProjectDao projectDao;
-	private final VersionDao versionDao;
 	private final UserProjectsDao userProjectsDao;
 	private final ImageProject imageProject;
 	
@@ -41,14 +37,12 @@ public class ProjectController {
 							 UserWeb userWeb, 
 							 UserDao userDao,
 							 ProjectDao projectDao, 
-							 VersionDao versionDao,
 							 UserProjectsDao userProjectsDao,
 							 ImageProject imageProject) {
 		this.result = result;
 		this.userWeb = userWeb;
 		this.userDao = userDao;
 		this.projectDao = projectDao;
-		this.versionDao = versionDao;
 		this.userProjectsDao = userProjectsDao;
 		this.imageProject = imageProject;
 	}
@@ -73,20 +67,6 @@ public class ProjectController {
 		result.redirectTo(this.getClass()).overview(project);
 	}
 	
-	@Get @Path("/project/{project.id}/version/new")
-	public void newVersion(Project project){
-		project = projectDao.get(project);
-		result.include("project", project);
-	}
-	
-	@Post @Path("/project/{project.id}/version/new")
-	public void newVersion(Project project, Version version){
-		Project projectVersion = projectDao.get(project);
-		version.setProject(projectVersion);
-		versionDao.save(version);
-		
-		this.result.redirectTo(this.getClass()).overview(project);
-	}
 	
 	@Post @Path("/image/project/{project.id}")
 	public void uploadImg(Project project, final UploadedFile arquivo) {

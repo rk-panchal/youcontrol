@@ -6,12 +6,22 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/tablesorter.css"/>" media="screen" />
 <script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.pager.js"/>"></script>
+
+<style>
+</style>
+
+
 <div id="content-main">
 	<h2 class="atividade">Atividades: ${userWeb.project.projeto }</h2>
 </div>
 <div id="content-general">
+	<div style="display:none">
+		<div id="activityForm"></div>
+	</div>
+	
+	
 	<div id="options" style="width:100%">
-		<form id="activityForm" class="clearfix">
+		<form class="clearfix">
 		
 			<fieldset class="collapsable">
 				<legend class="linkColl" style="border:none">Filtros</legend>
@@ -67,28 +77,28 @@
 					
 				</div>
 			</fieldset>
-		</form>
-
-		<div id="menuActivity" style="padding:10px 0; min-height:47px">
-			<a href="#" class="apply" alt="Aplicar e atualizar lista"></a>
-			<a href="#" class="resetActivity" alt="Reset filtros e opções"></a>
-			<a href="#" class="deleteSelected" alt="Deletar selecionadas"></a>
-			<a href="<c:url value="/project/${userWeb.project.id }/activity/new"/>" class="createActivity" alt="Criar atividade"></a>
+		</form>		
+	</div>
+	
+	
+	<div id="menuActivity" style="padding:10px 0; min-height:47px">
+		<a href="#" class="apply" alt="Aplicar e atualizar lista"></a>
+		<a href="#" class="resetActivity" alt="Reset filtros e opções"></a>
+		<a href="#" class="deleteSelected" alt="Deletar selecionadas"></a>
+		<a href="#activityForm" id="createActivity" class="createActivity" alt="Criar atividade"></a>
 		
-			<div id="pager2" class="pager">
-		    	<form style="float:right;">
-					<span>
-						por página <select class="pagesize" style="width:70px">
-								<option selected="selected"  value="10">10</option>
-								<option value="20">20</option>
-								<option value="30">30</option>
-								<option  value="40">40</option>
-						</select>
-					</span>
-		    	</form>
-		    </div>
-		</div>
-		
+		<div id="pager2" class="pager">
+	    	<form style="float:right;">
+				<span>
+					por página <select class="pagesize" style="width:70px">
+							<option selected="selected"  value="10">10</option>
+							<option value="20">20</option>
+							<option value="30">30</option>
+							<option  value="40">40</option>
+					</select>
+				</span>
+	    	</form>
+	    </div>
 	</div>
 	
 	<table id="activies" style="width:100%; padding-top:20px;">
@@ -123,6 +133,9 @@
 		</tbody>
 	</table>
 	
+	
+	
+	
 	<div id="pager" class="pager">
     	<form style="width:100%">
 				<span style="float:right; margin-right:20px">
@@ -142,7 +155,9 @@
     	</form>
     </div>
 	
+	
 </div>
+
 
 <script>
 	/* TOOLTIP MENU */
@@ -233,5 +248,19 @@
   	});
 	
 	$("#main ul li.atividade a").addClass("selected");
+	
+	
+	$(document).ready(function() {
+		$("#createActivity").colorbox({width:"800px", height:"600px",inline:true, onLoad: function(){
+			$.ajax({
+				  url: '<c:url value="/project/${userWeb.project.id }/activity/add"/>',
+				  success: function( data ) {
+					$('#activityForm').html(data);
+				  }
+				});
+		}});		
+	});
+	
+	
 </script>
 <%@ include file="../commons/footer.jsp" %>

@@ -35,7 +35,7 @@
 					<c:if test="${not empty versions}">
 						<ul>
 							<c:forEach items="${versions}" var="version">
-								<li>${version.name }</li>
+								<li><a href="<c:url value="/version/${version.id }"/>">${version.name }</a></li>
 							</c:forEach>
 						</ul>
 					</c:if>
