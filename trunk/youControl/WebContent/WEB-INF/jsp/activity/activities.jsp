@@ -1,8 +1,4 @@
 <%@ include file="../commons/header.jsp" %>
-<script type="text/javascript" src="<c:url value="/js/jquery.collapse.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.cookie.js"/>"></script>
-<script>document.documentElement.className = "js";</script>
-
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/tablesorter.css"/>" media="screen" />
 <script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.pager.js"/>"></script>
@@ -19,68 +15,53 @@
 		<div id="activityForm"></div>
 	</div>
 	
-	
-	<div id="options" style="width:100%">
-		<form class="clearfix">
-		
-			<fieldset class="collapsable">
-				<legend class="linkColl" style="border:none">Filtros</legend>
-				
-				<div>
-					<h1 style="margin-top:10px">Funcionalidade em construção</h1>
-				</div>
-			</fieldset>
-			
-			<fieldset class="collapsable">
-				<legend class="linkColl active" style="border:none">Opções</legend>
-				<div style="border-bottom:1px solid #ccc">
-				
-					<table style="margin-top:10px">
+	<div id="optionsBox">
+		<div id="boxTitle">
+			<span>Filtros e opções</span>
+			<span class="minimize"></span>
+		</div>
+		<div id="boxBody">
+			<table>
+				<tr>
+					<td><table>
 						<tr>
-							<td><label for="columnsAvailable">Colunas: </label></td>
-							<td><table>
-								<tr>
-									<td style="padding:0px 20px">Colunas disponíveis</td>
-									<td></td>
-									<td>Colunas selecionadas</td>
-								</tr>
-								<tr>
-									<td>
-										<select multiple id="columnsAvailable">
-											<option value="criticidade">Criticidade</option>
-											<option value="prioridade">Prioridade</option>
-											<option value="concluido">Concluído</option>
-										</select>
-									</td>
-									<td>
-										<a href="#" id="add" title="Adicionar" style="padding:0px 20px"><img src="<c:url value="/imgs/arrowright.png"/>" /></a><br/>
-										<a href="#" id="remove" title="Remover" style="padding:0px 20px"><img src="<c:url value="/imgs/arrowleft.png"/>" /></a>
-									</td>
-									<td>
-										<select multiple id="columnsSelected">
-											<option value="id">ID</option>
-											<option value="resumo">Resumo</option>
-											<option value="atribuido">Atribuido para</option>
-											<option value="dataCriacao">Data de criação</option>
-											<option value="autor">Autor</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td style="text-align:right"><a href="#" id="addAll">Adicionar todos</a></td>
-									<td></td>
-									<td style="text-align:right"><a href="#" id="removeAll">Remover todos</a></td>
-								</tr>
-							</table></td>
+							<td style="padding:0px 20px 0 0">Colunas disponíveis</td>
+							<td></td>
+							<td>Colunas selecionadas</td>
 						</tr>
-					</table>
-					
-				</div>
-			</fieldset>
-		</form>		
+						<tr>
+							<td>
+								<select multiple id="columnsAvailable" style="margin-left:0px">
+									<option value="criticidade">Criticidade</option>
+									<option value="prioridade">Prioridade</option>
+									<option value="concluido">Concluído</option>
+								</select>
+							</td>
+							<td>
+								<a href="#" id="add" title="Adicionar" style="padding:0px 20px"><img src="<c:url value="/imgs/arrowright.png"/>" /></a><br/>
+								<a href="#" id="remove" title="Remover" style="padding:0px 20px"><img src="<c:url value="/imgs/arrowleft.png"/>" /></a>
+							</td>
+							<td>
+								<select multiple id="columnsSelected">
+									<option value="id">ID</option>
+									<option value="resumo">Resumo</option>
+									<option value="atribuido">Atribuido para</option>
+									<option value="dataCriacao">Data de criação</option>
+									<option value="autor">Autor</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right"><a href="#" id="addAll">Adicionar todos</a></td>
+							<td></td>
+							<td style="text-align:right"><a href="#" id="removeAll">Remover todos</a></td>
+						</tr>
+					</table></td>
+				</tr>
+			</table>
+		</div>
 	</div>
-	
-	
+
 	<div id="menuActivity" style="padding:10px 0; min-height:47px">
 		<a href="#" class="apply" alt="Aplicar e atualizar lista"></a>
 		<a href="#" class="resetActivity" alt="Reset filtros e opções"></a>
@@ -189,22 +170,6 @@
 		$('#columnsSelected option').each(function(i) {
 			$(this).remove().appendTo('#columnsAvailable');
 		});
-	});
-	
-	/* COLLAPSABLE FIELDS */
-	$(".collapsable").collapse({
-		head: "legend.linkColl", 
-		show: function(){
-			this.animate({
-				opacity: 'toggle', 
-				height: 'toggle'
-			}, 300);
-        }, hide: function() {
-			this.animate({
-				opacity: 'toggle', 
-				height: 'toggle'
-			}, 300);
-        }
 	});
 	
 	/* SELECTING ALL ELEMENTS TO SUBMIT */
