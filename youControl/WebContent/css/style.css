@@ -297,6 +297,7 @@ ul.lista li { list-style-type:none; }
 	width:100%;
 	border:1px solid #CCC;
 	border-radius:4px;
+	margin-bottom:15px;
 }
 #boxTitle {
 	padding:10px;
@@ -314,6 +315,14 @@ ul.lista li { list-style-type:none; }
 	width:19px;
 	cursor:pointer;
 	background:url(../imgs/menos.png) no-repeat transparent;
+}
+#boxTitle span.maximize {
+	float:right;
+	margin:2px 3px;
+	height:17px;
+	width:19px;
+	cursor:pointer;
+	background:url(../imgs/mais.png) no-repeat transparent;
 }
 #boxBody {
 	padding:10px;
@@ -358,8 +367,6 @@ legend.linkColl a, legend.linkColl a:visited { text-decoration:none; color:black
 	text-align:center;
 }
 
-#menuActivity a.apply { background:url('../imgs/apply.png') no-repeat center #F6F6F6; }
-#menuActivity a.resetActivity { background:url('../imgs/resetActivity.png') no-repeat center #F6F6F6; }
 #menuActivity a.deleteSelected { background:url('../imgs/deleteSelected.png') no-repeat center #F6F6F6; }
 #menuActivity a.createActivity { background:url('../imgs/createActivity.png') no-repeat center #F6F6F6; }
 
