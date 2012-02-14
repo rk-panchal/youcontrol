@@ -18,9 +18,9 @@
 	<div id="optionsBox">
 		<div id="boxTitle">
 			<span>Filtros e opções</span>
-			<span class="minimize"></span>
+			<span id="control" class="maximize"></span>
 		</div>
-		<div id="boxBody">
+		<div id="boxBody" style="display:none">
 			<table>
 				<tr>
 					<td><table>
@@ -59,14 +59,14 @@
 					</table></td>
 				</tr>
 			</table>
+			<a href="#">Aplicar e atualizar lista</a><br />
+			<a href="#">Reset filtros e opções</a>
 		</div>
 	</div>
 
 	<div id="menuActivity" style="padding:10px 0; min-height:47px">
-		<a href="#" class="apply" alt="Aplicar e atualizar lista"></a>
-		<a href="#" class="resetActivity" alt="Reset filtros e opções"></a>
-		<a href="#" class="deleteSelected" alt="Deletar selecionadas"></a>
 		<a href="#activityForm" id="createActivity" class="createActivity" alt="Criar atividade"></a>
+		<a href="#" class="deleteSelected" alt="Deletar selecionadas"></a>
 		
 		<div id="pager2" class="pager">
 	    	<form style="float:right;">
@@ -82,7 +82,7 @@
 	    </div>
 	</div>
 	
-	<table id="activies" style="width:100%; padding-top:20px;">
+	<table id="activies" style="width:100%; padding-top:0px;">
 		<thead>
 			<tr>
 				<th><input type="checkbox" value="0" id="marcar-todos" name="marcar-todos"/></th>
@@ -141,6 +141,17 @@
 
 
 <script>
+	$("span#control").click(function() {
+		var button = $(this).attr("class");
+		if (button == "minimize") {
+			$("#boxBody").slideUp('fast');
+			$(this).removeClass().addClass("maximize");
+		} else {
+			$("#boxBody").slideDown('fast');
+			$(this).removeClass().addClass("minimize");
+		}
+	});
+
 	/* TOOLTIP MENU */
 	$('#menuActivity a').append('<span></span>');
 	$('#menuActivity a').hover(
