@@ -1,11 +1,8 @@
 package com.youcontrol.service;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.beanutils.BeanUtils;
 
 import br.com.caelum.vraptor.ioc.Component;
 
