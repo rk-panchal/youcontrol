@@ -1,35 +1,37 @@
 <%@ include file="../commons/init.jsp" %>
 <div id="content-main">
-	<h2 class="atividade">Atividades > Nova atividade</h2>
+	<h2 class="atividade">Atividades > ${action.label }</h2>
 </div>
 <div id="content-general">
-	<form action="<c:url value="/project/${userWeb.project.id}/activity/new"/>" method="post" id="newActivity">
+	<form action="<c:url value="/project/${userWeb.project.id}/activity/save"/>" method="post" id="activityForm">
 		<fieldset class="first">
 			<legend>Informações</legend>
 			
+			<input type="hidden" name="activity.id" id="activity.id" value="${activity.id }"/>
+			
 			<p style="margin-top:20px">
-				<label for="resumo">
+				<label for="activity.summary">
 					Resumo <img src="<c:url value="/imgs/help.png"/>" class="help" title="Resuma a atividade que será criada" />
 				</label>
-				<input type="text" name="activity.resumo" id="resumo" class="required" size="30" maxlength="255" />
+				<input type="text" name="activity.summary" id="activity.summary" value="${activity.summary }" class="required" size="30" maxlength="255" />
 			</p> 
 			<p>
-				<label for="responsavel">
+				<label for="activity.assignedTo.id">
 					Atribuir para <img src="<c:url value="/imgs/help.png"/>" class="help" title="Quem deve ficar responsável por esta tarefa?" />
 				</label>
-				<select name="activity.responsavel.id" id="responsavel">
+				<select name="activity.assignedTo.id" id="activity.assignedTo.id">
 					<option value="">Não atribuir esta atividade</option>
-					<c:forEach items="${usuarios }" var="user">
+					<c:forEach items="${usuarios}" var="user">
 						<option value="${user.user.id }">${user.user.nome }</option>
 					</c:forEach>
 				</select>
 			</p>
 			
 			<p>
-				<label for="activity_versions">
+				<label for="activity.versions">
 					Versões <img src="<c:url value="/imgs/help.png"/>" class="help" title="Esta atividade está relacionada a quais versões?" />
 				</label>
-				<select name="versions" id="activity_versions" multiple="multiple">
+				<select name="activity.versions" id="activity.versions" multiple="multiple">
 					<option value=""></option>
 					<c:forEach items="${versions}" var="version">
 						<option value="${version.id}">${version.name}</option>
@@ -42,13 +44,12 @@
 				<label for="descricao">
 					Descrição <img src="<c:url value="/imgs/help.png"/>" class="help" title="Descreva, resenhe, sobre a atividade" />
 				</label>
-				<textarea rows="15" cols="50" name="activity.descricao" class="required" id="descricao"></textarea>
+				<textarea rows="15" cols="50" name="activity.description" class="required" id="activity.description" >${activity.description}</textarea>
 				<label><span id="restantes"></span> caracteres restantes</label>
 			</p>
 		</fieldset>
 		<p class="submit">
-			<input type="submit" value="Criar" />
-			<input type="reset" value="Limpar" />
+			<input type="submit" value="Salvar" />
 		</p>
 	</form>
 </div>
@@ -58,7 +59,7 @@
 	$(document).ready(function(){	
 		$("img.help").easyTooltip();
 		$('textarea').limit(700, '#restantes');
-		$('#newActivity').validate();
+		$('#activityForm').validate();
 	});
 	$("#main ul li.atividade a").addClass("selected");
 </script>

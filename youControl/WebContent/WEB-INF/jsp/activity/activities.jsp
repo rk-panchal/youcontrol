@@ -94,19 +94,19 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${atividades }" var="atividade">
+			<c:forEach items="${atividades}" var="activity">
 				<tr>
 					<td><input type="checkbox" value="1" /></td>
-					<td><a href="<c:url value="/activity/${atividade.id }"/>">${atividade.id }</a></td>
-					<td><a href="<c:url value="/activity/${atividade.id }"/>">${atividade.resumo }</a></td>
-					<td><a href="<c:url value="/users/${atividade.criador.id }"/>">${atividade.criador.nome }</a></td>
-					<td><fmt:formatDate value="${atividade.dataCriacao }" type="date" pattern="dd/MM/yyyy"/></td>
+					<td><a href="<c:url value="/activity/${activity.id }"/>">${activity.id }</a></td>
+					<td><a href="<c:url value="/activity/${activity.id }"/>">${activity.summary }</a></td>
+					<td><a href="<c:url value="/users/${activity.createdBy.id }"/>">${activity.createdBy.nome }</a></td>
+					<td><fmt:formatDate value="${activity.createdAt }" type="date" pattern="dd/MM/yyyy"/></td>
 					<td>
-						<c:if test="${atividade.responsavel.nome == null}">
+						<c:if test="${activity.assignedTo.nome == null}">
 							-
 						</c:if>
-						<c:if test="${atividade.responsavel.nome != null}">
-							<a href="<c:url value="/users/${atividade.responsavel.id }"/>">${atividade.responsavel.nome }</a>
+						<c:if test="${activity.assignedTo.nome != null}">
+							<a href="<c:url value="/users/${activity.assignedTo.id }"/>">${activity.assignedTo.nome }</a>
 						</c:if>
 					</td>
 				</tr>
@@ -192,6 +192,7 @@
 	
 	/* TABLE OF ACTIVITIES */
 	$(function(){
+		
       $('table#activies > tbody > tr:odd').addClass('odd');
       
       $('table#activies > tbody > tr').hover(function(){
@@ -210,17 +211,19 @@
         else $(tr).removeClass('selected');
       });
       
-      $("table#activies").tablesorter({
- 		dateFormat: 'uk',
-        headers: {
-          0: {
-            sorter: false
-          }
-        }
-      }).tablesorterPager({container: $("#pager, #pager2")}).bind('sortEnd', function(){
-      	$('table#activies > tbody > tr').removeClass('odd');
-        $('table#activies > tbody > tr:odd').addClass('odd');
-      });
+      if(${fn:length(atividades)>0}){    	  
+	      $("table#activies").tablesorter({
+	 		dateFormat: 'uk',
+	        headers: {
+	          0: {
+	            sorter: false
+	          }
+	        }
+	      }).tablesorterPager({container: $("#pager, #pager2")}).bind('sortEnd', function(){
+	      	$('table#activies > tbody > tr').removeClass('odd');
+	        $('table#activies > tbody > tr:odd').addClass('odd');
+	      });
+      }
   	});
 	
 	$("#main ul li.atividade a").addClass("selected");

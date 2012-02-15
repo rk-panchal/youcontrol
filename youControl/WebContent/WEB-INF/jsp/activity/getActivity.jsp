@@ -10,28 +10,34 @@
 	<h2 class="atividade">Atividades</h2>
 </div>
 <div id="content-general">
+	<div style="display:none">
+		<div id="activityForm"></div>
+	</div>
+
+
 
 	<div id="controls">
-		<a href="#editarAtividade" class="atualizar">Atualizar</a>
+		<a href="#activityForm" id="editActivity" class="atualizar" alt="Editar atividade">Atualizar</a>
+		
 		<a href="#" class="acompanhar">Acompanhar</a>
 		<a href="#" class="anexar">Anexar documento</a>
 	</div>
 	
 	<div id="issueBox">
-		<h2>${atividade.resumo }</h2>
+		<h2>${atividade.summary }</h2>
 		<div id="detailTop">
-			<a href="<c:url value="/users/${atividade.criador.id }"/>"><img src="<c:url value="/image/user/${atividade.criador.id }"/>" alt="${atividade.criador.nome }" /></a>
-			<p>Criado por <a href="<c:url value="/users/${atividade.criador.id }"/>">${atividade.criador.nome }</a><br />Última atualização em: 04/01/2012</p>
+			<a href="<c:url value="/users/${atividade.createdBy.id }"/>"><img src="<c:url value="/image/user/${atividade.createdBy.id }"/>" alt="${atividade.createdBy.nome }" /></a>
+			<p>Criado por <a href="<c:url value="/users/${atividade.createdBy.id }"/>">${atividade.createdBy.nome }</a><br />Última atualização em: 04/01/2012</p>
 		</div>
 		<div id="detail">
 			<div class="detailLeft">
-				<span class="detailTitle">Criticidade: </span><span>${atividade.criticidade }</span><br />
-				<span class="detailTitle">Prioridade: </span><span>${atividade.prioridade }</span><br />
-				<span class="detailTitle">Atribuido para: </span><span><a href="<c:url value="/users/${atividade.responsavel.id }"/>">${atividade.responsavel.nome }</a></span><br />
-				<span class="detailTitle">Projeto: </span><span>${atividade.projeto.projeto }</span><br />
+				<span class="detailTitle">Criticidade: </span><span>${atividade.criticality }</span><br />
+				<span class="detailTitle">Prioridade: </span><span>${atividade.priority }</span><br />
+				<span class="detailTitle">Atribuido para: </span><span><a href="<c:url value="/users/${atividade.assignedTo.id }"/>">${atividade.assignedTo.nome }</a></span><br />
+				<span class="detailTitle">Projeto: </span><span>${atividade.project.projeto }</span><br />
 			</div>
 			<div class="detailRight">
-				<span class="detailTitle">Início: </span><span><fmt:formatDate value="${atividade.dataCriacao }" type="date" pattern="dd/MM/yyyy - hh:mm"/></span><br />
+				<span class="detailTitle">Início: </span><span><fmt:formatDate value="${atividade.createdAt }" type="date" pattern="dd/MM/yyyy - hh:mm"/></span><br />
 				<span class="detailTitle">Data prevista: </span><span>-</span><br />
 				<span class="detailTitle">Concluído: </span><span>0%</span><br />
 				<span class="detailTitle">Tempo gasto: </span><span>-</span><br />
@@ -46,7 +52,7 @@
 		<hr />
 		<div id="description">
 			<span class="detailTitle">Descrição</span>
-			<p><pre>${atividade.descricao }</pre></p>
+			<p><pre>${atividade.description }</pre></p>
 		</div>
 	</div>
 	
@@ -99,73 +105,17 @@
         });
 		return false;
 	});
+	
+	$(document).ready(function() {
+		$("#editActivity").colorbox({width:"800px", height:"600px",inline:true, onLoad: function(){
+			$.ajax({
+				  url: '<c:url value="/activity/edit/${atividade.id}"/>',
+				  success: function( data ) {
+					$('#activityForm').html(data);
+				  }
+				});
+		}});		
+	});
 </script>
-
-<!-- UPDATE ACTIVITY -->
-<div style='display:none'>
-	<div id="editarAtividade">
-		<div id="content-main">
-			<h2 class="atividade">Editar atividade</h2>
-		</div>
-		<div id="content-general">
-			<form action="" method="post" id="updateActivity">
-				<fieldset class="first">
-					<legend>Informações</legend>
-					
-					<p style="margin-top:20px">
-						<label for="resumo">Resumo</label>
-						<input type="text" name="activity.resumo" id="resumo" class="required" size="30" maxlength="255" value="${atividade.resumo }" />
-					</p> 
-					<p>
-						<label for="responsavel">Atribuir para</label>
-						<select name="activity.responsavel.id" id="responsavel">
-							<option value="">Não atribuir esta atividade</option>
-							<c:forEach items="${usuarios }" var="user">
-								<c:if test="${user.user.id == atividade.responsavel.id}">
-									<option value="${user.user.id }" selected="selected">${user.user.nome }</option>
-								</c:if>
-								<c:if test="${user.user.id != atividade.responsavel.id}">
-									<option value="${user.user.id }">${user.user.nome }</option>
-								</c:if>
-							</c:forEach>
-						</select>
-					</p>
-					<p>
-						<label for="activity_versions">Versões</label>
-						<select name="versions" id="activity_versions" multiple="multiple">
-							<option value=""></option>
-							<c:forEach items="${versions}" var="version">
-								<option value="${version.id}">${version.name}</option>
-							</c:forEach>
-						</select>
-					</p>
-				</fieldset>
-				<fieldset>
-					<p>
-						<label for="descricao">Descrição</label>
-						<textarea rows="15" cols="50" name="activity.descricao" class="required" id="descricao">${atividade.descricao }</textarea>
-						<label><span id="restantes"></span> caracteres restantes</label>
-					</p>
-				</fieldset>
-				<p class="submit">
-					<input type="submit" value="Atualizar" />
-				</p>
-			</form>
-		</div>
-		
-		<script>
-			$('#descricao').limit(700, '#restantes');
-			$('#updateActivity').validate();
-			$(".atualizar").colorbox({inline:true, width:"55%"});
-			
-			$("#updateActivity").submit(function() {
-				setTimeout($.colorbox.close, 0);
-				var desc = document.getElementById("descricao").value;
-				
-				return false;
-			});
-		</script>
-	</div>
-</div>
 
 <%@ include file="../commons/footer.jsp" %>

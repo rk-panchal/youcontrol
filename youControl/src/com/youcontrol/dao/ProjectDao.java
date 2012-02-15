@@ -34,8 +34,8 @@ public class ProjectDao extends DefaultDao<Project>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Activity> listarAtividades(Project project) {
-		return session.createCriteria(Activity.class).add(Restrictions.eq("projeto", project)).list();
+	public List<Activity> getActivitiesByProject(Project project) {
+		return session.createCriteria(Activity.class).add(Restrictions.eq("project", project)).list();
 	}
 	
 	public Project loadById(Long id) {
