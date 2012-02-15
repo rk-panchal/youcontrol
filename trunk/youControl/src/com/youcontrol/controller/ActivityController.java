@@ -1,6 +1,5 @@
 package com.youcontrol.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import com.youcontrol.model.Activity;
 import com.youcontrol.model.CommentActivity;
 import com.youcontrol.model.Project;
 import com.youcontrol.model.UserWeb;
-import com.youcontrol.model.Version;
+import com.youcontrol.service.ActivityService;
 
 @Resource
 public class ActivityController {
@@ -28,10 +27,10 @@ public class ActivityController {
 	private final UserWeb userWeb;
 	
 	private final UserProjectsDao userProjectsDao;
-	private final ProjectDao projectDao;
-	private final VersionDao versionDao;
+	private final ProjectDao projectDao;	
 	private final ActivityDao activityDao;
 	private final CommentActivityDao commentActivityDao;
+	private final ActivityService activityService;
 	
 	public ActivityController(Result result,
 							  UserWeb userWeb,
@@ -39,19 +38,21 @@ public class ActivityController {
 							  ProjectDao projectDao,
 							  VersionDao versionDao,
 							  ActivityDao activityDao,
-							  CommentActivityDao commentActivityDao) {
+							  CommentActivityDao commentActivityDao,
+							  ActivityService activityService) {
 		this.result = result;
 		this.userWeb = userWeb;
 		this.userProjectsDao = userProjectsDao;
-		this.projectDao = projectDao;
-		this.versionDao = versionDao;
+		this.projectDao = projectDao;		
 		this.activityDao = activityDao;
 		this.commentActivityDao = commentActivityDao;
+		this.activityService = activityService;
 	}
 	
 	@Get @Path("/project/{project.id}/activities")
 	public void activities(Project project) {
-		result.include("atividades", projectDao.listarAtividades(project));
+		List<Activity> activities = projectDao.getActivitiesByProject(project);
+		result.include("atividades", activities);
 	}
 	
 	@Get @Path("/activity/{activity.id}")
@@ -68,43 +69,33 @@ public class ActivityController {
 		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
 	}
 	
-	@Get @Path("/project/{project.id}/activity/new")
-	public void newActivity(Project project) {
-		Project projectVersion = this.projectDao.get(userWeb.getProject());
-		result.include("versions", projectVersion.getVersions());
+	@Get @Path("/activity/edit/{activity.id}")
+	public void activityForm(Activity activity) {
+		activity = activityDao.get(activity);
+		result.include("activity", activity);
+		List<CommentActivity> comentarios = commentActivityDao.listar(activity);
+		result.include("comentarios", comentarios);
+		result.include("qtdComentarios", comentarios.size());
 		
+		Project project = userWeb.getProject();
+		Project projectVersion = this.projectDao.get(project);
+		result.include("versions", projectVersion.getVersions());
 		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
+		result.include("action", Action.EDIT);
 	}
 	
 	@Get @Path("/project/{project.id}/activity/add")
 	public void activityForm(Project project) {
 		Project projectVersion = this.projectDao.get(userWeb.getProject());
-		result.include("versions", projectVersion.getVersions());
-		
+		result.include("versions", projectVersion.getVersions());		
 		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
+		result.include("action", Action.ADD);
 	}
 	
 	
-	@Post @Path("/project/{project.id}/activity/new")
-	public void createActivity(Activity activity, Project project, Long[] versions) {
-		if (activity.getResponsavel().getId() == null) activity.setResponsavel(null);
-		
-		Date date = new Date();
-		activity.setDataCriacao(date);
-		activity.setCriador(userWeb.getUser());
-		activity.setProjeto(project);
-		
-		List<Version> versionList = new ArrayList<Version>();
-		if(versions!=null){
-			for(Long versionId : versions){
-				Version version = versionDao.get(Version.class, versionId);
-				versionList.add(version);
-			}
-		}
-		activity.setVersions(versionList);
-		
-		activityDao.save(activity);
-		
+	@Post @Path("/project/{project.id}/activity/save")
+	public void save(Activity activity, Project project, Long[] versions) {
+		activityService.save(activity, project, userWeb.getUser(), versions);		
 		result.redirectTo(this).activities(project);
 	}
 	

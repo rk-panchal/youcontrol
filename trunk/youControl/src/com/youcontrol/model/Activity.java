@@ -14,82 +14,82 @@ import org.hibernate.validator.NotNull;
 @Entity
 public class Activity extends EntityObject {
 	
-	private String resumo;
+	private String summary;
 	
-	private String descricao;
+	private String description;
 	
-	private String criticidade;
+	private String criticality;
 	
-	private String prioridade;
+	private String priority;
 	
-	private Project projeto;
+	private Project project;
 	
-	private User responsavel;
+	private User assignedTo;
 	
-	private User criador;
+	private User createdBy;
 	
-	private Date dataCriacao;
+	private Date createdAt;
 	
 	private List<Version> versions;
 		
 	@NotNull
-	public String getResumo() {
-		return resumo;
+	public String getSummary() {
+		return summary;
 	}
-	public void setResumo(String resumo) {
-		this.resumo = resumo;
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 	
 	@NotNull @Column(length=700)
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String descricao) {
+		this.description = descricao;
 	}
-	public String getCriticidade() {
-		return criticidade;
+	public String getCriticality() {
+		return criticality;
 	}
-	public void setCriticidade(String criticidade) {
-		this.criticidade = criticidade;
+	public void setCriticality(String criticidade) {
+		this.criticality = criticidade;
 	}
-	public String getPrioridade() {
-		return prioridade;
+	public String getPriority() {
+		return priority;
 	}
-	public void setPrioridade(String prioridade) {
-		this.prioridade = prioridade;
-	}
-	
-	@OneToOne
-	public User getResponsavel() {
-		return responsavel;
-	}
-	public void setResponsavel(User responsavel) {
-		this.responsavel = responsavel;
+	public void setPriority(String prioridade) {
+		this.priority = prioridade;
 	}
 	
 	@OneToOne
-	public User getCriador() {
-		return criador;
+	public User getAssignedTo() {
+		return assignedTo;
 	}
-	public void setCriador(User criador) {
-		this.criador = criador;
+	public void setAssignedTo(User responsavel) {
+		this.assignedTo = responsavel;
 	}
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
+	
+	@OneToOne
+	public User getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(User criador) {
+		this.createdBy = criador;
+	}
+	public void setCreatedAt(Date dataCriacao) {
+		this.createdAt = dataCriacao;
 	}
 	
 	@NotNull
-	public Date getDataCriacao() {
-		return dataCriacao;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
-	public void setProjeto(Project projeto) {
-		this.projeto = projeto;
+	public void setProject(Project projeto) {
+		this.project = projeto;
 	}
 	
 	@ManyToOne
-	public Project getProjeto() {
-		return projeto;
+	public Project getProject() {
+		return project;
 	}
 	
 	@ManyToMany
