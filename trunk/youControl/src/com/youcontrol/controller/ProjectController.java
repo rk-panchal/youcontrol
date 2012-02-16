@@ -19,7 +19,7 @@ import com.youcontrol.dao.UserProjectsDao;
 import com.youcontrol.images.ImageProject;
 import com.youcontrol.model.Project;
 import com.youcontrol.model.User;
-import com.youcontrol.model.UserProjects;
+import com.youcontrol.model.UserAssignment;
 import com.youcontrol.model.UserWeb;
 import com.youcontrol.model.Version;
 
@@ -49,7 +49,7 @@ public class ProjectController {
 	
 	@Get @Path("/projects")
 	public void projects() {
-		result.include("projetos", userProjectsDao.listarProjDoUsuario(userWeb.getUser()));
+		result.include("projetos", userProjectsDao.listProjectsByUser(userWeb.getUser()));
 	}
 	
 	@Get @Path("/project/new")
@@ -84,14 +84,14 @@ public class ProjectController {
 	public void overview(Project project) {
 		/* LOAD ONLY USERS THAT AREN'T IN THE PROJECT */
 		List<User> usersInSystem = userDao.listarUsuarios();
-		List<UserProjects> usersProject =  userProjectsDao.listarUsuariosDoProj(project);
+		List<UserAssignment> usersProject =  userProjectsDao.listUserAssignmentsByProject(project);
 		
 		List<Version> versions = userProjectsDao.getVersionsFromProject(project.getId());
 		
 		List<User> usersNotInProject = new ArrayList<User>();
 		
 		List<User> usersInProject = new ArrayList<User>();
-		for (UserProjects userProject : usersProject) {
+		for (UserAssignment userProject : usersProject) {
 			usersInProject.add(userProject.getUser());
 		}
 		

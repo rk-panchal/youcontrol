@@ -44,47 +44,47 @@ public class Activity extends EntityObject {
 	public String getDescription() {
 		return description;
 	}
-	public void setDescription(String descricao) {
-		this.description = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getCriticality() {
 		return criticality;
 	}
-	public void setCriticality(String criticidade) {
-		this.criticality = criticidade;
+	public void setCriticality(String criticality) {
+		this.criticality = criticality;
 	}
 	public String getPriority() {
 		return priority;
 	}
-	public void setPriority(String prioridade) {
-		this.priority = prioridade;
+	public void setPriority(String priority) {
+		this.priority = priority;
 	}
 	
 	@OneToOne
 	public User getAssignedTo() {
 		return assignedTo;
 	}
-	public void setAssignedTo(User responsavel) {
-		this.assignedTo = responsavel;
+	public void setAssignedTo(User user) {
+		this.assignedTo = user;
 	}
 	
 	@OneToOne
 	public User getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(User criador) {
-		this.createdBy = criador;
+	public void setCreatedBy(User user) {
+		this.createdBy = user;
 	}
-	public void setCreatedAt(Date dataCriacao) {
-		this.createdAt = dataCriacao;
+	public void setCreatedAt(Date date) {
+		this.createdAt = date;
 	}
 	
 	@NotNull
 	public Date getCreatedAt() {
 		return createdAt;
 	}
-	public void setProject(Project projeto) {
-		this.project = projeto;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 	
 	@ManyToOne
@@ -96,8 +96,8 @@ public class Activity extends EntityObject {
 	public List<Version> getVersions() {
 		return this.versions;
 	}
-	public void setVersions(List<Version> version) {
-		this.versions = version;
+	public void setVersions(List<Version> versions) {
+		this.versions = versions;
 	}
 	
 }
