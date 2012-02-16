@@ -31,13 +31,14 @@
 			</p>
 			
 			<p>
-				<label for="activity.versions">
+				<label for="versions">
 					Versões <img src="<c:url value="/imgs/help.png"/>" class="help" title="Esta atividade está relacionada a quais versões?" />
 				</label>
-				<select name="activity.versions" id="activity.versions" multiple="multiple">
-					<option value=""></option>
-					<c:forEach items="${versions}" var="version">
-						<option value="${version.id}">${version.name}</option>
+				<select name="versions" id="versions" multiple="multiple">
+					<c:forEach items="${versions}" var="version">											
+							<option <c:forEach items="${activity.versions}" var="selectedVersion"><c:if test="${selectedVersion==version }">selected</c:if></c:forEach> value="${version.id}">
+								${version.name}
+							</option>						
 					</c:forEach>
 				</select>
 			</p>

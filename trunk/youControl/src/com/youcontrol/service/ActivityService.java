@@ -38,7 +38,8 @@ public class ActivityService {
 		activityToUpdate.setSummary(activity.getSummary());
 		activityToUpdate.setDescription(activity.getDescription());
 		activityToUpdate.setAssignedTo(activity.getAssignedTo());
-				
+		activityToUpdate.setVersions(getVersionList(versions));
+		
 		activityDao.save(activityToUpdate);
 	}
 	
@@ -48,8 +49,13 @@ public class ActivityService {
 		Date date = new Date();
 		activity.setCreatedAt(date);
 		activity.setCreatedBy(user);
-		activity.setProject(project);
+		activity.setProject(project);		
+		activity.setVersions(getVersionList(versions));
 		
+		activityDao.save(activity);
+	}
+
+	private List<Version> getVersionList(Long[] versions) {
 		List<Version> versionList = new ArrayList<Version>();
 		if(versions!=null){
 			for(Long versionId : versions){
@@ -57,9 +63,7 @@ public class ActivityService {
 				versionList.add(version);
 			}
 		}
-		activity.setVersions(versionList);
-		
-		activityDao.save(activity);
+		return versionList;
 	}
 	
 	
