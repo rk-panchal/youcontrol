@@ -41,7 +41,7 @@
 				<span class="detailTitle">Data prevista: </span><span>-</span><br />
 				<span class="detailTitle">Concluído: </span><span>0%</span><br />
 				<span class="detailTitle">Tempo gasto: </span><span>-</span><br />
-				<span class="detailTitle">Versão(ões): </span>
+				<span class="detailTitle">Versões: </span>
 				<span>
 					<c:forEach items="${atividade.versions}" var="version">
 						${version.name} 

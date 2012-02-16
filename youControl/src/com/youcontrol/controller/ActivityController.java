@@ -87,7 +87,7 @@ public class ActivityController {
 	@Get @Path("/project/{project.id}/activity/add")
 	public void activityForm(Project project) {
 		Project projectVersion = this.projectDao.get(userWeb.getProject());
-		result.include("versions", projectVersion.getVersions());		
+		result.include("versions", projectVersion.getVersions());
 		result.include("usuarios", userProjectsDao.listUserAssignmentsByProject(project));
 		result.include("action", Action.ADD);
 	}

@@ -22,12 +22,8 @@ import com.youcontrol.model.Version;
 public class VersionController {
 
 	private final Result result;
-	private final UserWeb userWeb;
-	private final UserDao userDao;
 	private final ProjectDao projectDao;
 	private final VersionDao versionDao;
-	private final UserProjectsDao userProjectsDao;
-	private final ImageProject imageProject;
 	
 	public VersionController(Result result, 
 							 UserWeb userWeb, 
@@ -37,12 +33,8 @@ public class VersionController {
 							 UserProjectsDao userProjectsDao,
 							 ImageProject imageProject) {
 		this.result = result;
-		this.userWeb = userWeb;
-		this.userDao = userDao;
 		this.projectDao = projectDao;
 		this.versionDao = versionDao;
-		this.userProjectsDao = userProjectsDao;
-		this.imageProject = imageProject;
 	}
 	
 	@Get @Path("/project/{project.id}/version/new")
