@@ -66,7 +66,7 @@ public class ActivityController {
 		Project project = userWeb.getProject();
 		Project projectVersion = this.projectDao.get(project);
 		result.include("versions", projectVersion.getVersions());
-		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
+		result.include("userAssignmentList", userProjectsDao.listUserAssignmentsByProject(project));
 	}
 	
 	@Get @Path("/activity/edit/{activity.id}")
@@ -80,7 +80,7 @@ public class ActivityController {
 		Project project = userWeb.getProject();
 		Project projectVersion = this.projectDao.get(project);
 		result.include("versions", projectVersion.getVersions());
-		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
+		result.include("users", userProjectsDao.listUsersByProject(project));
 		result.include("action", Action.EDIT);
 	}
 	
@@ -88,7 +88,7 @@ public class ActivityController {
 	public void activityForm(Project project) {
 		Project projectVersion = this.projectDao.get(userWeb.getProject());
 		result.include("versions", projectVersion.getVersions());		
-		result.include("usuarios", userProjectsDao.listarUsuariosDoProj(project));
+		result.include("usuarios", userProjectsDao.listUserAssignmentsByProject(project));
 		result.include("action", Action.ADD);
 	}
 	

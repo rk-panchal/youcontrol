@@ -41,7 +41,7 @@ public class UserController {
 	
 	@Get @Path("/users/profile")
 	public void myProfile() {
-		result.include("projetos", userProjectsDao.listarProjDoUsuario(userWeb.getUser()));
+		result.include("projetos", userProjectsDao.listProjectsByUser(userWeb.getUser()));
 	}
 	@Post @Path("/users/profile")
 	public void saveProfile(User user) {
@@ -69,7 +69,7 @@ public class UserController {
 	public void userProfile(User user) {
 		user = userDao.get(user);
 		result.include("user", user);
-		result.include("projects", userProjectsDao.listarProjDoUsuario(user));
+		result.include("projects", userProjectsDao.listProjectsByUser(user));
 	}
 	
 	@Post @Path("/image/user/{user.id}")

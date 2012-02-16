@@ -6,7 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class UserProjects extends EntityObject{
+public class UserAssignment extends EntityObject{
 
 	private User user;	
 	

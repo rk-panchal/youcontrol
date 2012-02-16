@@ -37,6 +37,7 @@ public class ActivityService {
 		
 		activityToUpdate.setSummary(activity.getSummary());
 		activityToUpdate.setDescription(activity.getDescription());
+		activityToUpdate.setAssignedTo(activity.getAssignedTo());
 				
 		activityDao.save(activityToUpdate);
 	}

@@ -9,7 +9,6 @@ import org.hibernate.validator.NotNull;
 @Entity
 public class User extends EntityObject{
 	
-	
 	private String nome;
 	
 	private String email;

@@ -21,8 +21,11 @@
 				</label>
 				<select name="activity.assignedTo.id" id="activity.assignedTo.id">
 					<option value="">Não atribuir esta atividade</option>
-					<c:forEach items="${usuarios}" var="user">
-						<option value="${user.user.id }">${user.user.nome }</option>
+					
+					<c:forEach items="${users}" var="user">
+						<option <c:if test="${user==activity.assignedTo }">selected</c:if> value="${user.id }">
+							${user.nome }
+						</option>
 					</c:forEach>
 				</select>
 			</p>
