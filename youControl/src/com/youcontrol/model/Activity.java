@@ -31,6 +31,9 @@ public class Activity extends EntityObject {
 	private Date createdAt;
 	
 	private List<Version> versions;
+	
+	private Status status;
+	
 		
 	@NotNull
 	public String getSummary() {
@@ -96,8 +99,18 @@ public class Activity extends EntityObject {
 	public List<Version> getVersions() {
 		return this.versions;
 	}
+	
 	public void setVersions(List<Version> versions) {
 		this.versions = versions;
 	}
+	
+	@ManyToOne
+	public Status getStatus() {
+		return this.status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
 	
 }

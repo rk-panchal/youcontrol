@@ -21,6 +21,11 @@
   	<dispatcher>FORWARD</dispatcher>
   	<dispatcher>REQUEST</dispatcher>
   </filter-mapping>
+
+
+  <listener>
+  	<listener-class>com.youcontrol.app.StartupListener</listener-class>
+  </listener>  
   
   <context-param>  
 	  <param-name>br.com.caelum.vraptor.packages</param-name>  
