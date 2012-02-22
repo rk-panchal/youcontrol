@@ -7,8 +7,8 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
-		<property name="show_sql">true</property>
-		<property name="format_sql">true</property>
+		<!-- <property name="show_sql">true</property>
+		<property name="format_sql">true</property> -->
 
 		<property name="c3p0.acquire_increment">1</property> 
 		<property name="c3p0.idle_test_period">100</property> <!-- seconds --> 
@@ -19,10 +19,12 @@
 		
 		<mapping class="com.youcontrol.model.Project" />
 		<mapping class="com.youcontrol.model.User" />
-		<mapping class="com.youcontrol.model.UserProjects" />
+		<mapping class="com.youcontrol.model.UserAssignment" />
 		<mapping class="com.youcontrol.model.Activity" />
 		<mapping class="com.youcontrol.model.CommentActivity" />
 		<mapping class="com.youcontrol.model.Version"/>
+		<mapping class="com.youcontrol.model.Status"/>
+		<mapping class="com.youcontrol.model.SystemProperty"/>
 		
 	</session-factory>
 </hibernate-configuration>
