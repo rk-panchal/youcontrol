@@ -52,7 +52,7 @@ public class DefaultSettingsManager {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		SystemPropertyService systemPropertyService = new SystemPropertyService(new SystemPropertyDao(session));
 		SystemProperty alreadyPopulated = systemPropertyService.getSystemPropertyByName(DefaulProperties.DEFAULT_VALUES.name());
-		return alreadyPopulated !=null && alreadyPopulated.getValue().equals(true);
+		return alreadyPopulated !=null && alreadyPopulated.getValue().equals(Boolean.TRUE.toString());
 	}
 
 	private void setStatus(Session session) {
