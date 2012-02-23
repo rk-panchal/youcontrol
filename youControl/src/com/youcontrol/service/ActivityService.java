@@ -39,6 +39,7 @@ public class ActivityService {
 		activityToUpdate.setDescription(activity.getDescription());
 		activityToUpdate.setAssignedTo(activity.getAssignedTo());
 		activityToUpdate.setVersions(getVersionList(versions));
+		activityToUpdate.setStatus(activity.getStatus());
 		
 		activityDao.save(activityToUpdate);
 	}

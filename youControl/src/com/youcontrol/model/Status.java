@@ -9,20 +9,23 @@ public class Status extends EntityObject{
 	
 	private String code;
 	
-	private String description;
+	private String name;
 	
 	private boolean markAsfinished;
 	
 	private Project project;
 
+	public Status() {
+	}
+	
 	public Status(String code, String description) {
 		this.code = code;
-		this.description = description;
+		this.name = description;
 	}
 	
 	public Status(String code, String description, Boolean markAsFinished) {
 		this.code = code;
-		this.description = description;
+		this.name = description;
 		this.markAsfinished = markAsFinished;
 	}
 
@@ -34,12 +37,12 @@ public class Status extends EntityObject{
 		this.code = code;
 	}
 
-	public String getDescription() {
-		return this.description;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String description) {
+		this.name = description;
 	}
 
 	public boolean getMarkAsfinished() {
