@@ -14,7 +14,23 @@
 					Resumo <img src="<c:url value="/imgs/help.png"/>" class="help" title="Resuma a atividade que será criada" />
 				</label>
 				<input type="text" name="activity.summary" id="activity.summary" value="${activity.summary }" class="required" size="30" maxlength="255" />
-			</p> 
+			</p>
+			
+			<p>
+				<label for="activity.status.id">
+					Status <img src="<c:url value="/imgs/help.png"/>" class="help" title="Qual a situação da tarefa" />
+				</label>
+				<select name="activity.status.id" id="activity.status.id">
+					<option value="">Selecione</option>
+					
+					<c:forEach items="${statusList}" var="status">
+						<option <c:if test="${status==activity.status }">selected</c:if> value="${status.id }">
+							${status.name }
+						</option>
+					</c:forEach>
+				</select>
+			</p>
+			 
 			<p>
 				<label for="activity.assignedTo.id">
 					Atribuir para <img src="<c:url value="/imgs/help.png"/>" class="help" title="Quem deve ficar responsável por esta tarefa?" />

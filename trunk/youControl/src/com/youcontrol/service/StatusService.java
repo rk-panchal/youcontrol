@@ -1,5 +1,8 @@
 package com.youcontrol.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.caelum.vraptor.ioc.Component;
 
 import com.youcontrol.dao.StatusDao;
@@ -28,6 +31,13 @@ public class StatusService {
 			}
 		}
 		statusDao.save(status);
+	}
+
+	public List<Status> getStatusByProject(Project project) {
+		List<Status> statusList = new ArrayList<Status>();
+		statusList.addAll(statusDao.getDefaultStatus());
+		statusList.addAll(statusDao.getStatusByProject(project));
+		return statusList;
 	}
 	
 }

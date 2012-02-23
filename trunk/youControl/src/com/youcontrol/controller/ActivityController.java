@@ -19,6 +19,7 @@ import com.youcontrol.model.CommentActivity;
 import com.youcontrol.model.Project;
 import com.youcontrol.model.UserWeb;
 import com.youcontrol.service.ActivityService;
+import com.youcontrol.service.StatusService;
 
 @Resource
 public class ActivityController {
@@ -30,6 +31,8 @@ public class ActivityController {
 	private final ProjectDao projectDao;	
 	private final ActivityDao activityDao;
 	private final CommentActivityDao commentActivityDao;
+	
+	private final StatusService statusService;
 	private final ActivityService activityService;
 	
 	public ActivityController(Result result,
@@ -38,6 +41,7 @@ public class ActivityController {
 							  ProjectDao projectDao,
 							  VersionDao versionDao,
 							  ActivityDao activityDao,
+							  StatusService statusService,
 							  CommentActivityDao commentActivityDao,
 							  ActivityService activityService) {
 		this.result = result;
@@ -47,6 +51,7 @@ public class ActivityController {
 		this.activityDao = activityDao;
 		this.commentActivityDao = commentActivityDao;
 		this.activityService = activityService;
+		this.statusService = statusService;
 	}
 	
 	@Get @Path("/project/{project.id}/activities")
@@ -79,6 +84,7 @@ public class ActivityController {
 		
 		Project project = userWeb.getProject();
 		Project projectVersion = this.projectDao.get(project);
+		result.include("statusList", statusService.getStatusByProject(userWeb.getProject()));
 		result.include("versions", projectVersion.getVersions());
 		result.include("users", userProjectsDao.listUsersByProject(project));
 		result.include("action", Action.EDIT);
@@ -87,8 +93,9 @@ public class ActivityController {
 	@Get @Path("/project/{project.id}/activity/add")
 	public void activityForm(Project project) {
 		Project projectVersion = this.projectDao.get(userWeb.getProject());
+		result.include("statusList", statusService.getStatusByProject(userWeb.getProject()));
 		result.include("versions", projectVersion.getVersions());
-		result.include("usuarios", userProjectsDao.listUserAssignmentsByProject(project));
+		result.include("users", userProjectsDao.listUsersByProject(project));
 		result.include("action", Action.ADD);
 	}
 	
