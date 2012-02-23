@@ -302,10 +302,9 @@ ul.lista li { list-style-type:none; }
 #boxTitle {
 	padding:10px;
 	height:20px;
-	background-color:#C1C1C1;
-	background:url("../imgs/topmenu/topNav.jpg");
-	border-bottom:1px solid black;
-	color:#FFF;
+	background-color:#FDF5E6;
+	border-bottom:1px solid #CCC;
+	color:#000;
 	line-height:20px;
 }
 #boxTitle span.minimize {
