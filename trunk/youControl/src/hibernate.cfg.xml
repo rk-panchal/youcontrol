@@ -25,6 +25,7 @@
 		<mapping class="com.youcontrol.model.Version"/>
 		<mapping class="com.youcontrol.model.Status"/>
 		<mapping class="com.youcontrol.model.SystemProperty"/>
+		<mapping class="com.youcontrol.model.Message"/>
 		
 	</session-factory>
 </hibernate-configuration>

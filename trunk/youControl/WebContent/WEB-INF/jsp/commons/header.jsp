@@ -6,6 +6,7 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
 <title>youControl - Projects Management</title>
 <script type="text/javascript" src="<c:url value="/js/jquery-1.5.1.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.gritter.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/puts.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.scrollablecombo.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.colorbox.js"/>"></script>
@@ -14,6 +15,7 @@
 <script type="text/javascript" src="<c:url value="/js/jquery.limit-1.2.source.js"/>"></script>
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>" media="screen" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/gritter.css"/>" media="screen" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/projectSelector.css"/>"/>
 <link rel="shortcut icon" href="<c:url value="/imgs/favicon.png"/>" type="image/png" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/colorbox.css"/>"/>
@@ -70,7 +72,7 @@
 				<ul class="menu">
 					<li class="inicio"><a href="<c:url value="/start"/>">Início</a></li>
 					<li class="projetos"><a href="<c:url value="/projects"/>">Projetos <span class="stats">- 5 ativos</span></a></li>
-					<li class="msgs"><a href="#">Mensagens <span class="stats">- (0/0)</span></a></li>
+					<li class="msgs"><a href="<c:url value="/messages"/>">Mensagens <span class="stats">- (0/0)</span></a></li>
 					<li class="perfil"><a href="<c:url value="/users/profile"/>">Perfil </a></li>
 					<li class="conf"><a href="#">Configurações </a></li>
 				</ul>
