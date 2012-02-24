@@ -1,7 +1,4 @@
 <%@ include file="../commons/header.jsp" %>
-<script type="text/javascript" src="<c:url value="/js/easyTooltip.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.validate.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.limit-1.2.source.js"/>"></script>
 <div id="content-main">
 	<h2 class="projeto">Projetos > Novo Projeto</h2>
 </div>
