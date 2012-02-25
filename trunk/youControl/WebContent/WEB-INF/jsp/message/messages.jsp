@@ -1,27 +1,59 @@
 <%@ include file="../commons/header.jsp" %>
+
 <div id="content-main">
 	<h2 class="msgs">Mensagens</h2>
 </div>
 <div id="content-general">
-	<p><a href="#" id="send">Mensagem enviada</a></p>
-	<p><a href="#" id="inbox">Chegou mensagem</a></p>
+	<p><a href="#" id="sendNotification">Mensagem enviada</a></p>
+	<p><a href="#" id="inboxNotification">Chegou mensagem</a></p>
 
-	<div id="inbox">
-		<h2>Caixa de entrada</h2>
-		<c:forEach items="${inboxMessages }" var="message">
-			<p>De ${message.fromUser.nome } - ${message.subject } - em <fmt:formatDate value="${message.sentDate }" type="date" pattern="dd/MM/yyyy HH:mm"/></p>
-		</c:forEach>
+	<ul class="tabs">
+		<li id="inbox" class="active">Caixa de entrada</li>
+		<li id="sentMessage">Caida de saída</li>
+		<li id="sendMessage">Escrever mensagem</li>
+	</ul>
+	
+	<div style="width:100%; height:29px"></div>
+	
+	<div class="content inbox">
+		<table class="messagesTable" border="0" cellpadding="0" cellspacing="0">
+			<c:forEach items="${inboxMessages }" var="message">
+				<tr <c:if test="${message.markAsRead == false }">class="unread"</c:if> >
+					<td class="check"><input type="checkbox" /></td>
+					<td class="username">${message.fromUser.nome }</td>
+					<td class="subject">${message.subject } - ${message.markAsRead }</td>
+					<td class="date"><fmt:formatDate value="${message.sentDate }" type="date" pattern="dd/MM/yyyy HH:mm"/></td>
+				</tr>
+			</c:forEach>
+			<tr class="lastRow">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
 	</div>
 	
-	<div id="sentMessage">
-		<h2>Caixa de saída</h2>
-		<c:forEach items="${sentMessages }" var="message">
-			<p>Para ${message.toUser.nome } - ${message.subject } - em <fmt:formatDate value="${message.sentDate }" type="date" pattern="dd/MM/yyyy HH:mm"/></p>
-		</c:forEach>
+	<div class="content sentMessage">
+		<table class="messagesTable" border="0" cellpadding="0" cellspacing="0">
+			<c:forEach items="${sentMessages }" var="message">
+				<tr>
+					<td class="check"><input type="checkbox" /></td>
+					<td class="username">Para: ${message.toUser.nome }</td>
+					<td class="subject">${message.subject }</td>
+					<td class="date"><fmt:formatDate value="${message.sentDate }" type="date" pattern="dd/MM/yyyy HH:mm"/></td>
+				</tr>
+			</c:forEach>
+			<tr class="lastRow">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
 	</div>
 	
-	<div id="sendMessage">
-		<h2>Escrever mensagem</h2>
+	<div class="content sendMessage">
 		<form action="<c:url value="/messages/new"/>" method="post" id="newMessage">
 			<fieldset>
 				<p>
@@ -61,7 +93,42 @@
 		$('textarea#message').limit(700, '#restantes');
 		$('#newMessage').validate();
 		
-		$('#send').click(function(){
+		/* ABAS DE NAVEGACAO */
+		$("ul.tabs > li").click(function(e){
+			switch(e.target.id){
+				case "inbox":
+					$("#inbox").addClass("active");
+					$("#sentMessage").removeClass("active");
+					$("#sendMessage").removeClass("active");
+					
+					$("div.inbox").css("display", "block");
+					$("div.sentMessage").css("display", "none");
+					$("div.sendMessage").css("display", "none");
+				break;
+				case "sentMessage":
+					$("#inbox").removeClass("active");
+					$("#sentMessage").addClass("active");
+					$("#sendMessage").removeClass("active");
+					
+					$("div.sentMessage").css("display", "block");
+					$("div.inbox").css("display", "none");
+					$("div.sendMessage").css("display", "none");
+				break;
+				case "sendMessage":
+					$("#inbox").removeClass("active");
+					$("#sentMessage").removeClass("active");
+					$("#sendMessage").addClass("active");
+					
+					$("div.sendMessage").css("display", "block");
+					$("div.inbox").css("display", "none");
+					$("div.sentMessage").css("display", "none");
+				break;
+			}
+			return false;
+		});
+		
+		/* NOTIFICACOES DE MENSAGEM */
+		$('#sendNotification').click(function(){
 			$.gritter.add({
 					title: 'Enviada',
 					text: 'A sua mensagem foi enviada com sucesso!',
@@ -72,8 +139,7 @@
 			});
 			return false;
 		});
-		
-		$('#inbox').click(function(){
+		$('#inboxNotification').click(function(){
 			$.gritter.add({
 					title: 'Nova mensagem',
 					text: 'Chegou mensagem nova para você! Visualize <a href="#">aqui</a>.',
