@@ -3,25 +3,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
-<title>youControl - Projects Management</title>
-<script type="text/javascript" src="<c:url value="/js/jquery-1.5.1.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.gritter.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/puts.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.scrollablecombo.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.colorbox.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/easyTooltip.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.validate.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/js/jquery.limit-1.2.source.js"/>"></script>
-
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>" media="screen" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/gritter.css"/>" media="screen" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/projectSelector.css"/>"/>
-<link rel="shortcut icon" href="<c:url value="/imgs/favicon.png"/>" type="image/png" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/colorbox.css"/>"/>
-
-
-
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" /> 
+	<title>youControl - Projects Management</title>
+	
+	<link rel="shortcut icon" href="<c:url value="/imgs/favicon.png"/>" type="image/png" />
+	
+	<script type="text/javascript" src="<c:url value="/js/jquery-1.5.1.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/js/jquery.gritter.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/js/puts.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/js/jquery.scrollablecombo.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/js/jquery.colorbox.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/js/easyTooltip.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/js/jquery.validate.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/js/jquery.limit-1.2.source.js"/>"></script>
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/gritter.css"/>" media="screen" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/projectSelector.css"/>"/>
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/colorbox.css"/>"/>
 </head>
 <body>
 	<div id="general">
@@ -41,7 +40,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="<c:url value="/messages"/>">
 								<img src="<c:url value="/imgs/topmenu/messages.png"/>" />
 								<span>Mensagens</span>
 								<span class="numberTop">8</span>
@@ -63,8 +62,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- <img src="<c:url value="/imgs/logoH.png"/>" alt="youControl" /> -->
 		
 		<div id="principal">
 			<div style="clear:both"></div>

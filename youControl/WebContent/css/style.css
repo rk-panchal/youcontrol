@@ -402,3 +402,53 @@ div.commentText img { float:left; width:50px; height:50px; margin-right:10px; }
 div.commentText p.detail  { font-size:11px; text-align:right; margin-bottom:5px; }
 div.commentText span.detailComment { color:#999; }
 div.divisor { border:1px solid #484848; }
+
+/* TELA DE MENSAGENS */
+ul.tabs { margin-top:20px; }
+ul.tabs li{
+	float: left;
+	margin-right: 5px;
+	margin-bottom: -1px;
+}
+ul.tabs li{
+	font-weight: 700;
+	display: block;
+	padding: 5px 10px 5px 10px;
+	background: #efefef;
+	margin-bottom: -1px;
+	border: 1px solid #d0ccc9;
+	border-width: 1px 1px 1px 1px;
+	border-bottom:none;
+	position: relative;
+	color: #898989;
+	cursor: pointer;
+}
+ul.tabs li.active{
+	background: #fff;
+	top: 1px;
+	border-bottom: 0;
+	color: #5f95ef;
+}
+.content{
+	margin: 0pt auto;
+	background: #efefef;
+	background: #fff;
+	border-top: 1px solid #d0ccc9;
+	text-align: left;
+	padding: 10px;
+	padding-bottom: 20px;
+	font-size: 11px;
+}
+.content.inbox { display:block; }
+.content.sentMessage { display:none; }
+.content.sendMessage { display:none; }
+
+table.messagesTable { margin:0; padding:0; }
+table.messagesTable tr { background: rgba(243, 243, 243, .85); cursor:pointer; }
+table.messagesTable tr.unread { background:white; font-weight: bold; }
+table.messagesTable td { padding:10px 7px; border-top:1px #E5E5E5 solid; }
+table.messagesTable tr.lastRow td { border-bottom:1px #E5E5E5 solid; border-top:none; padding:0; }
+table.messagesTable td.check { min-width:20px; }
+table.messagesTable td.username { min-width:200px; }
+table.messagesTable td.subject { width:100%; }
+table.messagesTable td.date { min-width:120px; }
