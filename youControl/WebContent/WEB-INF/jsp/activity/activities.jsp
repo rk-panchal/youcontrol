@@ -3,10 +3,6 @@
 <script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/jquery.tablesorter.pager.js"/>"></script>
 
-<style>
-</style>
-
-
 <div id="content-main">
 	<h2 class="atividade">Atividades: ${userWeb.project.projeto }</h2>
 </div>

@@ -14,43 +14,52 @@
 	</ul>
 	
 	<div style="width:100%; height:29px"></div>
-	
 	<div class="content inbox">
-		<table class="messagesTable" border="0" cellpadding="0" cellspacing="0">
-			<c:forEach items="${inboxMessages }" var="message">
-				<tr <c:if test="${message.markAsRead == false }">class="unread"</c:if> >
-					<td class="check"><input type="checkbox" /></td>
-					<td class="username">${message.fromUser.nome }</td>
-					<td class="subject">${message.subject } - ${message.markAsRead }</td>
-					<td class="date"><fmt:formatDate value="${message.sentDate }" type="date" pattern="dd/MM/yyyy HH:mm"/></td>
+		<c:if test="${empty inboxMessages }">
+			<p style="text-align:center; margin:10px 0">Nenhuma mensagem recebida.</p>
+		</c:if>
+		<c:if test="${!empty inboxMessages }">
+			<table class="messagesTable" border="0" cellpadding="0" cellspacing="0">
+				<c:forEach items="${inboxMessages }" var="message">
+					<tr <c:if test="${message.markAsRead == false }">class="unread"</c:if> >
+						<td class="check"><input type="checkbox" /></td>
+						<td class="username">${message.fromUser.nome }</td>
+						<td class="subject">${message.subject } - ${message.markAsRead }</td>
+						<td class="date"><fmt:formatDate value="${message.sentDate }" type="date" pattern="dd/MM/yyyy HH:mm"/></td>
+					</tr>
+				</c:forEach>
+				<tr class="lastRow">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
-			</c:forEach>
-			<tr class="lastRow">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
+			</table>
+		</c:if>
 	</div>
 	
 	<div class="content sentMessage">
-		<table class="messagesTable" border="0" cellpadding="0" cellspacing="0">
-			<c:forEach items="${sentMessages }" var="message">
-				<tr>
-					<td class="check"><input type="checkbox" /></td>
-					<td class="username">Para: ${message.toUser.nome }</td>
-					<td class="subject">${message.subject }</td>
-					<td class="date"><fmt:formatDate value="${message.sentDate }" type="date" pattern="dd/MM/yyyy HH:mm"/></td>
+		<c:if test="${empty sentMessages }">
+			<p style="text-align:center; margin:10px 0">Nenhuma mensagem enviada.</p>
+		</c:if>
+		<c:if test="${!empty sentMessages }">
+			<table class="messagesTable" border="0" cellpadding="0" cellspacing="0">
+				<c:forEach items="${sentMessages }" var="message">
+					<tr>
+						<td class="check"><input type="checkbox" /></td>
+						<td class="username">Para: ${message.toUser.nome }</td>
+						<td class="subject">${message.subject }</td>
+						<td class="date"><fmt:formatDate value="${message.sentDate }" type="date" pattern="dd/MM/yyyy HH:mm"/></td>
+					</tr>
+				</c:forEach>
+				<tr class="lastRow">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
-			</c:forEach>
-			<tr class="lastRow">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
+			</table>
+		</c:if>
 	</div>
 	
 	<div class="content sendMessage">
@@ -92,6 +101,10 @@
 		$("img.help").easyTooltip();
 		$('textarea#message').limit(700, '#restantes');
 		$('#newMessage').validate();
+		
+		$("table.messagesTable tr td input").click(function(x) {
+			$(this).parents('tr').toggleClass('selected');
+		});
 		
 		/* ABAS DE NAVEGACAO */
 		$("ul.tabs > li").click(function(e){

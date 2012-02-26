@@ -446,6 +446,7 @@ ul.tabs li.active{
 table.messagesTable { margin:0; padding:0; }
 table.messagesTable tr { background: rgba(243, 243, 243, .85); cursor:pointer; }
 table.messagesTable tr.unread { background:white; font-weight: bold; }
+table.messagesTable tr.selected { background:#FFC; }
 table.messagesTable td { padding:10px 7px; border-top:1px #E5E5E5 solid; }
 table.messagesTable tr.lastRow td { border-bottom:1px #E5E5E5 solid; border-top:none; padding:0; }
 table.messagesTable td.check { min-width:20px; }
